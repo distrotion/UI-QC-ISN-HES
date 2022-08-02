@@ -152,7 +152,7 @@ class TRICKER_HIHMV002_Bloc extends Bloc<TRICKER_Event, String> {
   Future<void> _TRICKER_HIHMV002confirmdata1(
       String toAdd, Emitter<String> emit) async {
     final response = await Dio().post(
-      'http://172.20.30.46:1880/' + 'hardness202',
+      'http://172.20.30.46:1880/' + 'hardness203',
       data: {},
     );
     emit('');
@@ -161,7 +161,7 @@ class TRICKER_HIHMV002_Bloc extends Bloc<TRICKER_Event, String> {
   Future<void> _TRICKER_HIHMV002confirmdata2(
       String toAdd, Emitter<String> emit) async {
     final response = await Dio().post(
-      'http://172.20.30.46:1880/' + 'Compound202',
+      'http://172.20.30.46:1880/' + 'Compound203',
       data: {},
     );
     emit('');

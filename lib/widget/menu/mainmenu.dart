@@ -5,8 +5,10 @@ import '../../bloc/BlocEvent/LoginEvent.dart';
 import '../../mainBody.dart';
 import '../../page/page1.dart';
 
+import '../../page/page10.dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
+import '../../page/page9.dart';
 import 'sub_widget.dart';
 
 late BuildContext MenuContext;
@@ -109,21 +111,21 @@ class Data_Menu_mainmenu extends StatelessWidget {
         //   Lv: 1,
         // ),
 
-        // menu_normal(
-        //   name: "CLEAR ROOM",
-        //   page: Page9(),
-        //   Lv: 1,
-        // ),
+        menu_normal(
+          name: "CLEAR ROOM",
+          page: Page9(),
+          Lv: 1,
+        ),
         // menu_normal(
         //   name: "GARPH STD",
         //   page: Page11(),
         //   Lv: 1,
         // ),
-        // menu_normal(
-        //   name: "REPORT",
-        //   page: Page10(),
-        //   Lv: 1,
-        // ),
+        menu_normal(
+          name: "REPORT",
+          page: Page10(),
+          Lv: 1,
+        ),
         menu_logout(
           name: "Logout",
         ),

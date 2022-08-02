@@ -15,13 +15,11 @@ class TRICKERMASTER_GETINtoHIHMV001 extends TRICKERMASTER_Event {}
 
 class TRICKERMASTER_GETINtoHIHMV002 extends TRICKERMASTER_Event {}
 
-class TRICKERMASTER_GETINtoTPGHMV003 extends TRICKERMASTER_Event {}
+class TRICKERMASTER_GETINtoHIRGH001 extends TRICKERMASTER_Event {}
 
 class TRICKERMASTER_GETINtoMCSINSHES extends TRICKERMASTER_Event {}
 
-class TRICKERMASTER_GETINtoTPGHVK003 extends TRICKERMASTER_Event {}
-
-class TRICKERMASTER_GETINtoAPPGASGW extends TRICKERMASTER_Event {}
+class TRICKERMASTER_GETINtoHIMIC001 extends TRICKERMASTER_Event {}
 
 class TRICKERMASTER_FLUSH extends TRICKERMASTER_Event {}
 
@@ -39,20 +37,16 @@ class TRICKERMASTER_Bloc extends Bloc<TRICKERMASTER_Event, String> {
       return _TRICKERMASTER_GETINtoHIHMV002('', emit);
     });
 
-    on<TRICKERMASTER_GETINtoTPGHMV003>((event, emit) {
-      return _TRICKERMASTER_GETINtoTPGHMV003('', emit);
+    on<TRICKERMASTER_GETINtoHIRGH001>((event, emit) {
+      return _TRICKERMASTER_GETINtoHIRGH001('', emit);
+    });
+
+    on<TRICKERMASTER_GETINtoHIMIC001>((event, emit) {
+      return _TRICKERMASTER_GETINtoHIMIC001('', emit);
     });
 
     on<TRICKERMASTER_GETINtoMCSINSHES>((event, emit) {
       return _TRICKERMASTER_GETINtoMCSINSHES('', emit);
-    });
-
-    on<TRICKERMASTER_GETINtoTPGHVK003>((event, emit) {
-      return _TRICKERMASTER_GETINtoTPGHVK003('', emit);
-    });
-
-    on<TRICKERMASTER_GETINtoAPPGASGW>((event, emit) {
-      return _TRICKERMASTER_GETINtoAPPGASGW('', emit);
     });
 
     on<TRICKERMASTER_FLUSH>((event, emit) {
@@ -129,10 +123,10 @@ class TRICKERMASTER_Bloc extends Bloc<TRICKERMASTER_Event, String> {
     emit(output);
   }
 
-  Future<void> _TRICKERMASTER_GETINtoTPGHMV003(
+  Future<void> _TRICKERMASTER_GETINtoHIRGH001(
       String toAdd, Emitter<String> emit) async {
     final response = await Dio().post(
-      server + 'GETINtoTPGHMV003',
+      server + 'GETINtoHIRGH001',
       data: {
         "PO": FIRSTUI.POACTIVE,
         "CP": FIRSTUI.CPACTIVE,
@@ -175,10 +169,10 @@ class TRICKERMASTER_Bloc extends Bloc<TRICKERMASTER_Event, String> {
     emit(output);
   }
 
-  Future<void> _TRICKERMASTER_GETINtoTPGHVK003(
+  Future<void> _TRICKERMASTER_GETINtoHIMIC001(
       String toAdd, Emitter<String> emit) async {
     final response = await Dio().post(
-      server + 'GETINtoTPGHVK003',
+      server + 'GETINtoHIMIC001',
       data: {
         "PO": FIRSTUI.POACTIVE,
         "CP": FIRSTUI.CPACTIVE,

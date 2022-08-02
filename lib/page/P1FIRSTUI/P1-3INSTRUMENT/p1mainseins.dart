@@ -14,6 +14,8 @@ import '../../page2.dart';
 import '../../page3.dart';
 
 import '../../page4.dart';
+import '../../page5.dart';
+import '../../page6.dart';
 import '../../page7.dart';
 import '../FIRSTuiMAIN.dart';
 import '../FIRSTuiVAR.dart';
@@ -82,6 +84,12 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
       } else if (FIRSTUI.SECLECTins == 'HI-HMV-002') {
         CuPage = Page4();
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+      } else if (FIRSTUI.SECLECTins == 'HI-RGH-001') {
+        CuPage = Page5();
+        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+      } else if (FIRSTUI.SECLECTins == 'HI-MIC-001') {
+        CuPage = Page6();
+        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
       } else if (FIRSTUI.SECLECTins == 'MCS-INSHES') {
         CuPage = Page7();
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
@@ -94,11 +102,11 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
         } else if (FIRSTUI.SECLECTins == 'HI-HMV-002') {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
-        } else if (FIRSTUI.SECLECTins == 'TPG-HMV-003') {
+        } else if (FIRSTUI.SECLECTins == 'HI-RGH-001') {
+          FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
+        } else if (FIRSTUI.SECLECTins == 'HI-MIC-001') {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
         } else if (FIRSTUI.SECLECTins == 'MCS-INSHES') {
-          FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
-        } else if (FIRSTUI.SECLECTins == 'TPG-HVK-003') {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
         } else if (FIRSTUI.SECLECTins == 'APP-GASGW') {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
@@ -229,25 +237,20 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
                                     .read<TRICKERMASTER_Bloc>()
                                     .add(TRICKERMASTER_GETINtoHIHMV002());
                               }
-                              if (_INSlist[i] == 'TPG-HMV-003') {
+                              if (_INSlist[i] == 'HI-RGH-001') {
                                 context
                                     .read<TRICKERMASTER_Bloc>()
-                                    .add(TRICKERMASTER_GETINtoTPGHMV003());
+                                    .add(TRICKERMASTER_GETINtoHIRGH001());
+                              }
+                              if (_INSlist[i] == 'HI-MIC-001') {
+                                context
+                                    .read<TRICKERMASTER_Bloc>()
+                                    .add(TRICKERMASTER_GETINtoHIMIC001());
                               }
                               if (_INSlist[i] == 'MCS-INSHES') {
                                 context
                                     .read<TRICKERMASTER_Bloc>()
                                     .add(TRICKERMASTER_GETINtoMCSINSHES());
-                              }
-                              if (_INSlist[i] == 'TPG-HVK-003') {
-                                context
-                                    .read<TRICKERMASTER_Bloc>()
-                                    .add(TRICKERMASTER_GETINtoTPGHVK003());
-                              }
-                              if (_INSlist[i] == 'APP-GASGW') {
-                                context
-                                    .read<TRICKERMASTER_Bloc>()
-                                    .add(TRICKERMASTER_GETINtoAPPGASGW());
                               }
                             },
                             child: INSBOX(
