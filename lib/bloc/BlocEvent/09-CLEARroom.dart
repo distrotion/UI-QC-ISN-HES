@@ -47,6 +47,10 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       server + "MCSINSHESdb",
       data: {},
     );
+    final resPO7 = await Dio().post(
+      server + "LCRUVS001db",
+      data: {},
+    );
     // final resPO7 = await Dio().post(
     //   server + "APPGASGWdb",
     //   data: {},
@@ -55,21 +59,19 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
     CLEARroomENV output = CLEARroomENV();
 
     if (resPO1.statusCode == 200 &&
-            resPO2.statusCode == 200 &&
-            resPO3.statusCode == 200 &&
-            resPO4.statusCode == 200 &&
-            resPO5.statusCode == 200 &&
-            resPO6.statusCode == 200
-        // &&
-        // resPO7.statusCode == 200
-        ) {
+        resPO2.statusCode == 200 &&
+        resPO3.statusCode == 200 &&
+        resPO4.statusCode == 200 &&
+        resPO5.statusCode == 200 &&
+        resPO6.statusCode == 200 &&
+        resPO7.statusCode == 200) {
       output.PO1 = resPO1.data['PO'] ?? '';
       output.PO2 = resPO2.data['PO'] ?? '';
       output.PO3 = resPO3.data['PO'] ?? '';
       output.PO4 = resPO4.data['PO'] ?? '';
       output.PO5 = resPO5.data['PO'] ?? '';
       output.PO6 = resPO6.data['PO'] ?? '';
-      // output.PO7 = resPO7.data['PO'] ?? '';
+      output.PO7 = resPO7.data['PO'] ?? '';
     }
 
     emit(output);
@@ -108,13 +110,12 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
         server + 'MCSINSHES-SETZERO',
         data: {},
       );
+    } else if (CLEARroomdata.room == 'PO7') {
+      final response = await Dio().post(
+        server + 'LCRUVS001-SETZERO',
+        data: {},
+      );
     }
-    // else if (CLEARroomdata.room == 'PO7') {
-    //   final response = await Dio().post(
-    //     server + 'APPGASGW-SETZERO',
-    //     data: {},
-    //   );
-    // }
 
     //-============
 
@@ -142,29 +143,27 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       server + "MCSINSHESdb",
       data: {},
     );
-    // final resPO7 = await Dio().post(
-    //   server + "APPGASGWdb",
-    //   data: {},
-    // );
+    final resPO7 = await Dio().post(
+      server + "LCRUVS001db",
+      data: {},
+    );
 
     CLEARroomENV output = CLEARroomENV();
 
     if (resPO1.statusCode == 200 &&
-            resPO2.statusCode == 200 &&
-            resPO3.statusCode == 200 &&
-            resPO4.statusCode == 200 &&
-            resPO5.statusCode == 200 &&
-            resPO6.statusCode == 200
-        // &&
-        // resPO7.statusCode == 200
-        ) {
+        resPO2.statusCode == 200 &&
+        resPO3.statusCode == 200 &&
+        resPO4.statusCode == 200 &&
+        resPO5.statusCode == 200 &&
+        resPO6.statusCode == 200 &&
+        resPO7.statusCode == 200) {
       output.PO1 = resPO1.data['PO'] ?? '';
       output.PO2 = resPO2.data['PO'] ?? '';
       output.PO3 = resPO3.data['PO'] ?? '';
       output.PO4 = resPO4.data['PO'] ?? '';
       output.PO5 = resPO5.data['PO'] ?? '';
       output.PO6 = resPO6.data['PO'] ?? '';
-      // output.PO7 = resPO7.data['PO'] ?? '';
+      output.PO7 = resPO7.data['PO'] ?? '';
     }
 
     emit(output);

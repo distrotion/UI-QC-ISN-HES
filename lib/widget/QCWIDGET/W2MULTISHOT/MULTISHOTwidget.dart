@@ -132,7 +132,7 @@ class MULTISHOTmain extends StatelessWidget {
                             height: 40,
                             color: Colors.blue,
                             child: const Center(
-                              child: Text("DATA1",
+                              child: Text("Surface",
                                   style: TxtStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold)),
@@ -153,7 +153,7 @@ class MULTISHOTmain extends StatelessWidget {
                             height: 40,
                             color: Colors.blue,
                             child: const Center(
-                              child: Text("DATA2",
+                              child: Text("Compound",
                                   style: TxtStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold)),

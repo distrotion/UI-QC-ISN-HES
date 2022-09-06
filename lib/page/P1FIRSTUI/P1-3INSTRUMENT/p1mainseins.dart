@@ -17,6 +17,7 @@ import '../../page4.dart';
 import '../../page5.dart';
 import '../../page6.dart';
 import '../../page7.dart';
+import '../../page8.dart';
 import '../FIRSTuiMAIN.dart';
 import '../FIRSTuiVAR.dart';
 import 'p1instrument.dart';
@@ -93,6 +94,9 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
       } else if (FIRSTUI.SECLECTins == 'MCS-INSHES') {
         CuPage = Page7();
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
+      } else if (FIRSTUI.SECLECTins == 'LCR-UVS-001') {
+        CuPage = Page8();
+        MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
       }
     } else {
       if (FIRSTUI.SECLECTins != '') {
@@ -109,6 +113,8 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
         } else if (FIRSTUI.SECLECTins == 'MCS-INSHES') {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
         } else if (FIRSTUI.SECLECTins == 'APP-GASGW') {
+          FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
+        } else if (FIRSTUI.SECLECTins == 'LCR-UVS-001') {
           FIRSTUI.INSnotREADY[FIRSTUI.INSint] = 1;
         }
         FIRSTUI.SECLECTins = '';
@@ -251,6 +257,11 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
                                 context
                                     .read<TRICKERMASTER_Bloc>()
                                     .add(TRICKERMASTER_GETINtoMCSINSHES());
+                              }
+                              if (_INSlist[i] == 'LCR-UVS-001') {
+                                context
+                                    .read<TRICKERMASTER_Bloc>()
+                                    .add(TRICKERMASTER_GETINtoLCRUVS001());
                               }
                             },
                             child: INSBOX(

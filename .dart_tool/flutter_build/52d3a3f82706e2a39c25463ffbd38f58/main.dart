@@ -1,12 +1,12 @@
 // @dart=2.16
-// Flutter web bootstrap script for package:qc_ui_gw/main.dart.
+// Flutter web bootstrap script for package:qc_ui_isn_hes/main.dart.
 
 import 'dart:ui' as ui;
 import 'dart:async';
 
-import 'package:qc_ui_gw/main.dart' as entrypoint;
+import 'package:qc_ui_isn_hes/main.dart' as entrypoint;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:qc_ui_gw/generated_plugin_registrant.dart';
+import 'package:qc_ui_isn_hes/generated_plugin_registrant.dart';
 
 typedef _UnaryFunction = dynamic Function(List<String> args);
 typedef _NullaryFunction = dynamic Function();

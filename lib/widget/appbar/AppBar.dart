@@ -26,7 +26,7 @@ class _App_BarState extends State<App_Bar> {
     return Container(
       height: 70,
       width: MediaQuery.of(context).size.width,
-      color: Color(0xff0b1327),
+      color: const Color(0xff0b1327),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -90,9 +90,9 @@ class Logo1 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 25),
       child: Container(
-        color: Color(0xff0b1327),
-        child: Text(
-          "TPK UI TEST ",
+        color: const Color(0xff0b1327),
+        child: const Text(
+          "TPK UI ISN ",
           style: TextStyle(
             fontFamily: 'Mitr',
             color: Colors.white,
