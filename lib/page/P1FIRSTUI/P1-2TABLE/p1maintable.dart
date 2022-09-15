@@ -77,7 +77,6 @@ class _MAINTABLEP1State extends State<MAINTABLEP1> {
                 ),
                 InkWell(
                   onTap: () {
-                    onLoadingFAKE(context);
                     context.read<LOADSAP_Bloc>().add(LOADSAP_Pressed());
                   },
                   child: Container(

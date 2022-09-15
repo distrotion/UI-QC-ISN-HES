@@ -163,6 +163,12 @@ class _ROCKWELL_HIHMV001bodyState extends State<ROCKWELL_HIHMV001body> {
             .read<TRICKER_HIHMV001_Bloc>()
             .add(TRICKER_HIHMV001confirmdata2());
       },
+      DATA3: (v) {
+        print("----");
+        context
+            .read<TRICKER_HIHMV001_Bloc>()
+            .add(TRICKER_HIHMV001confirmdata3());
+      },
       FINISH: (v) {
         if (HIHMV001var.PCS != '' &&
             HIHMV001var.POINTs != '' &&

@@ -38,6 +38,7 @@ class MULTISHOTmain extends StatelessWidget {
     //------- Bottom
     required this.DATA1,
     required this.DATA2,
+    required this.DATA3,
     required this.FINISH,
     this.preview,
     this.confirmdata,
@@ -83,6 +84,7 @@ class MULTISHOTmain extends StatelessWidget {
 
   Function DATA1;
   Function DATA2;
+  Function DATA3;
   Function FINISH;
 
   List<INSDATA>? preview; //ok
@@ -154,6 +156,27 @@ class MULTISHOTmain extends StatelessWidget {
                             color: Colors.blue,
                             child: const Center(
                               child: Text("Compound",
+                                  style: TxtStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: InkWell(
+                          onTap: () {
+                            DATA3(PO) ?? () {};
+                          },
+                          child: Container(
+                            height: 40,
+                            color: Colors.blue,
+                            child: const Center(
+                              child: Text("PR",
                                   style: TxtStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold)),

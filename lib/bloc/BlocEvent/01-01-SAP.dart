@@ -1,14 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 
 import '../../data/dummy.dart';
 import '../../data/global.dart';
 import '../../model/model.dart';
+import '../../page/P1FIRSTUI/FIRSTuiMAIN.dart';
+import '../../widget/common/Loading.dart';
 
 //-------------------------------------------------
 
-String server = GLOserver;
-String sap = "sap";
+// String server = GLOserver;
+String server = 'http://172.23.10.40:1880/';
+String sap = "sap_ISN";
 //String sap = "sap";
 
 abstract class LOADSAP_Event {}
@@ -24,12 +28,14 @@ class LOADSAP_Bloc extends Bloc<LOADSAP_Event, List<dataset>> {
   Future<void> _LOADSAP_Function_01(
       List<dataset> toAdd, Emitter<List<dataset>> emit) async {
     //-------------- return
+    FreeLoading(FIRSTUIMAINcontext);
     final response = await Dio().post(
       server + sap,
       data: {},
     );
     List<dataset> output = [];
     if (response.statusCode == 200) {
+      Navigator.pop(FIRSTUIMAINcontext);
       var databuff = response.data;
       // var databuff = datadummy;
       // print(databuff);
@@ -86,6 +92,7 @@ class LOADSAP_Bloc extends Bloc<LOADSAP_Event, List<dataset>> {
       }
     } else {
       //
+      Navigator.pop(FIRSTUIMAINcontext);
     }
     emit(output);
   }

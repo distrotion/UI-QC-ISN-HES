@@ -90,6 +90,14 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
         widget.ret = '';
         // REPORTvar.PO = '';
         REPORTvar.reportTYPE = 0;
+      } else if (REPORTvar.reportTYPE == 2) {
+        js.context.callMethod('open', [
+          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-ACT&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
+        ]);
+        context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
+        widget.ret = '';
+        // REPORTvar.PO = '';
+        REPORTvar.reportTYPE = 0;
       } else {
         js.context.callMethod('open', [
           'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-COMMON1&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
@@ -298,6 +306,22 @@ class _MyData extends DataTableSource {
                     child: const Center(
                         child: Text(
                       "REPORT",
+                      style: TxtStyle(color: Colors.white),
+                    )),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    REPORTvar.reportTYPE = 2;
+                    REPORTvar.PO = data.f01;
+                    context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                  },
+                  child: Container(
+                    width: 50,
+                    color: Colors.orange,
+                    child: const Center(
+                        child: Text(
+                      "ACT",
                       style: TxtStyle(color: Colors.white),
                     )),
                   ),

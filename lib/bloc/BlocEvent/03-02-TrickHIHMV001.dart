@@ -27,6 +27,8 @@ class TRICKER_HIHMV001confirmdata1 extends TRICKER_Event {}
 
 class TRICKER_HIHMV001confirmdata2 extends TRICKER_Event {}
 
+class TRICKER_HIHMV001confirmdata3 extends TRICKER_Event {}
+
 class TRICKER_HIHMV001CLEAR extends TRICKER_Event {}
 
 class TRICKER_HIHMV001RESETVALUE extends TRICKER_Event {}
@@ -68,6 +70,10 @@ class TRICKER_HIHMV001_Bloc extends Bloc<TRICKER_Event, String> {
 
     on<TRICKER_HIHMV001confirmdata2>((event, emit) {
       return _TRICKER_HIHMV001confirmdata2('', emit);
+    });
+
+    on<TRICKER_HIHMV001confirmdata3>((event, emit) {
+      return _TRICKER_HIHMV001confirmdata3('', emit);
     });
 
     on<TRICKER_HIHMV001CLEAR>((event, emit) {
@@ -162,6 +168,15 @@ class TRICKER_HIHMV001_Bloc extends Bloc<TRICKER_Event, String> {
       String toAdd, Emitter<String> emit) async {
     final response = await Dio().post(
       'http://172.20.30.46:1880/' + 'Compound202',
+      data: {},
+    );
+    emit('');
+  }
+
+  Future<void> _TRICKER_HIHMV001confirmdata3(
+      String toAdd, Emitter<String> emit) async {
+    final response = await Dio().post(
+      'http://172.20.30.46:1880/' + 'PR202',
       data: {},
     );
     emit('');
