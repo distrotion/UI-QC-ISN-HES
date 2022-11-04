@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../styles/TextStyle.dart';
 
 import '../../common/Easydropdown.dart';
+import '../../common/imgset.dart';
 import '../consolelayout.dart';
 
 class SINGLESHOTmain extends StatelessWidget {
@@ -47,6 +48,7 @@ class SINGLESHOTmain extends StatelessWidget {
     this.ITEMleftUNIT,
     this.ITEMleftVALUE,
     //-------
+    this.PICB64,
   }) : super(key: key);
 
   //Left --------------------------------------------
@@ -93,6 +95,8 @@ class SINGLESHOTmain extends StatelessWidget {
 
   List<INSDATA>? ITEMleftUNIT; // ok
   List<INSDATA>? ITEMleftVALUE; // ok
+
+  String? PICB64;
 
   @override
   Widget build(BuildContext context) {
@@ -329,6 +333,26 @@ class SINGLESHOTmain extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Container(
+                  height: 90,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: const BorderRadius.all(Radius.circular(0)),
+                  ),
+                  child: PicShow(
+                    base64: PICB64 ?? "",
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Container(
                   height: 25,
                   color: Colors.grey,
                   child: _tabtableB2(
@@ -396,23 +420,23 @@ class SINGLESHOTmain extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: const BorderRadius.all(Radius.circular(0)),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: [
+        //     Expanded(
+        //       flex: 1,
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(2.0),
+        //         child: Container(
+        //           height: 90,
+        //           decoration: BoxDecoration(
+        //             border: Border.all(color: Colors.black),
+        //             borderRadius: const BorderRadius.all(Radius.circular(0)),
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }

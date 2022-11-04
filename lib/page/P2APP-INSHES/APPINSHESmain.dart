@@ -124,6 +124,8 @@ class _ROCKWELL_APPINSHESbodyState extends State<ROCKWELL_APPINSHESbody> {
         APPINSHESvar.ITEMleftUNIT = widget.data?.ITEMleftUNIT ?? [];
         APPINSHESvar.ITEMleftVALUE = widget.data?.ITEMleftVALUE ?? [];
 
+        APPINSHESvar.PICs = widget.data?.Pic ?? '';
+
         if (APPINSHESvar.PCSleft == '0') {
           BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
               "ITEM STATUS", "COMPLETE DATA", enumNotificationlist.Success);
@@ -179,29 +181,33 @@ class _ROCKWELL_APPINSHESbodyState extends State<ROCKWELL_APPINSHESbody> {
       Ghtype: APPINSHESvar.GRAPHTYPE,
       //------- Bottom
       GOOD: (v) {
-        APPINSHESvar.APPEARANCE = 'Good';
-        if (APPINSHESvar.PCS != '' &&
-            APPINSHESvar.POINTs != '' &&
-            APPINSHESvar.ItemPickSELECT != '') {
-          if (int.parse(APPINSHESvar.PCSleft) > 0) {
-            onLoadingFAKE(context);
-            context
-                .read<TRICKER_APPINSHES_Bloc>()
-                .add(TRICKER_APPINSHESFINISH());
+        if (APPINSHESvar.PCS != '') {
+          APPINSHESvar.APPEARANCE = 'Good';
+          if (APPINSHESvar.PCS != '' &&
+              APPINSHESvar.POINTs != '' &&
+              APPINSHESvar.ItemPickSELECT != '') {
+            if (int.parse(APPINSHESvar.PCSleft) > 0) {
+              onLoadingFAKE(context);
+              context
+                  .read<TRICKER_APPINSHES_Bloc>()
+                  .add(TRICKER_APPINSHESFINISH());
+            }
+          } else {
+            WORNINGpop(context, "Please select item");
           }
-        } else {
-          WORNINGpop(context, "Please select item");
         }
       },
       NOGOOD: (v) {
-        if (APPINSHESvar.PCS != '' &&
-            APPINSHESvar.POINTs != '' &&
-            APPINSHESvar.ItemPickSELECT != '') {
-          if (int.parse(APPINSHESvar.PCSleft) > 0) {
-            APPINSHESvar.APPEARANCE = 'no Good';
+        if (APPINSHESvar.PCS != '') {
+          if (APPINSHESvar.PCS != '' &&
+              APPINSHESvar.POINTs != '' &&
+              APPINSHESvar.ItemPickSELECT != '') {
+            if (int.parse(APPINSHESvar.PCSleft) > 0) {
+              APPINSHESvar.APPEARANCE = 'no Good';
+            }
+          } else {
+            WORNINGpop(context, "Please select item");
           }
-        } else {
-          WORNINGpop(context, "Please select item");
         }
       },
       preview: APPINSHESvar.preview,
@@ -225,6 +231,7 @@ class _ROCKWELL_APPINSHESbodyState extends State<ROCKWELL_APPINSHESbody> {
       },
       ITEMleftUNIT: APPINSHESvar.ITEMleftUNIT,
       ITEMleftVALUE: APPINSHESvar.ITEMleftVALUE,
+      PICB64: APPINSHESvar.PICs,
     );
   }
 }

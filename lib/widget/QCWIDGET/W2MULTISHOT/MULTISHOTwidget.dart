@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../styles/TextStyle.dart';
 
 import '../../common/Easydropdown.dart';
+import '../../common/imgset.dart';
 import '../consolelayout.dart';
 
 class MULTISHOTmain extends StatelessWidget {
@@ -49,6 +50,7 @@ class MULTISHOTmain extends StatelessWidget {
     this.ITEMleftUNIT,
     this.ITEMleftVALUE,
     //-------
+    this.PICB64,
   }) : super(key: key);
 
   //Left --------------------------------------------
@@ -97,6 +99,8 @@ class MULTISHOTmain extends StatelessWidget {
 
   List<INSDATA>? ITEMleftUNIT; // ok
   List<INSDATA>? ITEMleftVALUE; // ok
+  //
+  String? PICB64;
 
   @override
   Widget build(BuildContext context) {
@@ -438,6 +442,9 @@ class MULTISHOTmain extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: const BorderRadius.all(Radius.circular(0)),
+                  ),
+                  child: PicShow(
+                    base64: PICB64 ?? "",
                   ),
                 ),
               ),

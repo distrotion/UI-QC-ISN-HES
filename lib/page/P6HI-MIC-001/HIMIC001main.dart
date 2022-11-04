@@ -121,6 +121,8 @@ class _ROCKWELL_HIMIC001bodyState extends State<ROCKWELL_HIMIC001body> {
         HIMIC001var.ITEMleftUNIT = widget.data?.ITEMleftUNIT ?? [];
         HIMIC001var.ITEMleftVALUE = widget.data?.ITEMleftVALUE ?? [];
 
+        HIMIC001var.PICs = widget.data?.Pic ?? '';
+
         if (HIMIC001var.PCSleft == '0') {
           BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
               "ITEM STATUS", "COMPLETE DATA", enumNotificationlist.Success);
@@ -234,6 +236,7 @@ class _ROCKWELL_HIMIC001bodyState extends State<ROCKWELL_HIMIC001body> {
       },
       ITEMleftUNIT: HIMIC001var.ITEMleftUNIT,
       ITEMleftVALUE: HIMIC001var.ITEMleftVALUE,
+      PICB64: HIMIC001var.PICs,
     );
   }
 }

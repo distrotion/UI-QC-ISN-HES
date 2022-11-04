@@ -92,7 +92,7 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
         REPORTvar.reportTYPE = 0;
       } else if (REPORTvar.reportTYPE == 2) {
         js.context.callMethod('open', [
-          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-ACT&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
+          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-ACTN&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
         ]);
         context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
         widget.ret = '';

@@ -44,8 +44,12 @@ class MCSINSHESvar {
   static List<INSDATA> ITEMleftVALUE = [];
   static late Timer DHtimer;
 
+  static String selectINS = '0';
+
   //
   static String ItemPickSELECT = '';
+  //
+  static String PICs = '';
 }
 
 class MCSINSHESSCHEMA {
@@ -74,6 +78,7 @@ class MCSINSHESSCHEMA {
     this.GAP = '',
     this.GAPname = '',
     this.GAPnamePick = '',
+    this.Pic = '',
     required this.GAPnameList,
     required this.preview,
     required this.confirmdata,
@@ -104,6 +109,8 @@ class MCSINSHESSCHEMA {
   String GAP;
   String GAPname;
   String GAPnamePick;
+  String Pic;
+
   List<String> GAPnameList;
   List<INSDATA> preview;
   List<INSDATA> confirmdata;

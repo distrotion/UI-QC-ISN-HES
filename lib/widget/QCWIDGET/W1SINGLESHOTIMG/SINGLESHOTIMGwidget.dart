@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../styles/TextStyle.dart';
 
+import '../../common/Advancedropdown.dart';
 import '../../common/Easydropdown.dart';
 import '../consolelayout.dart';
 
@@ -34,6 +35,10 @@ class SINGLESHOTIMGmain extends StatelessWidget {
     //------- Bottom
     required this.ACCEPT,
     required this.FINISH,
+    this.INSdd,
+    this.INSddData,
+    this.CPread,
+    this.PRread,
     this.preview,
     this.confirmdata,
     this.wchild,
@@ -77,6 +82,11 @@ class SINGLESHOTIMGmain extends StatelessWidget {
 
   Function ACCEPT;
   Function FINISH;
+
+  Function(String, String)? INSdd;
+  String? INSddData;
+  Function(String)? CPread;
+  Function(String)? PRread;
 
   List<INSDATA>? preview; //ok
   List<INSDATA>? confirmdata; //ok
@@ -133,6 +143,66 @@ class SINGLESHOTIMGmain extends StatelessWidget {
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        AdvanceDropDown(
+                          borderCO: Colors.grey.shade400,
+                          //   sLabel: "TEST",
+                          isEnable: false,
+                          height: 30,
+                          width: 140,
+                          imgpath: 'assets/icons/icon-down_4@3x.png',
+                          listdropdown: const [
+                            MapEntry("กรุณาเลือก", "0"),
+                            MapEntry("HMV01", "1"),
+                            MapEntry("HMV02", "2"),
+                          ],
+                          onChangeinside: (d, k) {
+                            INSdd!(d, k);
+                          },
+                          value: INSddData ?? "0",
+                        ),
+                        InkWell(
+                          onTap: () {
+                            CPread!("CPread");
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 140,
+                            color: Colors.blue,
+                            child: const Center(
+                              child: Text("PR READ",
+                                  style: TxtStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            PRread!("PRread");
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 140,
+                            color: Colors.blue,
+                            child: const Center(
+                              child: Text("CP READ",
+                                  style: TxtStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

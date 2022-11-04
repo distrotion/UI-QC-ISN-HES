@@ -197,10 +197,24 @@ class APPINSHES_Bloc extends Bloc<APPINSHES_Event, APPINSHESSCHEMA> {
         //---- RIGHT
         ITEMleftUNIT: ITEMleftUNITBUFFER,
         ITEMleftVALUE: ITEMleftVALUEBUFFER,
+        //
+        Pic: databuff['PIC'] != null ? outPIC(databuff['PIC'].toString()) : "",
       );
     } else {
       //
     }
     emit(output);
   }
+}
+
+String outPIC(String input) {
+  String output = "";
+  List<String> data = [];
+  data = input.toString().split(",");
+
+  if (data.length > 1) {
+    output = data[1];
+  }
+
+  return output;
 }

@@ -46,6 +46,7 @@ class HIHMV001_Bloc extends Bloc<HIHMV001_Event, HIHMV001SCHEMA> {
       data: {},
     );
     HIHMV001SCHEMA output = HIHMV001SCHEMA(
+      Pic: "",
       ItemPick: [''],
       ItemPickcode: [ITEMSET()],
       preview: [],
@@ -208,10 +209,24 @@ class HIHMV001_Bloc extends Bloc<HIHMV001_Event, HIHMV001SCHEMA> {
         //---- RIGHT
         ITEMleftUNIT: ITEMleftUNITBUFFER,
         ITEMleftVALUE: ITEMleftVALUEBUFFER,
+        //
+        Pic: databuff['PIC'] != null ? outPIC(databuff['PIC'].toString()) : "",
       );
     } else {
       //
     }
     emit(output);
   }
+}
+
+String outPIC(String input) {
+  String output = "";
+  List<String> data = [];
+  data = input.toString().split(",");
+
+  if (data.length > 1) {
+    output = data[1];
+  }
+
+  return output;
 }

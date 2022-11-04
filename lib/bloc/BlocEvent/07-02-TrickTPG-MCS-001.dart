@@ -9,6 +9,7 @@ import '07-01-TPGMCS001.dart';
 
 //-------------------------------------------------
 String server = GLOserver;
+String serverR = 'http://172.20.30.46:1880/';
 
 abstract class TRICKER_Event {}
 
@@ -29,6 +30,12 @@ class TRICKER_MCSINSHESCLEAR extends TRICKER_Event {}
 class TRICKER_MCSINSHESRESETVALUE extends TRICKER_Event {}
 
 class TRICKER_MCSINSHESSETZERO extends TRICKER_Event {}
+
+//
+
+class TRICKER_MCSINSHESgetPR extends TRICKER_Event {}
+
+class TRICKER_MCSINSHESgetCP extends TRICKER_Event {}
 
 //-------------------------------- FINISH
 
@@ -65,6 +72,14 @@ class TRICKER_MCSINSHES_Bloc extends Bloc<TRICKER_Event, String> {
 
     on<TRICKER_MCSINSHESSETZERO>((event, emit) {
       return _TRICKER_MCSINSHESSETZERO('', emit);
+    });
+    //
+    on<TRICKER_MCSINSHESgetPR>((event, emit) {
+      return _TRICKER_MCSINSHESgetPR('', emit);
+    });
+
+    on<TRICKER_MCSINSHESgetCP>((event, emit) {
+      return _TRICKER_MCSINSHESgetCP('', emit);
     });
 
     //-------------------------------- FINISH
@@ -152,6 +167,58 @@ class TRICKER_MCSINSHES_Bloc extends Bloc<TRICKER_Event, String> {
       server + 'MCSINSHES-SETZERO',
       data: {},
     );
+    emit('');
+  }
+
+  //
+  Future<void> _TRICKER_MCSINSHESgetPR(
+      String toAdd, Emitter<String> emit) async {
+    final response = await Dio().post(
+      serverR + 'getPR',
+      data: {
+        "MC": MCSINSHESvar.selectINS,
+      },
+    );
+    String output = '';
+    if (response.statusCode == 200) {
+      var databuff = response.data;
+      MCSINSHESvar.base64pic01data =
+          databuff['DATA1'] != null ? databuff['DATA1'].toString() : "";
+      MCSINSHESvar.base64pic02data =
+          databuff['DATA2'] != null ? databuff['DATA2'].toString() : "";
+      MCSINSHESvar.base64pic03data =
+          databuff['DATA3'] != null ? databuff['DATA3'].toString() : "";
+      MCSINSHESvar.base64pic04data =
+          databuff['DATA4'] != null ? databuff['DATA4'].toString() : "";
+    } else {
+      //
+    }
+    MICROSCOPEMCSINSHES_CONTEXT.read<MCSINSHES_Bloc>().add(MCSINSHES_READ());
+    emit(output);
+  }
+
+  Future<void> _TRICKER_MCSINSHESgetCP(
+      String toAdd, Emitter<String> emit) async {
+    final response = await Dio().post(
+      serverR + 'getCP',
+      data: {
+        "MC": MCSINSHESvar.selectINS,
+      },
+    );
+    if (response.statusCode == 200) {
+      var databuff = response.data;
+      MCSINSHESvar.base64pic01data =
+          databuff['DATA1'] != null ? databuff['DATA1'].toString() : "";
+      MCSINSHESvar.base64pic02data =
+          databuff['DATA2'] != null ? databuff['DATA2'].toString() : "";
+      MCSINSHESvar.base64pic03data =
+          databuff['DATA3'] != null ? databuff['DATA3'].toString() : "";
+      MCSINSHESvar.base64pic04data =
+          databuff['DATA4'] != null ? databuff['DATA4'].toString() : "";
+    } else {
+      //
+    }
+    MICROSCOPEMCSINSHES_CONTEXT.read<MCSINSHES_Bloc>().add(MCSINSHES_READ());
     emit('');
   }
 

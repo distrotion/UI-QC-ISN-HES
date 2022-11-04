@@ -35,6 +35,8 @@ class HIMIC001var {
 
   //
   static String ItemPickSELECT = '';
+  //
+  static String PICs = '';
 }
 
 class HIMIC001SCHEMA {
@@ -63,6 +65,7 @@ class HIMIC001SCHEMA {
     this.GAP = '',
     this.GAPname = '',
     this.GAPnamePick = '',
+    this.Pic = '',
     required this.GAPnameList,
     required this.preview,
     required this.confirmdata,
@@ -93,6 +96,8 @@ class HIMIC001SCHEMA {
   String GAP;
   String GAPname;
   String GAPnamePick;
+  String Pic;
+
   List<String> GAPnameList;
   List<INSDATA> preview;
   List<INSDATA> confirmdata;

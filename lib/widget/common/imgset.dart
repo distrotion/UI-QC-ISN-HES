@@ -20,7 +20,7 @@ class PicShowState extends State<PicShow> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.base64 == null) return new Container();
+    if (widget.base64 == "") return Container();
     Uint8List bytes = base64.decode(widget.base64);
     return SizedBox(
       height: widget.height ?? 50,

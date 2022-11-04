@@ -209,10 +209,23 @@ class HIMIC001_Bloc extends Bloc<HIMIC001_Event, HIMIC001SCHEMA> {
         //---- RIGHT
         ITEMleftUNIT: ITEMleftUNITBUFFER,
         ITEMleftVALUE: ITEMleftVALUEBUFFER,
+        Pic: databuff['PIC'] != null ? outPIC(databuff['PIC'].toString()) : "",
       );
     } else {
       //
     }
     emit(output);
   }
+}
+
+String outPIC(String input) {
+  String output = "";
+  List<String> data = [];
+  data = input.toString().split(",");
+
+  if (data.length > 1) {
+    output = data[1];
+  }
+
+  return output;
 }

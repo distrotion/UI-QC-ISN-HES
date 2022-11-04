@@ -36,6 +36,8 @@ class APPINSHESvar {
 
   //
   static String ItemPickSELECT = '';
+  //
+  static String PICs = '';
 }
 
 class APPINSHESSCHEMA {
@@ -64,6 +66,7 @@ class APPINSHESSCHEMA {
     this.GAP = '',
     this.GAPname = '',
     this.GAPnamePick = '',
+    this.Pic = '',
     required this.GAPnameList,
     required this.preview,
     required this.confirmdata,
@@ -94,6 +97,8 @@ class APPINSHESSCHEMA {
   String GAP;
   String GAPname;
   String GAPnamePick;
+  String Pic;
+
   List<String> GAPnameList;
   List<INSDATA> preview;
   List<INSDATA> confirmdata;

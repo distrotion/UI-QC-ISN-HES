@@ -209,6 +209,21 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
           WORNINGpop(context, "Please select item");
         }
       },
+      //-------------
+      INSdd: (v, s) {
+        MCSINSHESvar.selectINS = v;
+      },
+      INSddData: MCSINSHESvar.selectINS,
+      CPread: (v) {
+        MCSINSHESvar.iscontrol = true;
+        context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetPR());
+        print(MCSINSHESvar.base64pic02data);
+      },
+      PRread: (v) {
+        MCSINSHESvar.iscontrol = true;
+        context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetCP());
+      },
+      //-------------
       FINISH: (v) {},
       preview: MCSINSHESvar.preview,
       confirmdata: MCSINSHESvar.confirmdata.reversed.toList(),

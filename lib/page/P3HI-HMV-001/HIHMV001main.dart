@@ -98,6 +98,9 @@ class _ROCKWELL_HIHMV001bodyState extends State<ROCKWELL_HIHMV001body> {
         HIHMV001var.confirmdata = widget.data?.confirmdata ?? [];
         HIHMV001var.ITEMleftUNIT = widget.data?.ITEMleftUNIT ?? [];
         HIHMV001var.ITEMleftVALUE = widget.data?.ITEMleftVALUE ?? [];
+        //
+
+        HIHMV001var.PICs = widget.data?.Pic ?? '';
 
         if (HIHMV001var.PCSleft == '0') {
           BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
@@ -206,6 +209,8 @@ class _ROCKWELL_HIHMV001bodyState extends State<ROCKWELL_HIHMV001body> {
       },
       ITEMleftUNIT: HIHMV001var.ITEMleftUNIT,
       ITEMleftVALUE: HIHMV001var.ITEMleftVALUE,
+      //
+      PICB64: HIHMV001var.PICs,
     );
   }
 }
