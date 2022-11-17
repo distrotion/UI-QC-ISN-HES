@@ -111,6 +111,13 @@ class _ROCKWELL_APPINSHESbodyState extends State<ROCKWELL_APPINSHESbody> {
         // APPINSHESvar.PCSleft = '10';
         APPINSHESvar.POINTs = widget.data?.POINTs ?? '';
         // APPINSHESvar.POINTs = '10';
+        // if (APPINSHESvar.ItemPickSELECT != "") {
+        //   //
+        //   if (APPINSHESvar.POINTs == "") {
+        //     //
+        //     APPINSHESvar.POINTs == "0";
+        //   }
+        // }
         APPINSHESvar.UNIT = widget.data?.UNIT ?? '';
         // APPINSHESvar.UNIT = 'pcs/lots';
         APPINSHESvar.INTERSEC = widget.data?.INTERSEC ?? '';

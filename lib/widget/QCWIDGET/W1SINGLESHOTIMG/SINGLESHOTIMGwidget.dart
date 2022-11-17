@@ -164,6 +164,8 @@ class SINGLESHOTIMGmain extends StatelessWidget {
                             MapEntry("กรุณาเลือก", "0"),
                             MapEntry("HMV01", "1"),
                             MapEntry("HMV02", "2"),
+                            MapEntry("HMV01ACT", "3"),
+                            MapEntry("HMV02ACT", "4"),
                           ],
                           onChangeinside: (d, k) {
                             INSdd!(d, k);

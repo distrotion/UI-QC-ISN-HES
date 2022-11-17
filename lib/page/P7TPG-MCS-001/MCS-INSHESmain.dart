@@ -193,20 +193,24 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
 
       //------- Bottom
       ACCEPT: (v) {
-        if (MCSINSHESvar.PCS != '' &&
-            MCSINSHESvar.POINTs != '' &&
-            MCSINSHESvar.ItemPickSELECT != '') {
-          onLoadingFAKEintTIME(context, 3);
-          if (int.parse(MCSINSHESvar.PCSleft) > 0) {
-            context
-                .read<TRICKER_MCSINSHES_Bloc>()
-                .add(TRICKER_MCSINSHESFINISH());
-            Timer(const Duration(seconds: 3), () {
-              context.read<MCSINSHES_Bloc>().add(MCSINSHES_READ());
-            });
+        if (pointpic()) {
+          if (MCSINSHESvar.PCS != '' &&
+              MCSINSHESvar.POINTs != '' &&
+              MCSINSHESvar.ItemPickSELECT != '') {
+            onLoadingFAKEintTIME(context, 3);
+            if (int.parse(MCSINSHESvar.PCSleft) > 0) {
+              context
+                  .read<TRICKER_MCSINSHES_Bloc>()
+                  .add(TRICKER_MCSINSHESFINISH());
+              Timer(const Duration(seconds: 3), () {
+                context.read<MCSINSHES_Bloc>().add(MCSINSHES_READ());
+              });
+            }
+          } else {
+            WORNINGpop(context, "Please select item");
           }
         } else {
-          WORNINGpop(context, "Please select item");
+          WORNINGpop(context, "Please insert data");
         }
       },
       //-------------
@@ -450,4 +454,33 @@ class _FileUploadButton04State extends State<FileUploadButton04> {
       ),
     );
   }
+}
+
+bool pointpic() {
+  bool out = false;
+  if (MCSINSHESvar.POINTs == '1') {
+    if (MCSINSHESvar.base64pic01data != '') {
+      out = true;
+    }
+  } else if (MCSINSHESvar.POINTs == '2') {
+    if (MCSINSHESvar.base64pic01data != '' &&
+        MCSINSHESvar.base64pic02data != '') {
+      out = true;
+    }
+  } else if (MCSINSHESvar.POINTs == '3') {
+    if (MCSINSHESvar.base64pic01data != '' &&
+        MCSINSHESvar.base64pic02data != '' &&
+        MCSINSHESvar.base64pic03data != '') {
+      out = true;
+    }
+  } else if (MCSINSHESvar.POINTs == '4') {
+    if (MCSINSHESvar.base64pic01data != '' &&
+        MCSINSHESvar.base64pic02data != '' &&
+        MCSINSHESvar.base64pic03data != '' &&
+        MCSINSHESvar.base64pic04data != '') {
+      out = true;
+    }
+  }
+
+  return out;
 }

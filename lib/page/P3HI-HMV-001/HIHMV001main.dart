@@ -85,6 +85,13 @@ class _ROCKWELL_HIHMV001bodyState extends State<ROCKWELL_HIHMV001body> {
         // HIHMV001var.PCSleft = '10';
         HIHMV001var.POINTs = widget.data?.POINTs ?? '';
         // HIHMV001var.POINTs = '10';
+        // if (HIHMV001var.ItemPickSELECT != "") {
+        //   //
+        //   if (HIHMV001var.POINTs == "") {
+        //     //
+        //     HIHMV001var.POINTs == "0";
+        //   }
+        // }
         HIHMV001var.UNIT = widget.data?.UNIT ?? '';
         // HIHMV001var.UNIT = 'pcs/lots';
         HIHMV001var.INTERSEC = widget.data?.INTERSEC ?? '';

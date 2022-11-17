@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,9 +10,12 @@ import '../../bloc/BlocEvent/10-02-REPORT-CALL.dart';
 
 import '../../model/model.dart';
 import '../../styles/TextStyle.dart';
+import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Freescroll.dart';
 import '../../widget/onlyINqcui/popup.dart';
 import 'REPORTvar.dart';
+
+late BuildContext REPORTuiMAINcontext;
 
 class _REPORTuiVAR {
   static String searchResult = '';
@@ -69,6 +74,8 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController controllerReport = ScrollController();
+    REPORTuiMAINcontext = context;
     final _MyData _data = _MyData(context, widget.data ?? []);
 
     void _sort<T>(Comparable<T> Function(dataset d) getField, int columnIndex,
@@ -109,6 +116,12 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
       }
     }
 
+    if (widget.ret == 'R_OK') {
+      setState(() {});
+      context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
+      context.read<REPORT_Bloc>().add(REPORT_GET());
+    }
+
     return SingleChildScrollView(
       child: SizedBox(
         width: 1200,
@@ -145,79 +158,152 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                 scrollDirection: Axis.horizontal,
                 child: SizedBox(
                   width: 1200,
-                  child: PaginatedDataTable(
-                    source: _data,
-                    header: Row(
-                      children: [
-                        const Text('GW REPORT'),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              start: 2, end: 2, top: 10, bottom: 10),
-                          child: InkWell(
-                            onTap: () {
-                              WORNINGpop(context, "Please clear cookies ");
-                              context
-                                  .read<REPORT_CALL_Bloc>()
-                                  .add(REPORT_CALL_RESET());
-                            },
-                            child: Container(
-                              width: 100,
-                              color: Colors.red,
-                              child: const Center(
-                                child: Text(
-                                  "RESET REPORT",
-                                  style: TxtStyle(color: Colors.white),
+                  child: Scrollbar(
+                    controller: controllerReport,
+                    thumbVisibility: true,
+                    interactive: true,
+                    thickness: 10,
+                    radius: Radius.circular(20),
+                    child: PaginatedDataTable(
+                      controller: controllerReport,
+                      source: _data,
+                      header: Row(
+                        children: [
+                          const Text('GW REPORT'),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(
+                                start: 2, end: 2, top: 10, bottom: 10),
+                            child: InkWell(
+                              onTap: () {
+                                WORNINGpop(context, "Please clear cookies ");
+                                context
+                                    .read<REPORT_CALL_Bloc>()
+                                    .add(REPORT_CALL_RESET());
+                              },
+                              child: Container(
+                                width: 100,
+                                color: Colors.red,
+                                child: const Center(
+                                  child: Text(
+                                    "RESET REPORT",
+                                    style: TxtStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        )
+                          )
+                        ],
+                      ),
+                      columns: [
+                        // DataColumn(
+                        //     label: const Text('ID'),
+                        //     onSort: (int columnIndex, bool ascending) => _sort<num>(
+                        //         (dataset d) => d.id, columnIndex, ascending)),
+                        DataColumn(
+                            label: const Text('PO'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f01, columnIndex,
+                                    ascending)),
+                        DataColumn(
+                            label: const Text('CP'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f02, columnIndex,
+                                    ascending)),
+                        DataColumn(
+                            label: const Text('CUSTOMER'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f03, columnIndex,
+                                    ascending)),
+                        DataColumn(
+                            label: const Text('PART'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f04, columnIndex,
+                                    ascending)),
+                        DataColumn(
+                            label: const Text('PARTNAME'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f05, columnIndex,
+                                    ascending)),
+                        DataColumn(
+                            label: const Text('ACTION'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f05, columnIndex,
+                                    ascending)),
                       ],
+                      columnSpacing: 100,
+                      horizontalMargin: 10,
+                      rowsPerPage: 5,
+                      sortColumnIndex: _sortColumnIndex,
+                      sortAscending: _sortAscending,
+                      showCheckboxColumn: false,
                     ),
-                    columns: [
-                      // DataColumn(
-                      //     label: const Text('ID'),
-                      //     onSort: (int columnIndex, bool ascending) => _sort<num>(
-                      //         (dataset d) => d.id, columnIndex, ascending)),
-                      DataColumn(
-                          label: const Text('PO'),
-                          onSort: (int columnIndex, bool ascending) =>
-                              _sort<String>((dataset d) => d.f01, columnIndex,
-                                  ascending)),
-                      DataColumn(
-                          label: const Text('CP'),
-                          onSort: (int columnIndex, bool ascending) =>
-                              _sort<String>((dataset d) => d.f02, columnIndex,
-                                  ascending)),
-                      DataColumn(
-                          label: const Text('CUSTOMER'),
-                          onSort: (int columnIndex, bool ascending) =>
-                              _sort<String>((dataset d) => d.f03, columnIndex,
-                                  ascending)),
-                      DataColumn(
-                          label: const Text('PART'),
-                          onSort: (int columnIndex, bool ascending) =>
-                              _sort<String>((dataset d) => d.f04, columnIndex,
-                                  ascending)),
-                      DataColumn(
-                          label: const Text('PARTNAME'),
-                          onSort: (int columnIndex, bool ascending) =>
-                              _sort<String>((dataset d) => d.f05, columnIndex,
-                                  ascending)),
-                      DataColumn(
-                          label: const Text('ACTION'),
-                          onSort: (int columnIndex, bool ascending) =>
-                              _sort<String>((dataset d) => d.f05, columnIndex,
-                                  ascending)),
-                    ],
-                    columnSpacing: 100,
-                    horizontalMargin: 10,
-                    rowsPerPage: 5,
-                    sortColumnIndex: _sortColumnIndex,
-                    sortAscending: _sortAscending,
-                    showCheckboxColumn: false,
                   ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 80,
+              width: 1200,
+              child: Center(
+                child: Row(
+                  children: [
+                    //
+
+                    ComInputText(
+                      sLabel: "original",
+                      height: 40,
+                      width: 120,
+                      isContr: REPORTvar.iscontrol,
+                      fnContr: (input) {
+                        setState(() {
+                          REPORTvar.iscontrol = input;
+                        });
+                      },
+                      sValue: REPORTvar.original,
+                      returnfunc: (String s) {
+                        REPORTvar.original = s;
+                      },
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    ComInputText(
+                      sLabel: "newreport",
+                      height: 40,
+                      width: 120,
+                      isContr: REPORTvar.iscontrol,
+                      fnContr: (input) {
+                        setState(() {
+                          REPORTvar.iscontrol = input;
+                        });
+                      },
+                      sValue: REPORTvar.newreport,
+                      returnfunc: (String s) {
+                        REPORTvar.newreport = s;
+                      },
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        //
+                        print("object");
+                        context.read<REPORT_CALL_Bloc>().add(REPORT_COPPY());
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        color: Colors.blue,
+                        child: const Center(
+                            child: Text(
+                          "COPY",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),

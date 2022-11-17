@@ -33,5 +33,5 @@ class logindata {
   static String userPASS = '';
 }
 
-String GLOserver = 'http://127.0.0.1:16010/';
-// String GLOserver = 'http://172.23.10.40:16010/';
+// String GLOserver = 'http://127.0.0.1:16010/';
+String GLOserver = 'http://172.23.10.40:16010/';

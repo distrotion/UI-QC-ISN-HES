@@ -107,6 +107,13 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
         // HIRGH001var.PCSleft = '10';
         HIRGH001var.POINTs = widget.data?.POINTs ?? '';
         // HIRGH001var.POINTs = '10';
+        // if (HIRGH001var.ItemPickSELECT != "") {
+        //   //
+        //   if (HIRGH001var.POINTs == "") {
+        //     //
+        //     HIRGH001var.POINTs == "0";
+        //   }
+        // }
         HIRGH001var.UNIT = widget.data?.UNIT ?? '';
         // HIRGH001var.UNIT = 'pcs/lots';
         HIRGH001var.INTERSEC = widget.data?.INTERSEC ?? '';

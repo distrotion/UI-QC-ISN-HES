@@ -109,6 +109,13 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
         // LCRUVS001var.PCSleft = '10';
         LCRUVS001var.POINTs = widget.data?.POINTs ?? '';
         // LCRUVS001var.POINTs = '10';
+        // if (LCRUVS001var.ItemPickSELECT != "") {
+        //   //
+        //   if (LCRUVS001var.POINTs == "") {
+        //     //
+        //     LCRUVS001var.POINTs == "0";
+        //   }
+        // }
         LCRUVS001var.UNIT = widget.data?.UNIT ?? '';
         // LCRUVS001var.UNIT = 'pcs/lots';
         LCRUVS001var.INTERSEC = widget.data?.INTERSEC ?? '';
