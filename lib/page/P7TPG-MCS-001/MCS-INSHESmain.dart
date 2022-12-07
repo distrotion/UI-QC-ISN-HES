@@ -459,18 +459,30 @@ class _FileUploadButton04State extends State<FileUploadButton04> {
 bool pointpic() {
   bool out = false;
   if (MCSINSHESvar.POINTs == '1') {
-    if (MCSINSHESvar.base64pic01data != '') {
+    if (MCSINSHESvar.base64pic01data != '' &&
+        (MCSINSHESvar.base64pic02data == '' ||
+            MCSINSHESvar.base64pic02data == '0') &&
+        (MCSINSHESvar.base64pic03data == '' ||
+            MCSINSHESvar.base64pic03data == '0') &&
+        (MCSINSHESvar.base64pic04data == '' ||
+            MCSINSHESvar.base64pic04data == '0')) {
       out = true;
     }
   } else if (MCSINSHESvar.POINTs == '2') {
     if (MCSINSHESvar.base64pic01data != '' &&
-        MCSINSHESvar.base64pic02data != '') {
+        MCSINSHESvar.base64pic02data != '' &&
+        (MCSINSHESvar.base64pic03data == '' ||
+            MCSINSHESvar.base64pic03data == '0') &&
+        (MCSINSHESvar.base64pic04data == '' ||
+            MCSINSHESvar.base64pic04data == '0')) {
       out = true;
     }
   } else if (MCSINSHESvar.POINTs == '3') {
     if (MCSINSHESvar.base64pic01data != '' &&
         MCSINSHESvar.base64pic02data != '' &&
-        MCSINSHESvar.base64pic03data != '') {
+        MCSINSHESvar.base64pic03data != '' &&
+        (MCSINSHESvar.base64pic04data == '' ||
+            MCSINSHESvar.base64pic04data == '0')) {
       out = true;
     }
   } else if (MCSINSHESvar.POINTs == '4') {

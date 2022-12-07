@@ -23,7 +23,7 @@ class AdvanceDropDown extends StatefulWidget {
     this.isEnable,
   }) : super(key: key);
   List<MapEntry<String, String>>? listdropdown;
-  Function onChangeinside;
+  Function(String, String) onChangeinside;
   Function? getkey;
   String value;
   double width;
@@ -129,7 +129,7 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
                   ? null
                   : (String? newValue) {
                       setState(() {
-                        widget.onChangeinside(newValue!, _showstrKEY);
+                        widget.onChangeinside(newValue!, _showstrKEY ?? '');
                         widget.value = newValue;
                         _showstr = newValue;
                       });

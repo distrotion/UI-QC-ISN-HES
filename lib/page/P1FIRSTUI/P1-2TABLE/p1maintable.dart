@@ -182,11 +182,13 @@ class tabledetailsearch extends StatelessWidget {
         B10: _data_exp[i].f36,
         B11: _data_exp[i].f06,
         B12: _data_exp[i].f07,
-        CB01: _data_exp[i].f36 == 'finish'
-            ? Colors.green
-            : _data_exp[i].f36 == 'ip'
-                ? Colors.yellow
-                : Colors.transparent,
+        CB01: _data_exp[i].f36 == 'finish-no'
+            ? Colors.red
+            : _data_exp[i].f36 == 'finish'
+                ? Colors.green
+                : _data_exp[i].f36 == 'ip'
+                    ? Colors.yellow
+                    : Colors.transparent,
         isSELECTFUNC: true,
         SELECTFUNC: (PO, CP, FG) {
           print(PO);

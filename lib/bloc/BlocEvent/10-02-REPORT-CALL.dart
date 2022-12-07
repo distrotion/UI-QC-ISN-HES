@@ -19,6 +19,12 @@ class REPORT_COPPY extends REPORT_CALL_Event {}
 
 class REPORT_CALL_RESET extends REPORT_CALL_Event {}
 
+class DATA_RECAL extends REPORT_CALL_Event {}
+
+class DATA_RECAL_CLEAR extends REPORT_CALL_Event {}
+
+//_DATA_RECAL
+
 class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
   REPORT_CALL_Bloc() : super('') {
     on<REPORT_CALL>((event, emit) {
@@ -33,6 +39,14 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     });
     on<REPORT_CALL_RESET>((event, emit) {
       return _REPORT_CALL_RESET('', emit);
+    });
+
+    on<DATA_RECAL>((event, emit) {
+      return _DATA_RECAL('', emit);
+    });
+
+    on<DATA_RECAL_CLEAR>((event, emit) {
+      return _DATA_RECAL_CLEAR('', emit);
     });
   }
   Future<void> _REPORT_CALL(String toAdd, Emitter<String> emit) async {
@@ -82,6 +96,38 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
             "orderError",
             "please check input and output PO",
             enumNotificationlist.Error);
+      }
+    }
+    emit(output);
+  }
+
+  Future<void> _DATA_RECAL(String toAdd, Emitter<String> emit) async {
+    String output = 'C_NOK';
+    final response = await Dio().post(
+      "http://172.23.10.40:1880/" + 'ISN_DATA_RECAL',
+      data: {"PO": REPORTvar.recall},
+    );
+    if (response.statusCode == 200) {
+      var databuff = response.data;
+      // print(databuff);
+      if (databuff.length > 0) {
+        output = 'C_OK';
+      }
+    }
+    emit(output);
+  }
+
+  Future<void> _DATA_RECAL_CLEAR(String toAdd, Emitter<String> emit) async {
+    String output = 'C_NOK';
+    final response = await Dio().post(
+      "http://172.23.10.40:1880/" + 'ISN_DATA_RECAL_CLEAR',
+      data: {},
+    );
+    if (response.statusCode == 200) {
+      var databuff = response.data;
+      print(databuff);
+      if (databuff.length > 0) {
+        output = 'C_OK';
       }
     }
     emit(output);

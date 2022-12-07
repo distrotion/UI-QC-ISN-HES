@@ -8,6 +8,7 @@ import 'dart:js' as js;
 import '../../bloc/BlocEvent/10-01-REPORT.dart';
 import '../../bloc/BlocEvent/10-02-REPORT-CALL.dart';
 
+import '../../bloc/cubit/NotificationEvent.dart';
 import '../../model/model.dart';
 import '../../styles/TextStyle.dart';
 import '../../widget/common/ComInputText.dart';
@@ -120,6 +121,16 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
       setState(() {});
       context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
       context.read<REPORT_Bloc>().add(REPORT_GET());
+    }
+
+    if (widget.ret == 'C_OK') {
+      context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
+      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+          "Success", "PO have returned", enumNotificationlist.Success);
+    } else if (widget.ret == 'C_NOK') {
+      context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
+      BlocProvider.of<BlocNotification>(contextGB).UpdateNotification(
+          "Error", "PO have problem", enumNotificationlist.Error);
     }
 
     return SingleChildScrollView(
@@ -302,11 +313,74 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                           style: TextStyle(color: Colors.white),
                         )),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
+            SizedBox(
+              height: 80,
+              width: 1200,
+              child: Row(
+                children: [
+                  ComInputText(
+                    sLabel: "Recall order",
+                    height: 40,
+                    width: 120,
+                    isContr: REPORTvar.iscontrol,
+                    fnContr: (input) {
+                      setState(() {
+                        REPORTvar.iscontrol = input;
+                      });
+                    },
+                    sValue: REPORTvar.recall,
+                    returnfunc: (String s) {
+                      REPORTvar.recall = s;
+                    },
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      //
+
+                      context.read<REPORT_CALL_Bloc>().add(DATA_RECAL());
+                    },
+                    child: Container(
+                      width: 100,
+                      height: 40,
+                      color: Colors.blue,
+                      child: const Center(
+                          child: Text(
+                        "RECALL",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      //
+
+                      context.read<REPORT_CALL_Bloc>().add(DATA_RECAL_CLEAR());
+                    },
+                    child: Container(
+                      width: 100,
+                      height: 40,
+                      color: Colors.red,
+                      child: const Center(
+                          child: Text(
+                        "CLEAR RECALL",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
