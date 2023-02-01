@@ -13,6 +13,7 @@ import '../../model/model.dart';
 import '../../styles/TextStyle.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Freescroll.dart';
+import '../../widget/common/Loading.dart';
 import '../../widget/onlyINqcui/popup.dart';
 import 'REPORTvar.dart';
 
@@ -174,13 +175,13 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                     thumbVisibility: true,
                     interactive: true,
                     thickness: 10,
-                    radius: Radius.circular(20),
+                    radius: const Radius.circular(20),
                     child: PaginatedDataTable(
                       controller: controllerReport,
                       source: _data,
                       header: Row(
                         children: [
-                          const Text('GW REPORT'),
+                          const Text('ISN REPORT'),
                           const Spacer(),
                           Padding(
                             padding: const EdgeInsetsDirectional.only(
@@ -457,6 +458,7 @@ class _MyData extends DataTableSource {
               children: [
                 InkWell(
                   onTap: () {
+                    onLoadingFAKE(context);
                     REPORTvar.reportTYPE = 0;
                     REPORTvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
@@ -472,6 +474,7 @@ class _MyData extends DataTableSource {
                 ),
                 InkWell(
                   onTap: () {
+                    onLoadingFAKE(context);
                     REPORTvar.reportTYPE = 2;
                     REPORTvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
@@ -488,6 +491,7 @@ class _MyData extends DataTableSource {
                 ),
                 InkWell(
                   onTap: () {
+                    onLoadingFAKE(context);
                     REPORTvar.reportTYPE = 1;
                     REPORTvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());

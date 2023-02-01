@@ -79,7 +79,7 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
     LCRUVS001var.DHtimer.cancel();
     FIRSTUI.SEARCH = FIRSTUI.POACTIVE;
     LCRUVS001var.ItemPickSELECT = '';
-    LCRUVS001var.SINGLEINPUT = '';
+    // LCRUVS001var.SINGLEINPUT = '';
     context.read<TRICKER_LCRUVS001_Bloc>().add(TRICKER_LCRUVS001SETZERO());
     CuPage = Page1();
     MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
@@ -252,7 +252,7 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
         LCRUVS001var.DHtimer.cancel();
         FIRSTUI.SEARCH = FIRSTUI.POACTIVE;
         LCRUVS001var.ItemPickSELECT = '';
-        LCRUVS001var.SINGLEINPUT = '';
+        // LCRUVS001var.SINGLEINPUT = '';
         context.read<TRICKER_LCRUVS001_Bloc>().add(TRICKER_LCRUVS001SETZERO());
         CuPage = Page1();
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
