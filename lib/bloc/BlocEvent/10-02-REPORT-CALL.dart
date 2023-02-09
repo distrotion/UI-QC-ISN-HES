@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../page/P10REPORT/REPORTtable.dart';
 import '../../widget/common/Loading.dart';
@@ -52,6 +55,7 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     });
   }
   Future<void> _REPORT_CALL(String toAdd, Emitter<String> emit) async {
+    FreeLoading(REPORTuiMAINcontext);
     final response = await Dio().post(
       "http://172.23.10.70:2160/" + 'gas12reportGEN',
       data: {
@@ -62,7 +66,10 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     if (response.statusCode == 200) {
       output = 'get';
     }
-    onLoadingFAKE(REPORTuiMAINcontext);
+
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pop(REPORTuiMAINcontext);
+    });
     emit(output);
   }
 

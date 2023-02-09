@@ -91,6 +91,7 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
 
     if (widget.ret == 'get') {
       //
+
       if (REPORTvar.reportTYPE == 0) {
         js.context.callMethod('open', [
           'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-STD&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
