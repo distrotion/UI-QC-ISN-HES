@@ -458,7 +458,7 @@ class _MyData extends DataTableSource {
               children: [
                 InkWell(
                   onTap: () {
-                    onLoadingFAKE(context);
+                    // onLoadingFAKE(context);
                     REPORTvar.reportTYPE = 0;
                     REPORTvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
@@ -474,7 +474,7 @@ class _MyData extends DataTableSource {
                 ),
                 InkWell(
                   onTap: () {
-                    onLoadingFAKE(context);
+                    // onLoadingFAKE(context);
                     REPORTvar.reportTYPE = 2;
                     REPORTvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
@@ -491,7 +491,7 @@ class _MyData extends DataTableSource {
                 ),
                 InkWell(
                   onTap: () {
-                    onLoadingFAKE(context);
+                    // onLoadingFAKE(context);
                     REPORTvar.reportTYPE = 1;
                     REPORTvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());

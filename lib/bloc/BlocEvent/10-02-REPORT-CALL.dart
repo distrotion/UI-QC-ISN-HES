@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../page/P10REPORT/REPORTtable.dart';
+import '../../widget/common/Loading.dart';
 import '../cubit/NotificationEvent.dart';
 
 import '../../data/global.dart';
@@ -60,6 +62,7 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     if (response.statusCode == 200) {
       output = 'get';
     }
+    onLoadingFAKE(REPORTuiMAINcontext);
     emit(output);
   }
 
