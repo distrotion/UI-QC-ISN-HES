@@ -12,6 +12,7 @@ import '../widget/QCWIDGET/consolelayout.dart';
 import '../widget/common/Checkbox.dart';
 import '../widget/common/Radiobutton.dart';
 import '../widget/common/imgset.dart';
+import 'Page32.dart';
 import 'TEST.dart';
 import 'page1.dart';
 import 'page11.dart';
@@ -68,7 +69,7 @@ class Page0 extends StatelessWidget {
     //     print(v);
     //   },
     // );
-    return Page1();
+    return Page32();
   }
 }
 
