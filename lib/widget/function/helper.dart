@@ -23,7 +23,8 @@ class FileSaveHelper {
   }
 }
 
-Future<String> capture(GlobalKey<State<StatefulWidget>> globalKey) async {
+Future<String> capture(
+    GlobalKey<State<StatefulWidget>> globalKey, String PO) async {
   try {
     // FreeLoading(contextin);
     RenderRepaintBoundary? boundary =
@@ -53,7 +54,7 @@ Future<String> capture(GlobalKey<State<StatefulWidget>> globalKey) async {
     );
 
     final List<int> bytesPDF = await pdf.save();
-    await FileSaveHelper.saveAndLaunchFile(bytesPDF, 'NT Time.pdf');
+    await FileSaveHelper.saveAndLaunchFile(bytesPDF, '${PO}.pdf');
     // Navigator.pop(contextin);
     return 'ok';
   } catch (e) {

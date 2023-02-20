@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/LoginEvent.dart';
 import '../../mainBody.dart';
+import '../../page/Page32.dart';
 import '../../page/page1.dart';
 
 import '../../page/page10.dart';
@@ -130,6 +131,12 @@ class Data_Menu_mainmenu extends StatelessWidget {
         menu_normal(
           name: " SUMMARY REPORT",
           page: Page11(),
+          Lv: 1,
+        ),
+
+        menu_normal(
+          name: "ACT Report",
+          page: Page32(),
           Lv: 1,
         ),
         menu_logout(
