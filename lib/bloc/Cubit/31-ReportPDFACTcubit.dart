@@ -207,15 +207,15 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                           ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PIC1data']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(1);
                           ITEMlist[le].DATA02 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PIC2data']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(1);
                           ITEMlist[le].DATA03 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PIC3data']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(1);
 
                           double avg = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
@@ -224,7 +224,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                                   [ITEMlist[le].ITEM]['PSC1'][0]['PIC2data'])) +
                               double.parse(
                                   ConverstStr(FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1'][0]['PIC3data']));
-                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(2);
+                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(1);
 
                           BasicDATAs.PIC01 = FINALdata[MACHINElist[k]]
                                   [ITEMlist[le].ITEM]['PSC1'][0]['PIC1']
@@ -250,15 +250,15 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                           ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PIC1data']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(1);
                           ITEMlist[le].DATA02 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PIC2data']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(1);
                           ITEMlist[le].DATA03 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PIC3data']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(1);
 
                           double avg = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
@@ -267,7 +267,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                                   [ITEMlist[le].ITEM]['PSC1'][0]['PIC2data'])) +
                               double.parse(
                                   ConverstStr(FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1'][0]['PIC3data']));
-                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(2);
+                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(1);
 
                           // print(ITEMlist[le].DATA01);
                           // print(ITEMlist[le].DATA02);
@@ -286,15 +286,15 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                           ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PO3']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(0);
                           ITEMlist[le].DATA02 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][1]['PO3']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(0);
                           ITEMlist[le].DATA03 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][2]['PO3']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(0);
                           // ITEMlist[le].DATAAVG = double.parse(ConverstStr(
                           //         FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1']
                           //             [4]['PO3']))
@@ -308,7 +308,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                               double.parse(
                                   ConverstStr(FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1'][2]['PO3']));
 
-                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(2);
+                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(0);
 
                           // print(ITEMlist[le].DATA01);
                           // print(ITEMlist[le].DATA02);
@@ -327,15 +327,15 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                           ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][0]['PO3']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(0);
                           ITEMlist[le].DATA02 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][1]['PO3']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(0);
                           ITEMlist[le].DATA03 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                       ['PSC1'][2]['PO3']))
-                              .toStringAsFixed(2);
+                              .toStringAsFixed(0);
                           // ITEMlist[le].DATAAVG = double.parse(ConverstStr(
                           //         FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1']
                           //             [4]['PO3']))
@@ -349,7 +349,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                               double.parse(
                                   ConverstStr(FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1'][2]['PO3']));
 
-                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(2);
+                          ITEMlist[le].DATAAVG = (avg / 3).toStringAsFixed(0);
 
                           // print(ITEMlist[le].DATA01);
                           // print(ITEMlist[le].DATA02);

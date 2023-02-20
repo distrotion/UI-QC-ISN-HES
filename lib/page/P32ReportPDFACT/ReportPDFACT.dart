@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../bloc/Cubit/31-ReportPDFACTcubit.dart';
 import '../../widget/common/ComInputText.dart';
@@ -36,6 +37,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
   @override
   Widget build(BuildContext context) {
     ReportPDFACTcontext = context;
+
     ACTReportOutput _dataACT = widget.dataACT ??
         ACTReportOutput(
           databasic: BasicDATA(),
@@ -3345,6 +3347,9 @@ class TAILSLOT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var now = DateTime.now();
+    var formatter = DateFormat('yyyy-mm-dd');
+    String formattedDate = formatter.format(now);
     return Padding(
       padding: const EdgeInsets.only(
         // top: 12,
@@ -3373,11 +3378,64 @@ class TAILSLOT extends StatelessWidget {
                                   padd: 0,
                                   hig: 40,
                                   ListFlex: const [1, 1, 1, 1],
+                                  widget01: const Center(
+                                    child: Text(
+                                      "Judgement",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget02: const Center(
+                                    child: Text(
+                                      "Inspected By",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget03: const Center(
+                                    child: Text(
+                                      "Checked By",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget04: const Center(
+                                    child: Text(
+                                      "Approved By",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 BODY4SLOT(
                                   padd: 0,
                                   hig: 90,
                                   ListFlex: const [1, 1, 1, 1],
+                                  widget02: Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(formattedDate),
+                                    ),
+                                  ),
+                                  widget03: Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(formattedDate),
+                                    ),
+                                  ),
+                                  widget04: Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(formattedDate),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
