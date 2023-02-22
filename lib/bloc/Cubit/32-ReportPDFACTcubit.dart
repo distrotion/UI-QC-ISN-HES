@@ -142,7 +142,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             //     : '';
             List<String> datalist = BasicDATAr['PIC'].toString().split(',');
 
-            if (datalist.isNotEmpty) {
+            if (datalist.length > 1) {
               BasicDATAs.PICstd = datalist[1];
             } else {
               BasicDATAs.PICstd = '';
