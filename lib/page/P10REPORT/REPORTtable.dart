@@ -462,29 +462,29 @@ class _MyData extends DataTableSource {
             padding: const EdgeInsets.all(2.0),
             child: Row(
               children: [
-                InkWell(
-                  onTap: () {
-                    // onLoadingFAKE(context);
-                    ReportPDFACTvar.PO = data.f01;
-                    WORNINGreport(context);
-                    // CuPage = Page32();
+                // InkWell(
+                //   onTap: () {
+                //     // onLoadingFAKE(context);
+                //     ReportPDFACTvar.PO = data.f01;
+                //     WORNINGreport(context);
+                //     // CuPage = Page32();
 
-                    // MainBodyContext.read<ChangePage_Bloc>()
-                    //     .add(ChangePage_nodrower());
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: Container(
-                      width: 100,
-                      color: Colors.pink,
-                      child: const Center(
-                          child: Text(
-                        "ACT test",
-                        style: TxtStyle(color: Colors.white),
-                      )),
-                    ),
-                  ),
-                ),
+                //     // MainBodyContext.read<ChangePage_Bloc>()
+                //     //     .add(ChangePage_nodrower());
+                //   },
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(right: 15),
+                //     child: Container(
+                //       width: 100,
+                //       color: Colors.pink,
+                //       child: const Center(
+                //           child: Text(
+                //         "ACT test",
+                //         style: TxtStyle(color: Colors.white),
+                //       )),
+                //     ),
+                //   ),
+                // ),
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
@@ -504,9 +504,11 @@ class _MyData extends DataTableSource {
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
-                    REPORTvar.reportTYPE = 2;
-                    REPORTvar.PO = data.f01;
-                    context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    // REPORTvar.reportTYPE = 2;
+                    // REPORTvar.PO = data.f01;
+                    // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    ReportPDFACTvar.PO = data.f01;
+                    WORNINGreport(context);
                   },
                   child: Container(
                     width: 50,

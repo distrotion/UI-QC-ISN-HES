@@ -18,6 +18,8 @@ class ReportPDFACTvar {
   static String PIC01 = '';
   static String PIC02 = '';
 
+  static String PASS = '';
+
   static List<ReportPDFACTlist> datalist = [
     ReportPDFACTlist(),
     ReportPDFACTlist(),

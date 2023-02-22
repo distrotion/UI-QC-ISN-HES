@@ -17,6 +17,7 @@ import 'TEST.dart';
 import 'page1.dart';
 import 'page11.dart';
 import 'page2.dart';
+import 'page31.dart';
 
 bool isChecked = false;
 
@@ -69,7 +70,7 @@ class Page0 extends StatelessWidget {
     //     print(v);
     //   },
     // );
-    return Page32();
+    return Page1();
   }
 }
 

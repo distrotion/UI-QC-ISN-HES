@@ -30,7 +30,7 @@ Future<String> capture(
     RenderRepaintBoundary? boundary =
         globalKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
-    final image = await boundary!.toImage(pixelRatio: 1);
+    final image = await boundary!.toImage(pixelRatio: 2.0);
 
     final ByteData? bytes =
         await image.toByteData(format: dart_ui.ImageByteFormat.png);
@@ -55,6 +55,7 @@ Future<String> capture(
 
     final List<int> bytesPDF = await pdf.save();
     await FileSaveHelper.saveAndLaunchFile(bytesPDF, '${PO}.pdf');
+
     // Navigator.pop(contextin);
     return 'ok';
   } catch (e) {
