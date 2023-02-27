@@ -18,8 +18,10 @@ import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Freescroll.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/onlyINqcui/popup.dart';
+import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../P32ReportPDFACT/ReportPDFACTvar.dart';
 import '../Page32.dart';
+import '../page31.dart';
 import 'REPORTvar.dart';
 
 late BuildContext REPORTuiMAINcontext;
@@ -462,29 +464,24 @@ class _MyData extends DataTableSource {
             padding: const EdgeInsets.all(2.0),
             child: Row(
               children: [
-                // InkWell(
-                //   onTap: () {
-                //     // onLoadingFAKE(context);
-                //     ReportPDFACTvar.PO = data.f01;
-                //     WORNINGreport(context);
-                //     // CuPage = Page32();
-
-                //     // MainBodyContext.read<ChangePage_Bloc>()
-                //     //     .add(ChangePage_nodrower());
-                //   },
-                //   child: Padding(
-                //     padding: const EdgeInsets.only(right: 15),
-                //     child: Container(
-                //       width: 100,
-                //       color: Colors.pink,
-                //       child: const Center(
-                //           child: Text(
-                //         "ACT test",
-                //         style: TxtStyle(color: Colors.white),
-                //       )),
-                //     ),
-                //   ),
-                // ),
+                InkWell(
+                  onTap: () {
+                    ReportPDFCommonvar.PO = data.f01;
+                    STDreport(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Container(
+                      width: 100,
+                      color: Colors.pink,
+                      child: const Center(
+                          child: Text(
+                        "ACT test",
+                        style: TxtStyle(color: Colors.white),
+                      )),
+                    ),
+                  ),
+                ),
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
@@ -508,7 +505,7 @@ class _MyData extends DataTableSource {
                     // REPORTvar.PO = data.f01;
                     // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
                     ReportPDFACTvar.PO = data.f01;
-                    WORNINGreport(context);
+                    ACTreport(context);
                   },
                   child: Container(
                     width: 50,
@@ -543,7 +540,7 @@ class _MyData extends DataTableSource {
   }
 }
 
-void WORNINGreport(
+void ACTreport(
   BuildContext contextin,
 ) {
   showDialog(
@@ -558,6 +555,27 @@ void WORNINGreport(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
                   child: Page32(),
+                ))),
+      );
+    },
+  );
+}
+
+void STDreport(
+  BuildContext contextin,
+) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: SizedBox(
+            height: 1000,
+            width: 1500,
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Page31(),
                 ))),
       );
     },

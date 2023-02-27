@@ -136,7 +136,7 @@ class PICSLO2SIDE extends StatelessWidget {
                                     Border.all(color: Colors.black, width: 3),
                               ),
                               child: PicShowAct(
-                                  width: 400, height: 300, base64: PIC01 ?? ''),
+                                  width: 400, height: 300, base64: PIC02 ?? ''),
                             ),
                           ),
                         ),

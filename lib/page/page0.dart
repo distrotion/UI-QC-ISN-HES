@@ -26,50 +26,6 @@ class Page0 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return SINGLESHOTmain(
-    //   PO: '1234',
-    // ItemPick: ['', 'A', 'B'],
-    //   ItemPickres: (v) {
-    //     print(v);
-    //   },
-    //   ACCEPT: (v) {
-    //     print(v);
-    //   },
-    //   FINISH: (v) {
-    //     print(v);
-    //   },
-    //   CLEAR: (v) {
-    //     print(v);
-    //   },
-    //   BACKPAGE: (v) {
-    //     print(v);
-    //   },
-    //   RESETVALUE: (v) {
-    //     print(v);
-    //   },
-    // );
-    // return MULTISHOTmain(
-    //   PO: '5678',
-    //   ItemPick: ['', 'A', 'B'],
-    //   ItemPickres: (v) {
-    //     print(v);
-    //   },
-    //   ACCEPT: (v) {
-    //     print(v);
-    //   },
-    //   FINISH: (v) {
-    //     print(v);
-    //   },
-    //   CLEAR: (v) {
-    //     print(v);
-    //   },
-    //   BACKPAGE: (v) {
-    //     print(v);
-    //   },
-    //   RESETVALUE: (v) {
-    //     print(v);
-    //   },
-    // );
     return Page1();
   }
 }

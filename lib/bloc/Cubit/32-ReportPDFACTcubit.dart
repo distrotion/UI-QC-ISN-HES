@@ -135,17 +135,19 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             //     ? BasicDATAr['PIC'].toString().split(',')[1]
             //     : '',
           );
-
-          if (BasicDATAr['PIC'] != null) {
-            // BasicDATAs.PICstd = BasicDATAr['PIC'] != null
-            //     ? BasicDATAr['PIC'].toString().split(',')[1]
-            //     : '';
-            List<String> datalist = BasicDATAr['PIC'].toString().split(',');
-
-            if (datalist.length > 1) {
-              BasicDATAs.PICstd = datalist[1];
-            } else {
-              BasicDATAs.PICstd = '';
+          // print(PATTERNlist);
+          if (PATTERNlist['Pimg'] != null) {
+            if (PATTERNlist['Pimg']['P1'] != null) {
+              // BasicDATAs.PICstd = BasicDATAr['PIC'] != null
+              //     ? BasicDATAr['PIC'].toString().split(',')[1]
+              //     : '';
+              List<String> datalist =
+                  PATTERNlist['Pimg']['P1'].toString().split(',');
+              if (datalist.length > 1) {
+                BasicDATAs.PICstd = datalist[1];
+              } else {
+                BasicDATAs.PICstd = '';
+              }
             }
           }
 

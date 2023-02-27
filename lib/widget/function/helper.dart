@@ -30,7 +30,7 @@ Future<String> capture(
     RenderRepaintBoundary? boundary =
         globalKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
-    final image = await boundary!.toImage(pixelRatio: 2.0);
+    final image = await boundary!.toImage(pixelRatio: 2);
 
     final ByteData? bytes =
         await image.toByteData(format: dart_ui.ImageByteFormat.png);
@@ -45,15 +45,16 @@ Future<String> capture(
 
     pdf.addPage(
       pw.Page(
-        // pageFormat: PdfPageFormat.a4,
+        pageFormat: PdfPageFormat.a4,
         margin: pw.EdgeInsets.all(4),
         build: (pw.Context context) => pw.Center(
-          child: pw.Column(children: [pw.Image(imagePDF), pw.Image(imagePDF)]),
+          child: pw.Column(children: [pw.Image(imagePDF)]),
         ),
       ),
     );
 
-    final List<int> bytesPDF = await pdf.save();
+    // print(await pdf.save());
+    final bytesPDF = await pdf.save();
     await FileSaveHelper.saveAndLaunchFile(bytesPDF, '${PO}.pdf');
 
     // Navigator.pop(contextin);

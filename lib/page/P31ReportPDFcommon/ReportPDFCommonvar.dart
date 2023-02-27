@@ -17,6 +17,9 @@ class ReportPDFCommonvar {
   static String PICstd = '';
   static String PIC01 = '';
   static String PIC02 = '';
+  static List<rawlist> rawlistHardness = [];
+  static List<rawlist> rawlistCompound = [];
+  static List<rawlist> rawlistRoughness = [];
 
   static List<ReportPDFCommonlist> datalist = [
     ReportPDFCommonlist(),
@@ -68,6 +71,17 @@ class ReportPDFCommonlist {
   String DATA02 = '';
   String DATA03 = '';
   String DATAAVG = '';
+}
+
+class rawlist {
+  rawlist({
+    this.DATANO = '',
+    this.DATAPCS = '',
+    this.DATA = '',
+  });
+  String DATANO;
+  String DATAPCS = '';
+  String DATA = '';
 }
 
 ReportPDFACTclear() {
