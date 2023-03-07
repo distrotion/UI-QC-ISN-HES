@@ -7,6 +7,7 @@ import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
+import '../../widget/common/Safty.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
 import 'ReportPDFACTvar.dart';
@@ -54,7 +55,8 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
       ReportPDFACTvar.CUSLOT = _dataACT.databasic.CUSLOT;
       ReportPDFACTvar.TPKLOT = _dataACT.databasic.TPKLOT;
       ReportPDFACTvar.MATERIAL = _dataACT.databasic.MATERIAL;
-      ReportPDFACTvar.QTY = _dataACT.databasic.QTY;
+      ReportPDFACTvar.QTY =
+          double.parse(ConverstStr(_dataACT.databasic.QTY)).toStringAsFixed(0);
 
       ReportPDFACTvar.PIC01 = _dataACT.databasic.PIC01;
       ReportPDFACTvar.PIC02 = _dataACT.databasic.PIC02;

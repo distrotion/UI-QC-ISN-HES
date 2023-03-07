@@ -7,6 +7,7 @@ import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
+import '../../widget/common/Safty.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
 import 'ReportPDFCommonvar.dart';
@@ -26,6 +27,12 @@ class ReportPDFCommon extends StatefulWidget {
 class _ReportPDFCommonState extends State<ReportPDFCommon> {
   @override
   void initState() {
+    if (ReportPDFCommonvar.PO != '') {
+      ReportPDFCommonvar.canf = false;
+      context
+          .read<ReportPDFCommon_Cubit>()
+          .ReportPDFCommonCubit(ReportPDFCommonvar.PO);
+    }
     super.initState();
   }
 
@@ -39,6 +46,9 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
         CommonReportOutput(
           databasic: BasicCommonDATA(),
         );
+    int HardnessNO = 1;
+    int CompoundNO = 1;
+    int RoughnessNO = 1;
     if (_dataCOMMON.datain.isNotEmpty) {
       //
       ReportPDFCommonvar.STATUS = 'REPORT READY';
@@ -49,13 +59,16 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.CUSLOT = _dataCOMMON.databasic.CUSLOT;
       ReportPDFCommonvar.TPKLOT = _dataCOMMON.databasic.TPKLOT;
       ReportPDFCommonvar.MATERIAL = _dataCOMMON.databasic.MATERIAL;
-      ReportPDFCommonvar.QTY = _dataCOMMON.databasic.QTY;
+      ReportPDFCommonvar.QTY =
+          double.parse(ConverstStr(_dataCOMMON.databasic.QTY))
+              .toStringAsFixed(0);
 
       ReportPDFCommonvar.PIC01 = _dataCOMMON.databasic.PIC01;
       ReportPDFCommonvar.PIC02 = _dataCOMMON.databasic.PIC02;
       ReportPDFCommonvar.PICstd = _dataCOMMON.databasic.PICstd;
       // print(_dataCOMMON.datain[0]);
       // print(_dataCOMMON.datain.length);
+
       for (var i = 0; i < _dataCOMMON.datain.length; i++) {
         ReportPDFCommonvar.datalist[i].ITEMname =
             _dataCOMMON.datain[i].ITEMname;
@@ -70,11 +83,10 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
 
         if (_dataCOMMON.datain[i].ITEMname.contains('Hardness') ||
             _dataCOMMON.datain[i].ITEMname.contains('hardness')) {
-          int HardnessNO = 1;
           for (var li = 0;
               li < _dataCOMMON.datain[i].datapackset.length;
               li++) {
-            print(_dataCOMMON.datain[i].datapackset[li].dimensionX);
+            // print(_dataCOMMON.datain[i].datapackset[li].dimensionX);
 
             if (_dataCOMMON.datain[i].datapackset[li].dimensionX == 0) {}
             if (_dataCOMMON.datain[i].datapackset[li].dimensionX >= 1) {
@@ -218,17 +230,17 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
               ));
             }
             HardnessNO++;
+            // print('>>${HardnessNO}');
           }
         }
         //Compound Layer
 
         if (_dataCOMMON.datain[i].ITEMname.contains('Compound') ||
             _dataCOMMON.datain[i].ITEMname.contains('compound')) {
-          int CompoundNO = 1;
           for (var li = 0;
               li < _dataCOMMON.datain[i].datapackset.length;
               li++) {
-            print(_dataCOMMON.datain[i].datapackset[li].dimensionX);
+            // print(_dataCOMMON.datain[i].datapackset[li].dimensionX);
 
             if (_dataCOMMON.datain[i].datapackset[li].dimensionX == 0) {}
             if (_dataCOMMON.datain[i].datapackset[li].dimensionX >= 1) {
@@ -378,7 +390,6 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
 
         if (_dataCOMMON.datain[i].ITEMname.contains('Roughness') ||
             _dataCOMMON.datain[i].ITEMname.contains('roughness')) {
-          int RoughnessNO = 1;
           for (var li = 0;
               li < _dataCOMMON.datain[i].datapackset.length;
               li++) {
@@ -545,6 +556,10 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.PIC01 = '';
       ReportPDFCommonvar.PIC02 = '';
 
+      ReportPDFCommonvar.rawlistHardness = [];
+      ReportPDFCommonvar.rawlistCompound = [];
+      ReportPDFCommonvar.rawlistRoughness = [];
+
       ReportPDFCommonvar.datalist = [
         ReportPDFCommonlist(),
         ReportPDFCommonlist(),
@@ -610,7 +625,13 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
               Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<ReportPDFCommon_Cubit>().Flush();
+                    ReportPDFCommonvar.canf = true;
+                    ReportPDFCommonvar.iscontrol = true;
+                    ReportPDFCommonvar.PO = '';
+                    setState(() {});
+                  },
                   child: Container(
                     color: Colors.red,
                     height: 40,
@@ -1288,7 +1309,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                 child: ReportPDFCommonvar.datalist[0].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1344,7 +1365,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                 child: ReportPDFCommonvar.datalist[1].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1400,7 +1421,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                 child: ReportPDFCommonvar.datalist[2].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1456,7 +1477,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                 child: ReportPDFCommonvar.datalist[3].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1512,7 +1533,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                 child: ReportPDFCommonvar.datalist[4].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1558,17 +1579,17 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ListFlex: [6, 1, 4, 2, 2, 2, 2],
                               widget01: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].ITEMname,
+                                  ReportPDFCommonvar.datalist[5].ITEMname,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
                                 ),
                               ),
                               widget02: Center(
-                                child: ReportPDFCommonvar.datalist[4].SCMARK ==
+                                child: ReportPDFCommonvar.datalist[5].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1578,7 +1599,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               widget03: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].METHODname,
+                                  ReportPDFCommonvar.datalist[5].METHODname,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1586,7 +1607,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               widget04: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].FREQ,
+                                  ReportPDFCommonvar.datalist[5].FREQ,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1595,7 +1616,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               widget05: Center(
                                 child: Text(
                                   ReportPDFCommonvar
-                                      .datalist[4].SPECIFICATIONname,
+                                      .datalist[5].SPECIFICATIONname,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1603,7 +1624,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               widget06: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].RESULT,
+                                  ReportPDFCommonvar.datalist[5].RESULT,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1614,17 +1635,17 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ListFlex: [6, 1, 4, 2, 2, 2, 2],
                               widget01: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].ITEMname,
+                                  ReportPDFCommonvar.datalist[6].ITEMname,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
                                 ),
                               ),
                               widget02: Center(
-                                child: ReportPDFCommonvar.datalist[4].SCMARK ==
+                                child: ReportPDFCommonvar.datalist[6].SCMARK ==
                                         'YES'
                                     ? PicShow(
-                                        width: 42, height: 42, base64: SCMASK01)
+                                        width: 42, height: 42, base64: SCMASK02)
                                     : const Text(
                                         "",
                                         style: TextStyle(
@@ -1634,7 +1655,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               widget03: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].METHODname,
+                                  ReportPDFCommonvar.datalist[6].METHODname,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1642,7 +1663,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               widget04: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].FREQ,
+                                  ReportPDFCommonvar.datalist[6].FREQ,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1651,7 +1672,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               widget05: Center(
                                 child: Text(
                                   ReportPDFCommonvar
-                                      .datalist[4].SPECIFICATIONname,
+                                      .datalist[6].SPECIFICATIONname,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -1659,7 +1680,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               widget06: Center(
                                 child: Text(
-                                  ReportPDFCommonvar.datalist[4].RESULT,
+                                  ReportPDFCommonvar.datalist[6].RESULT,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),

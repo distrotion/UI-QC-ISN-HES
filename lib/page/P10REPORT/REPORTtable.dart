@@ -476,7 +476,7 @@ class _MyData extends DataTableSource {
                       color: Colors.pink,
                       child: const Center(
                           child: Text(
-                        "ACT test",
+                        "STD test",
                         style: TxtStyle(color: Colors.white),
                       )),
                     ),
