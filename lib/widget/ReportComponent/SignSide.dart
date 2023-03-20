@@ -15,6 +15,7 @@ class TAILSLOT extends StatelessWidget {
     this.widget06,
     this.PICS,
     this.PASS,
+    this.Remark,
   }) : super(key: key);
   Widget? widget01;
   Widget? widget02;
@@ -24,6 +25,7 @@ class TAILSLOT extends StatelessWidget {
   Widget? widget06;
   String? PICS;
   String? PASS;
+  String? Remark;
 
   @override
   Widget build(BuildContext context) {
@@ -141,12 +143,23 @@ class TAILSLOT extends StatelessWidget {
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black, width: 3),
                             ),
-                            child: const Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: Text("Remark"),
-                              ),
+                            child: Stack(
+                              children: [
+                                const Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(12.0),
+                                    child: Text("Remark"),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(12.0),
+                                    child: Text(Remark ?? ''),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

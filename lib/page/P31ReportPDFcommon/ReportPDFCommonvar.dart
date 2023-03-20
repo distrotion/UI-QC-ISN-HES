@@ -1,3 +1,5 @@
+import '../../widget/common/imgset.dart';
+
 class ReportPDFCommonvar {
   static bool iscontrol = false;
   static bool canf = true;
@@ -17,9 +19,15 @@ class ReportPDFCommonvar {
   static String PICstd = '';
   static String PIC01 = '';
   static String PIC02 = '';
+  static String TYPE = '-';
+  static String SCMASKTYPE = SCMASK03;
   static List<rawlist> rawlistHardness = [];
   static List<rawlist> rawlistCompound = [];
   static List<rawlist> rawlistRoughness = [];
+
+  static String remark = '';
+
+  static String PASS = '';
 
   static List<ReportPDFCommonlist> datalist = [
     ReportPDFCommonlist(),

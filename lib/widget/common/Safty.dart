@@ -6,6 +6,14 @@ String ConverstStr(String input) {
   }
 }
 
+String ConverstStrOne(String input) {
+  if (isNumeric(input)) {
+    return input;
+  } else {
+    return '1';
+  }
+}
+
 bool isNumeric(String s) {
   if (s == null) {
     return false;

@@ -464,30 +464,32 @@ class _MyData extends DataTableSource {
             padding: const EdgeInsets.all(2.0),
             child: Row(
               children: [
-                InkWell(
-                  onTap: () {
-                    ReportPDFCommonvar.PO = data.f01;
-                    STDreport(context);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: Container(
-                      width: 100,
-                      color: Colors.pink,
-                      child: const Center(
-                          child: Text(
-                        "STD test",
-                        style: TxtStyle(color: Colors.white),
-                      )),
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     ReportPDFCommonvar.PO = data.f01;
+                //     STDreport(context);
+                //   },
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(right: 15),
+                //     child: Container(
+                //       width: 100,
+                //       color: Colors.pink,
+                //       child: const Center(
+                //           child: Text(
+                //         "STD test",
+                //         style: TxtStyle(color: Colors.white),
+                //       )),
+                //     ),
+                //   ),
+                // ),
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
-                    REPORTvar.reportTYPE = 0;
-                    REPORTvar.PO = data.f01;
-                    context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    // REPORTvar.reportTYPE = 0;
+                    // REPORTvar.PO = data.f01;
+                    // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    ReportPDFCommonvar.PO = data.f01;
+                    STDreport(context);
                   },
                   child: Container(
                     color: Colors.blue,
