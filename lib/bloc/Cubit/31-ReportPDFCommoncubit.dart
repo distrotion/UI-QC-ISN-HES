@@ -29,6 +29,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
     if (response.statusCode == 200) {
       var databuff = response.data;
       // var databuff = commontest02;
+      // var databuff = commontest03;
+      // var databuff = commontest04;
       // var databuff = ACTtestdata01;
 
       if (databuff['DATA'] != null && (databuff['DATA']?.length ?? 0) != 0) {
@@ -83,6 +85,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           UNITSAP: BasicDATAr['UNITSAP'] != null
               ? BasicDATAr['UNITSAP'].toString()
               : 'PCS',
+
           // PICstd: BasicDATAr['PIC'] != null
           //     ? BasicDATAr['PIC'].toString().split(',')[1]
           //     : '',
@@ -129,7 +132,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                 if (FINALdata[MACHINElist[mi]]
                         [PATTERNlist['FINAL'][fi]['ITEMs']] !=
                     null) {
-                  // print(PATTERNlist['FINAL'][fi]);
+                  print(PATTERNlist['FINAL'][fi]);
                   // print(FINALdata[MACHINElist[mi]]
                   //     [PATTERNlist['FINAL'][fi]['ITEMs']]);
 
@@ -144,8 +147,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                   String METHODss = '';
                   String METHODname = '';
                   String FREQ =
-                      '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString()}';
+                      '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString().replaceAll('?', 'pcs/Lot').replaceAll('[]', 'pcs/Lot')}';
                   String SPECIFICATION = '';
+                  String LOAD = PATTERNlist['FINAL'][fi]['LOAD'].toString();
 
                   for (var Fci = 0; Fci < METHODlist.length; Fci++) {
                     if (METHODlist[Fci]['masterID'].toString() == METHODss) {
@@ -190,6 +194,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                     FREQ: FREQ,
                     SPECIFICATION: SPECIFICATION,
                     RESULT: SPECIFICATION,
+                    LOAD: LOAD,
                   ));
                 }
               }
@@ -219,8 +224,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                   String METHODss = '';
                   String METHODname = '';
                   String FREQ =
-                      '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString()}';
+                      '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString().replaceAll('?', 'pcs/Lot').replaceAll('[]', 'pcs/Lot')}';
                   String SPECIFICATION = '';
+                  String LOAD = PATTERNlist['FINAL'][fi]['LOAD'].toString();
 
                   double maxdata = 0;
                   double mindata = 0;
@@ -579,6 +585,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                     datapackset: listdataset,
                     RESULT:
                         (avgall / listdataset.length).toStringAsFixed(desinal),
+                    LOAD: LOAD,
                   ));
                 }
               }
@@ -622,7 +629,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                     null) {
                   // print(PATTERNlist['FINAL'][fi]['RESULTFORMAT']);
                   // print(FINALdata[MACHINElist[mi]]
-                  //     [PATTERNlist['FINAL'][fi]['ITEMs']]);
+                  // print(PATTERNlist['FINAL'][fi]);
 
                   String POINTs = (int.parse(ConverstStrOne(
                           PATTERNlist['FINAL'][fi]['PCS'].toString())))
@@ -637,8 +644,10 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                   String METHODss = '';
                   String METHODname = '';
                   String FREQ =
-                      '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString()}';
+                      '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString().replaceAll('?', 'pcs/Lot').replaceAll('[]', 'pcs/Lot')}';
+                  print(FREQ);
                   String SPECIFICATION = '';
+                  String LOAD = PATTERNlist['FINAL'][fi]['LOAD'].toString();
 
                   for (var Fci = 0; Fci < METHODlist.length; Fci++) {
                     if (METHODlist[Fci]['masterID'].toString() == METHODss) {
@@ -767,8 +776,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                         print(er);
                       }
 
-                      print(maxdata);
-                      print(mindata);
+                      // print(maxdata);
+                      print(datainside.length);
 
                       for (pcsi = 0; pcsi < datainside.length; pcsi++) {
                         // print(datainside[pcsi]);
@@ -863,6 +872,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                           passlist.add(
                               checkdata(maxdata, mindata, data0004).toString());
                         }
+                        print('>>${datainpcsi.DATA01}');
+                        print('>>${datainpcsi.DATA02}');
+                        print('>>${datainpcsi.DATA03}');
 
                         print('>>${datainpcsi.DATAAVG}');
 
@@ -880,7 +892,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                           }
                         }
                       }
-                      datainpcsi.dimensionX = pcsi;
+                      // datainpcsi.dimensionX = pcsi;
                       listdataset.add(datainpcsi);
                     } else {
                       break;
@@ -899,16 +911,18 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                   }
 
                   ITEMlist.add(FINALCHECKlistCommonClass(
-                      ITEM: itemss,
-                      ITEMname: ITEMname,
-                      METHOD: METHODss,
-                      METHODname: METHODname,
-                      SCMARK: SCmasks,
-                      SPECIFICATION: SPECIFICATION,
-                      NO: NO_NUMBER,
-                      FREQ: FREQ,
-                      datapackset: listdataset,
-                      RESULT: avgall.toStringAsFixed(desinal)));
+                    ITEM: itemss,
+                    ITEMname: ITEMname,
+                    METHOD: METHODss,
+                    METHODname: METHODname,
+                    SCMARK: SCmasks,
+                    SPECIFICATION: SPECIFICATION,
+                    NO: NO_NUMBER,
+                    FREQ: FREQ,
+                    datapackset: listdataset,
+                    RESULT: avgall.toStringAsFixed(desinal),
+                    LOAD: LOAD,
+                  ));
                 }
               }
             }
@@ -954,6 +968,7 @@ class FINALCHECKlistCommonClass {
     this.RESULT = '',
     this.CONTROLlimmit = '',
     this.datapackset = const [],
+    this.LOAD = '',
   });
   int NO;
   String ITEM;
@@ -968,6 +983,7 @@ class FINALCHECKlistCommonClass {
   String RESULT;
   String CONTROLlimmit;
   List<datainlist> datapackset;
+  String LOAD;
 }
 
 class datainlist {

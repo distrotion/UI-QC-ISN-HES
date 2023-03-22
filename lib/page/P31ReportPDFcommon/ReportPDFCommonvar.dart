@@ -29,6 +29,8 @@ class ReportPDFCommonvar {
 
   static String PASS = '';
 
+  static String commp = 'Compound layer';
+
   static List<ReportPDFCommonlist> datalist = [
     ReportPDFCommonlist(),
     ReportPDFCommonlist(),
