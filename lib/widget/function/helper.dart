@@ -13,8 +13,8 @@ import 'dart:async';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:qc_ui_isn_hes/widget/common/Loading.dart';
 
-// String server = 'http://172.23.10.40:16700/';
-String server = 'http://127.0.0.1:16700/';
+String server = 'http://172.23.10.40:16700/';
+// String server = 'http://127.0.0.1:16700/';
 
 class FileSaveHelper {
   static Future<void> saveAndLaunchFile(

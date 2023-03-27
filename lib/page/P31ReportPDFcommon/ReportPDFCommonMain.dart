@@ -68,7 +68,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.PICstd = _dataCOMMON.databasic.PICstd;
 
       ReportPDFCommonvar.PASS = _dataCOMMON.databasic.PASS;
-
+      ReportPDFCommonvar.remark = '';
       if (_dataCOMMON.databasic.PARTNAMEref != '') {
         ReportPDFCommonvar.remark =
             'Reference data from\n${_dataCOMMON.databasic.PARTNAMEref}\n${_dataCOMMON.databasic.PARTref}';
@@ -82,7 +82,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
         String Loadin = '';
         if (_dataCOMMON.datain[i].LOAD != '' &&
             _dataCOMMON.datain[i].LOAD != '-') {
-          Loadin = "( ${_dataCOMMON.datain[i].LOAD} )";
+          Loadin = "( Load ${_dataCOMMON.datain[i].LOAD} )";
         }
         ReportPDFCommonvar.datalist[i].ITEMname =
             " ${_dataCOMMON.datain[i].ITEMname} ${Loadin}";

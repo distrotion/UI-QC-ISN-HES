@@ -91,23 +91,25 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           //     : '',
         );
 
-        if (BasicDATAr['ReferFrom'] != null) {
-          final response02 = await Dio().post(
-            server + "INS_Report_PDF",
-            data: {
-              "PO": BasicDATAr['ReferFrom'].toString(),
-            },
-          );
+        if (BasicDATAr['ReferFrom'].toString() != PO) {
+          if (BasicDATAr['ReferFrom'] != null) {
+            final response02 = await Dio().post(
+              server + "INS_Report_PDF",
+              data: {
+                "PO": BasicDATAr['ReferFrom'].toString(),
+              },
+            );
 
-          if (response02.statusCode == 200) {
-            var databuffref = response02.data;
-            // print(databuffref);
-            BasicCommonDATAs.PARTNAMEref =
-                databuffref['DATA']?[0]['PARTNAME'].toString() ?? '';
-            BasicCommonDATAs.PARTref =
-                databuffref['DATA']?[0]['PART'].toString() ?? '';
-            // print(databuffref['DATA']?[0]['PART']);
-            // print(databuffref['DATA']?[0]['PARTNAME']);
+            if (response02.statusCode == 200) {
+              var databuffref = response02.data;
+              // print(databuffref);
+              BasicCommonDATAs.PARTNAMEref =
+                  databuffref['DATA']?[0]['PARTNAME'].toString() ?? '';
+              BasicCommonDATAs.PARTref =
+                  databuffref['DATA']?[0]['PART'].toString() ?? '';
+              // print(databuffref['DATA']?[0]['PART']);
+              // print(databuffref['DATA']?[0]['PARTNAME']);
+            }
           }
         }
 
@@ -872,26 +874,33 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                           passlist.add(
                               checkdata(maxdata, mindata, data0004).toString());
                         }
-                        print('>>${datainpcsi.DATA01}');
-                        print('>>${datainpcsi.DATA02}');
-                        print('>>${datainpcsi.DATA03}');
+                        // print('>>${datainpcsi.DATA01}');
+                        // print('>>${datainpcsi.DATA02}');
+                        // print('>>${datainpcsi.DATA03}');
 
-                        print('>>${datainpcsi.DATAAVG}');
+                        // print('>>${datainpcsi.DATAAVG}');
 
                         if (pcsi == 0) {
                           if (BasicCommonDATAs.PIC01 == '') {
                             BasicCommonDATAs.PIC01 =
                                 datainside[pcsi]['PIC1'].toString();
                           }
+                          if (BasicCommonDATAs.PIC02 == '') {
+                            BasicCommonDATAs.PIC02 =
+                                datainside[pcsi]['PIC2'].toString();
+                          }
                         }
-
+//3310275880
                         if (pcsi == 1) {
                           if (BasicCommonDATAs.PIC02 == '') {
                             BasicCommonDATAs.PIC02 =
-                                datainside[pcsi]['PIC1'].toString();
+                                datainside[pcsi]['PIC2'].toString();
                           }
                         }
                       }
+                      print("BasicCommonDATAs.PIC01");
+                      //3310275879
+                      //3310275807
                       // datainpcsi.dimensionX = pcsi;
                       listdataset.add(datainpcsi);
                     } else {

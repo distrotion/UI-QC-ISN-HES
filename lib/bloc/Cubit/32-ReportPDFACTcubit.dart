@@ -253,7 +253,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                                   '')
                               .toString();
                           BasicDATAs.PIC02 = (FINALdata[MACHINElist[k]]
-                                      [ITEMlist[le].ITEM]['PSC1'][0]['PIC2'] ??
+                                      [ITEMlist[le].ITEM]['PSC1'][0]['PIC1'] ??
                                   '')
                               .toString();
                           // print(ITEMlist[le].DATA01);
@@ -284,8 +284,8 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                                 .length ==
                             1) {
                           ITEMlist[le].SPECIFICATION =
-                              '<= 7 µm. & <60% of\ncompound Layer';
-                          ITEMlist[le].CONTROLlimmit = '<= 5µm.';
+                              '≤ 7 µm. & ≤60% of\ncompound Layer';
+                          ITEMlist[le].CONTROLlimmit = '≤ 5µm.';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                   ['PSC1'][0]['PIC1data']));
@@ -334,7 +334,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                                 .length ==
                             4) {
                           ITEMlist[le].SPECIFICATION = '500-680 Hmv';
-                          ITEMlist[le].CONTROLlimmit = '550-680 Hmv';
+                          ITEMlist[le].CONTROLlimmit = '550-660 Hmv';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                   ['PSC1'][0]['PO3']));
@@ -431,7 +431,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                         if (FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1']
                                 .length >
                             1) {
-                          ITEMlist[le].SPECIFICATION = '<= 0.07 ppm';
+                          ITEMlist[le].SPECIFICATION = '≤ 0.07 ppm';
 
                           double datain = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
