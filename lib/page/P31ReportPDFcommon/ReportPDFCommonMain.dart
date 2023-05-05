@@ -60,8 +60,13 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.CUSLOT = _dataCOMMON.databasic.CUSLOT;
       ReportPDFCommonvar.TPKLOT = _dataCOMMON.databasic.TPKLOT;
       ReportPDFCommonvar.MATERIAL = _dataCOMMON.databasic.MATERIAL;
-      ReportPDFCommonvar.QTY =
-          '${double.parse(ConverstStr(_dataCOMMON.databasic.QTY)).toStringAsFixed(0)} ${_dataCOMMON.databasic.UNITSAP}';
+      if (_dataCOMMON.databasic.UNITSAP.toUpperCase() != 'KG') {
+        ReportPDFCommonvar.QTY =
+            '${double.parse(ConverstStr(_dataCOMMON.databasic.QTY)).toStringAsFixed(0)} ${_dataCOMMON.databasic.UNITSAP}';
+      } else {
+        ReportPDFCommonvar.QTY =
+            '${double.parse(ConverstStr(_dataCOMMON.databasic.QTY)).toStringAsFixed(1)} ${_dataCOMMON.databasic.UNITSAP}';
+      }
 
       ReportPDFCommonvar.PIC01 = _dataCOMMON.databasic.PIC01;
       ReportPDFCommonvar.PIC02 = _dataCOMMON.databasic.PIC02;

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/ACTtestdata.dart';
 import '../../data/CommonTestData.dart';
+import '../../page/P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../../widget/common/Safty.dart';
 
 String server = 'http://172.23.10.40:16700/';
@@ -14,10 +15,50 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
       : super(CommonReportOutput(databasic: BasicCommonDATA()));
 
   Future<void> ReportPDFCommonCubit(String PO) async {
+    ReportPDFCommonvar.STATUS = 'WATTING or NO-DATA';
+    ReportPDFCommonvar.CUSTOMER = '';
+    ReportPDFCommonvar.PROCESS = '';
+    ReportPDFCommonvar.PARTNAME = '';
+    ReportPDFCommonvar.PARTNO = '';
+    ReportPDFCommonvar.CUSLOT = '';
+    ReportPDFCommonvar.TPKLOT = '';
+    ReportPDFCommonvar.MATERIAL = '';
+    ReportPDFCommonvar.QTY = '';
+
+    ReportPDFCommonvar.PICstd = '';
+    ReportPDFCommonvar.PIC01 = '';
+    ReportPDFCommonvar.PIC02 = '';
+
+    ReportPDFCommonvar.rawlistHardness = [];
+    ReportPDFCommonvar.rawlistCompound = [];
+    ReportPDFCommonvar.rawlistRoughness = [];
+
+    ReportPDFCommonvar.datalist = [
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+      ReportPDFCommonlist(),
+    ];
+
     CommonReportOutput output =
         CommonReportOutput(databasic: BasicCommonDATA());
     BasicCommonDATA BasicCommonDATAs = BasicCommonDATA();
     List<String> passlist = [];
+
+    // BaseOptions options = BaseOptions(
+    //   baseUrl: server + "INS_Report_PDF",
+    //   connectTimeout: 5000,
+    //   receiveTimeout: 5000,
+    // );
 
     final response = await Dio().post(
       server + "INS_Report_PDF",
@@ -30,7 +71,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
       var databuff = response.data;
       // var databuff = commontest02;
       // var databuff = commontest03;
-      // var databuff = commontest04;
+      // var databuff = datatest06;
+
+      //commontest04
       // var databuff = ACTtestdata01;
 
       if (databuff['DATA'] != null && (databuff['DATA']?.length ?? 0) != 0) {
@@ -57,6 +100,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
         FINALdata.forEach((key, value) {
           MACHINElist.add(key);
         });
+
+        // print(PATTERNlist);
 
         BasicCommonDATAs = BasicCommonDATA(
           PO: BasicDATAr['PO'] != null ? BasicDATAr['PO'].toString() : '',
@@ -124,6 +169,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
             }
           }
         }
+
+        // print(PATTERNlist['FINAL'].length);
 
         for (var fi = 0; fi < PATTERNlist['FINAL'].length; fi++) {
           //
@@ -229,6 +276,16 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                       '${POINTs} ${PATTERNlist['FINAL'][fi]['FREQUENCY'].toString().replaceAll('?', 'pcs/Lot').replaceAll('[]', 'pcs/Lot')}';
                   String SPECIFICATION = '';
                   String LOAD = PATTERNlist['FINAL'][fi]['LOAD'].toString();
+                  String UNITv = PATTERNlist['FINAL'][fi]['UNIT'].toString();
+                  String UNITvs = '';
+                  if (UNITv != '') {
+                    for (var Fciu = 0; Fciu < UNITlist.length; Fciu++) {
+                      if (UNITlist[Fciu]['masterID'].toString() == UNITv) {
+                        // print(ITEMSlist[Fci]);
+                        UNITvs = UNITlist[Fciu]['UNIT'].toString();
+                      }
+                    }
+                  }
 
                   double maxdata = 0;
                   double mindata = 0;
@@ -585,8 +642,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                     NO: NO_NUMBER,
                     FREQ: FREQ,
                     datapackset: listdataset,
-                    RESULT:
-                        (avgall / listdataset.length).toStringAsFixed(desinal),
+                    RESULT: SPECIFICATION != 'Actual'
+                        ? (avgall / listdataset.length).toStringAsFixed(desinal)
+                        : '${(avgall / listdataset.length).toStringAsFixed(desinal)} ${UNITvs}',
                     LOAD: LOAD,
                   ));
                 }
@@ -623,15 +681,16 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
               }
             }
           }
+          // print(PATTERNlist['FINAL'][fi]['RESULTFORMAT']);
           if (PATTERNlist['FINAL'][fi]['RESULTFORMAT'] == 'OCR') {
             for (var mi = 0; mi < MACHINElist.length; mi++) {
+              // print("----${PATTERNlist['FINAL'][fi]['ITEMs']}");
               if (FINALdata[MACHINElist[mi]] != null) {
                 if (FINALdata[MACHINElist[mi]]
                         [PATTERNlist['FINAL'][fi]['ITEMs']] !=
                     null) {
                   // print(PATTERNlist['FINAL'][fi]['RESULTFORMAT']);
                   // print(FINALdata[MACHINElist[mi]]
-                  // print(PATTERNlist['FINAL'][fi]);
 
                   String POINTs = (int.parse(ConverstStrOne(
                           PATTERNlist['FINAL'][fi]['PCS'].toString())))
@@ -650,6 +709,16 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                   print(FREQ);
                   String SPECIFICATION = '';
                   String LOAD = PATTERNlist['FINAL'][fi]['LOAD'].toString();
+                  String UNITv = PATTERNlist['FINAL'][fi]['UNIT'].toString();
+                  String UNITvs = '';
+                  if (UNITv != '') {
+                    for (var Fciu = 0; Fciu < UNITlist.length; Fciu++) {
+                      if (UNITlist[Fciu]['masterID'].toString() == UNITv) {
+                        // print(ITEMSlist[Fci]);
+                        UNITvs = UNITlist[Fciu]['UNIT'].toString();
+                      }
+                    }
+                  }
 
                   for (var Fci = 0; Fci < METHODlist.length; Fci++) {
                     if (METHODlist[Fci]['masterID'].toString() == METHODss) {
@@ -929,7 +998,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                     NO: NO_NUMBER,
                     FREQ: FREQ,
                     datapackset: listdataset,
-                    RESULT: avgall.toStringAsFixed(desinal),
+                    RESULT: SPECIFICATION != 'Actual'
+                        ? avgall.toStringAsFixed(desinal)
+                        : '${avgall.toStringAsFixed(desinal)} ${UNITvs}',
                     LOAD: LOAD,
                   ));
                 }
@@ -937,7 +1008,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
             }
           }
         }
-        // print('>>${ITEMlist.length}');
+        print('>>${ITEMlist.length}');
 
         if (passlist.contains("false")) {
           BasicCommonDATAs.PASS = 'NO PASSED';

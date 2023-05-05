@@ -1,4 +1,4 @@
-class ReportPDFACTvar {
+class ReportPDFTESTvar {
   static bool iscontrol = false;
   static bool canf = true;
   static String PO = '';
@@ -75,22 +75,22 @@ class ReportPDFACTlist {
 }
 
 ReportPDFACTclear() {
-  ReportPDFACTvar.PO = '';
+  ReportPDFTESTvar.PO = '';
 
-  ReportPDFACTvar.CUSTOMER = '';
-  ReportPDFACTvar.PROCESS = '';
-  ReportPDFACTvar.PARTNAME = '';
-  ReportPDFACTvar.PARTNO = '';
-  ReportPDFACTvar.CUSLOT = '';
-  ReportPDFACTvar.TPKLOT = '';
-  ReportPDFACTvar.MATERIAL = '';
-  ReportPDFACTvar.QTY = '';
+  ReportPDFTESTvar.CUSTOMER = '';
+  ReportPDFTESTvar.PROCESS = '';
+  ReportPDFTESTvar.PARTNAME = '';
+  ReportPDFTESTvar.PARTNO = '';
+  ReportPDFTESTvar.CUSLOT = '';
+  ReportPDFTESTvar.TPKLOT = '';
+  ReportPDFTESTvar.MATERIAL = '';
+  ReportPDFTESTvar.QTY = '';
 
-  ReportPDFACTvar.PICstd = '';
-  ReportPDFACTvar.PIC01 = '';
-  ReportPDFACTvar.PIC02 = '';
+  ReportPDFTESTvar.PICstd = '';
+  ReportPDFTESTvar.PIC01 = '';
+  ReportPDFTESTvar.PIC02 = '';
 
-  ReportPDFACTvar.datalist = [
+  ReportPDFTESTvar.datalist = [
     ReportPDFACTlist(),
     ReportPDFACTlist(),
     ReportPDFACTlist(),

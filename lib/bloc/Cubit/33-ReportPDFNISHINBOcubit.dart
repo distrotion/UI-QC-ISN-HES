@@ -2,21 +2,24 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/ACTtestdata.dart';
+import '../../data/nichibotest.dart';
 import '../../widget/common/Safty.dart';
 import '../cubit/NotificationEvent.dart';
 
 String server = 'http://172.23.10.40:16700/';
 
-class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
+class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
   /// {@macro brightness_cubit}
-  ReportPDFACTcubit_Cubit() : super(ACTReportOutput(databasic: BasicACTDATA()));
+  ReportPDFNISHINBOcubit_Cubit()
+      : super(NISHINBOReportOutput(databasic: BasicNISHINBODATA()));
 
   /// Toggles the current brightness between light and dark.
   Future<void> ReportPDF_ACT(String PO) async {
     // FreeLoadingN(ReportPDFACTcontext);
 
-    ACTReportOutput output = ACTReportOutput(databasic: BasicACTDATA());
-    BasicACTDATA BasicDATAs = BasicACTDATA();
+    NISHINBOReportOutput output =
+        NISHINBOReportOutput(databasic: BasicNISHINBODATA());
+    BasicNISHINBODATA BasicDATAs = BasicNISHINBODATA();
 
     final response = await Dio().post(
       server + "INS_Report_PDF",
@@ -27,7 +30,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
     if (response.statusCode == 200) {
       var databuff = response.data;
-      // var databuff = ACTtestdata01;1
+      // var databuff = nichinbotest;
       // print(databuff);
 
       if (databuff['DATA'] != null && databuff['DATA'].length != 0) {
@@ -41,10 +44,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
         List<String> ITEMslist = [];
         List<String> masterACT = [
           "ITEMs-5f19aa43fe12be0020dbd3bf",
-          "ITEMs-60405bcf93e8d91950acb5c3",
           "ITEMs-60403f1693e8d91950acb5c0",
-          "ITEMs-60407f8f93e8d91950acb5d0",
-          "ITEMs-6040817293e8d91950acb5d5",
           "ITEMs-5f19a97cfe12be0020dbd3bc",
           "ITEMs-6040810993e8d91950acb5d4",
           "ITEMs-5f19a922fe12be0020dbd3ba",
@@ -107,7 +107,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
           var BasicDATAr = databuff['DATA'][0];
 
-          BasicDATAs = BasicACTDATA(
+          BasicDATAs = BasicNISHINBODATA(
             PO: BasicDATAr['PO'] != null ? BasicDATAr['PO'].toString() : '',
             CP: BasicDATAr['CP'] != null ? BasicDATAr['CP'].toString() : '',
             CUSTOMER: BasicDATAr['CUSTNAME'] != null
@@ -202,6 +202,9 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                       // print(PATTERNlist['FINAL'][i]['FREQUENCY']);
                       ITEMlist[le].SCMARK =
                           PATTERNlist['FINAL'][i]['SCMARK'].toString();
+
+                      ITEMlist[le].LOAD =
+                          PATTERNlist['FINAL'][i]['LOAD'].toString();
                       if (PATTERNlist['FINAL'][i]['FREQUENCY'].toString() ==
                           '100% Check') {
                         ITEMlist[le].FREQ =
@@ -491,6 +494,11 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             }
           }
 
+          pass10 = true;
+          pass11 = true;
+          pass12 = true;
+          pass13 = true;
+
           if (pass01 &&
               pass02 &&
               pass03 &&
@@ -531,7 +539,8 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
   }
 
   Future<void> Flush() async {
-    ACTReportOutput output = ACTReportOutput(databasic: BasicACTDATA());
+    NISHINBOReportOutput output =
+        NISHINBOReportOutput(databasic: BasicNISHINBODATA());
     emit(output);
   }
 }
@@ -553,6 +562,7 @@ class FINALCHECKlistACTClass {
     this.DATA02 = '',
     this.DATA03 = '',
     this.DATAAVG = '',
+    this.LOAD = '',
   });
   String ITEM;
   String ITEMname;
@@ -570,10 +580,11 @@ class FINALCHECKlistACTClass {
   String DATA02;
   String DATA03;
   String DATAAVG;
+  String LOAD;
 }
 
-class BasicACTDATA {
-  BasicACTDATA({
+class BasicNISHINBODATA {
+  BasicNISHINBODATA({
     this.PO = '',
     this.CP = '',
     this.CUSTOMER = '',
@@ -612,12 +623,12 @@ class BasicACTDATA {
   String PARTref;
 }
 
-class ACTReportOutput {
-  ACTReportOutput({
+class NISHINBOReportOutput {
+  NISHINBOReportOutput({
     this.datain = const [],
     required this.databasic,
   });
 
   List<FINALCHECKlistACTClass> datain;
-  BasicACTDATA databasic;
+  BasicNISHINBODATA databasic;
 }

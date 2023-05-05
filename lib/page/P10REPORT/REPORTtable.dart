@@ -20,8 +20,10 @@ import '../../widget/common/Loading.dart';
 import '../../widget/onlyINqcui/popup.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../P32ReportPDFACT/ReportPDFACTvar.dart';
+import '../P33ReportPDFTEST/ReportPDFTESTvar.dart';
 import '../Page32.dart';
 import '../page31.dart';
+import '../page33.dart';
 import 'REPORTvar.dart';
 
 late BuildContext REPORTuiMAINcontext;
@@ -464,24 +466,24 @@ class _MyData extends DataTableSource {
             padding: const EdgeInsets.all(2.0),
             child: Row(
               children: [
-                // InkWell(
-                //   onTap: () {
-                //     ReportPDFCommonvar.PO = data.f01;
-                //     STDreport(context);
-                //   },
-                //   child: Padding(
-                //     padding: const EdgeInsets.only(right: 15),
-                //     child: Container(
-                //       width: 100,
-                //       color: Colors.pink,
-                //       child: const Center(
-                //           child: Text(
-                //         "STD test",
-                //         style: TxtStyle(color: Colors.white),
-                //       )),
-                //     ),
-                //   ),
-                // ),
+                InkWell(
+                  onTap: () {
+                    ReportPDFTESTvar.PO = data.f01;
+                    NEWreport(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Container(
+                      width: 100,
+                      color: Colors.pink,
+                      child: const Center(
+                          child: Text(
+                        "STD test",
+                        style: TxtStyle(color: Colors.white),
+                      )),
+                    ),
+                  ),
+                ),
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
@@ -572,12 +574,35 @@ void STDreport(
     builder: (BuildContext context) {
       return Dialog(
         child: SizedBox(
+          height: 1000,
+          width: 1500,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Page31(),
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void NEWreport(
+  BuildContext contextin,
+) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: SizedBox(
             height: 1000,
             width: 1500,
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
-                  child: Page31(),
+                  child: Page33(),
                 ))),
       );
     },
