@@ -74,6 +74,10 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
 
       ReportPDFCommonvar.PASS = _dataCOMMON.databasic.PASS;
       ReportPDFCommonvar.remark = '';
+
+      ReportPDFCommonvar.INC01 = _dataCOMMON.databasic.INC01;
+      ReportPDFCommonvar.INC02 = _dataCOMMON.databasic.INC02;
+
       if (_dataCOMMON.databasic.PARTNAMEref != '') {
         ReportPDFCommonvar.remark =
             'Reference data from\n${_dataCOMMON.databasic.PARTNAMEref}\n${_dataCOMMON.databasic.PARTref}';
@@ -1182,10 +1186,12 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                 ),
                               ),
                               BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: const Center(
+                                ListFlex: const [6, 1, 4, 2, 2, 2, 2],
+                                widget01: Center(
                                   child: Text(
-                                    "Appearance for Rust",
+                                    ReportPDFCommonvar.INC01 != ''
+                                        ? "Appearance for Rust"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
@@ -1199,33 +1205,41 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                     ),
                                   ),
                                 ),
-                                widget03: const Center(
+                                widget03: Center(
                                   child: Text(
-                                    "Visual",
+                                    ReportPDFCommonvar.INC01 != ''
+                                        ? "Visual"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget04: const Center(
+                                widget04: Center(
                                   child: Text(
-                                    "10 pcs/rcv.Lot",
+                                    ReportPDFCommonvar.INC01 != ''
+                                        ? "10 pcs/rcv.Lot"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget05: const Center(
+                                widget05: Center(
                                   child: Text(
-                                    "No Rust",
+                                    ReportPDFCommonvar.INC01 != ''
+                                        ? "No Rust"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget06: const Center(
+                                widget06: Center(
                                   child: Text(
-                                    "No Rust",
+                                    ReportPDFCommonvar.INC01 != ''
+                                        ? "No Rust"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
@@ -1243,49 +1257,59 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                               ),
                               BODY7SLOT(
                                 ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: const Center(
+                                widget01: Center(
                                   child: Text(
-                                    "",
+                                    ReportPDFCommonvar.INC02 != ''
+                                        ? "Appearance for scratch"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget02: const Center(
+                                widget02: Center(
                                   child: Text(
-                                    "",
+                                    ReportPDFCommonvar.INC02 != '' ? "" : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget03: const Center(
+                                widget03: Center(
                                   child: Text(
-                                    "",
+                                    ReportPDFCommonvar.INC02 != ''
+                                        ? "Visual"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget04: const Center(
+                                widget04: Center(
                                   child: Text(
-                                    "",
+                                    ReportPDFCommonvar.INC02 != ''
+                                        ? "10 pcs/rcv.Lot"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget05: const Center(
+                                widget05: Center(
                                   child: Text(
-                                    "",
+                                    ReportPDFCommonvar.INC02 != ''
+                                        ? "No Scratch"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                widget06: const Center(
+                                widget06: Center(
                                   child: Text(
-                                    "",
+                                    ReportPDFCommonvar.INC02 != ''
+                                        ? "No Scratch"
+                                        : "",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),

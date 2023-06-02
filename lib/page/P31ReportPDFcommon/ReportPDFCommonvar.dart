@@ -31,6 +31,9 @@ class ReportPDFCommonvar {
 
   static String commp = 'Compound layer';
 
+  static String INC01 = '';
+  static String INC02 = '';
+
   static List<ReportPDFCommonlist> datalist = [
     ReportPDFCommonlist(),
     ReportPDFCommonlist(),
@@ -109,6 +112,9 @@ ReportPDFACTclear() {
   ReportPDFCommonvar.PICstd = '';
   ReportPDFCommonvar.PIC01 = '';
   ReportPDFCommonvar.PIC02 = '';
+
+  ReportPDFCommonvar.INC01 = '';
+  ReportPDFCommonvar.INC02 = '';
 
   ReportPDFCommonvar.datalist = [
     ReportPDFCommonlist(),

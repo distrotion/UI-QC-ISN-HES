@@ -66,6 +66,12 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
 
       ReportPDFTESTvar.PASS = _dataACT.databasic.PASS;
 
+      ReportPDFTESTvar.INC01 = '';
+      ReportPDFTESTvar.INC02 = '';
+
+      ReportPDFTESTvar.INC01 = _dataACT.databasic.INC01;
+      ReportPDFTESTvar.INC02 = _dataACT.databasic.INC02;
+
       if (_dataACT.databasic.PARTNAMEref != '') {
         ReportPDFTESTvar.remark =
             'Reference data from\n${_dataACT.databasic.PARTNAMEref}\n${_dataACT.databasic.PARTref}';
@@ -758,10 +764,12 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
                                   ),
                                 ),
                                 BODY7SLOT(
-                                  ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                  widget01: const Center(
+                                  ListFlex: const [6, 1, 4, 2, 2, 2, 2],
+                                  widget01: Center(
                                     child: Text(
-                                      "Appearance for Rust",
+                                      ReportPDFTESTvar.INC01 != ''
+                                          ? "Appearance for Rust"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
@@ -775,33 +783,41 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
                                       ),
                                     ),
                                   ),
-                                  widget03: const Center(
+                                  widget03: Center(
                                     child: Text(
-                                      "Visual",
+                                      ReportPDFTESTvar.INC01 != ''
+                                          ? "Visual"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget04: const Center(
+                                  widget04: Center(
                                     child: Text(
-                                      "10 pcs/rcv.Lot",
+                                      ReportPDFTESTvar.INC01 != ''
+                                          ? "10 pcs/rcv.Lot"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget05: const Center(
+                                  widget05: Center(
                                     child: Text(
-                                      "No Rust",
+                                      ReportPDFTESTvar.INC01 != ''
+                                          ? "No Rust"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget06: const Center(
+                                  widget06: Center(
                                     child: Text(
-                                      "No Rust",
+                                      ReportPDFTESTvar.INC01 != ''
+                                          ? "No Rust"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
@@ -819,49 +835,59 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
                                 ),
                                 BODY7SLOT(
                                   ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                  widget01: const Center(
+                                  widget01: Center(
                                     child: Text(
-                                      "Appearance for Scratch",
+                                      ReportPDFTESTvar.INC02 != ''
+                                          ? "Appearance for scratch"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget02: const Center(
+                                  widget02: Center(
                                     child: Text(
-                                      "",
+                                      ReportPDFTESTvar.INC02 != '' ? "" : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget03: const Center(
+                                  widget03: Center(
                                     child: Text(
-                                      "Visual",
+                                      ReportPDFTESTvar.INC02 != ''
+                                          ? "Visual"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget04: const Center(
+                                  widget04: Center(
                                     child: Text(
-                                      "10 pcs/rcv.Lot",
+                                      ReportPDFTESTvar.INC02 != ''
+                                          ? "10 pcs/rcv.Lot"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget05: const Center(
+                                  widget05: Center(
                                     child: Text(
-                                      "No Scratch",
+                                      ReportPDFTESTvar.INC02 != ''
+                                          ? "No Scratch"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
-                                  widget06: const Center(
+                                  widget06: Center(
                                     child: Text(
-                                      "No Scratch",
+                                      ReportPDFTESTvar.INC02 != ''
+                                          ? "No Scratch"
+                                          : "",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),

@@ -22,6 +22,9 @@ class ReportPDFTESTvar {
 
   static String remark = '';
 
+  static String INC01 = '';
+  static String INC02 = '';
+
   static List<ReportPDFACTlist> datalist = [
     ReportPDFACTlist(),
     ReportPDFACTlist(),
@@ -89,6 +92,9 @@ ReportPDFACTclear() {
   ReportPDFTESTvar.PICstd = '';
   ReportPDFTESTvar.PIC01 = '';
   ReportPDFTESTvar.PIC02 = '';
+
+  ReportPDFTESTvar.INC01 = '';
+  ReportPDFTESTvar.INC02 = '';
 
   ReportPDFTESTvar.datalist = [
     ReportPDFACTlist(),

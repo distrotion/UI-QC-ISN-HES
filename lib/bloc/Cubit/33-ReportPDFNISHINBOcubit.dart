@@ -107,6 +107,23 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
 
           var BasicDATAr = databuff['DATA'][0];
 
+          // print(databuff["PATTERN"][0]['INCOMMING']);
+
+          String inc01 = "";
+          String inc02 = "";
+
+          if (databuff["PATTERN"][0]['INCOMMING'] != null) {
+            for (var i = 0;
+                i < databuff["PATTERN"][0]['INCOMMING'].length;
+                i++) {
+              if (i == 0) {
+                inc01 = databuff["PATTERN"][0]['INCOMMING'][0]["ITEMs"];
+              }
+              if (i == 1) {
+                inc02 = databuff["PATTERN"][0]['INCOMMING'][1]["ITEMs"];
+              }
+            }
+          }
           BasicDATAs = BasicNISHINBODATA(
             PO: BasicDATAr['PO'] != null ? BasicDATAr['PO'].toString() : '',
             CP: BasicDATAr['CP'] != null ? BasicDATAr['CP'].toString() : '',
@@ -134,6 +151,8 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
             // PICstd: BasicDATAr['PIC'] != null
             //     ? BasicDATAr['PIC'].toString().split(',')[1]
             //     : '',
+            INC01: inc01,
+            INC02: inc02,
           );
 
           if (BasicDATAr['ReferFrom'].toString() != PO) {
@@ -602,6 +621,8 @@ class BasicNISHINBODATA {
     this.PASS = '',
     this.PARTNAMEref = '',
     this.PARTref = '',
+    this.INC01 = '',
+    this.INC02 = '',
   });
 
   String PO;
@@ -621,6 +642,8 @@ class BasicNISHINBODATA {
   String PASS;
   String PARTNAMEref;
   String PARTref;
+  String INC01;
+  String INC02;
 }
 
 class NISHINBOReportOutput {

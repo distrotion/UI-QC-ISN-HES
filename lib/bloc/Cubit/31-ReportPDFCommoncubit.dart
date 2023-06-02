@@ -29,6 +29,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
     ReportPDFCommonvar.PIC01 = '';
     ReportPDFCommonvar.PIC02 = '';
 
+    ReportPDFCommonvar.INC01 = '';
+    ReportPDFCommonvar.INC02 = '';
+
     ReportPDFCommonvar.rawlistHardness = [];
     ReportPDFCommonvar.rawlistCompound = [];
     ReportPDFCommonvar.rawlistRoughness = [];
@@ -103,6 +106,20 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
 
         // print(PATTERNlist);
 
+        String inc01 = "";
+        String inc02 = "";
+
+        if (databuff["PATTERN"][0]['INCOMMING'] != null) {
+          for (var i = 0; i < databuff["PATTERN"][0]['INCOMMING'].length; i++) {
+            if (i == 0) {
+              inc01 = databuff["PATTERN"][0]['INCOMMING'][0]["ITEMs"];
+            }
+            if (i == 1) {
+              inc02 = databuff["PATTERN"][0]['INCOMMING'][1]["ITEMs"];
+            }
+          }
+        }
+
         BasicCommonDATAs = BasicCommonDATA(
           PO: BasicDATAr['PO'] != null ? BasicDATAr['PO'].toString() : '',
           CP: BasicDATAr['CP'] != null ? BasicDATAr['CP'].toString() : '',
@@ -130,6 +147,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           UNITSAP: BasicDATAr['UNITSAP'] != null
               ? BasicDATAr['UNITSAP'].toString()
               : 'PCS',
+
+          INC01: inc01,
+          INC02: inc02,
 
           // PICstd: BasicDATAr['PIC'] != null
           //     ? BasicDATAr['PIC'].toString().split(',')[1]
@@ -313,8 +333,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                       // Actual
                       // print(SPECIFICATIONdata);
 
-                      double maxdata = 0;
-                      double mindata = 0;
+                      // double maxdata = 0;
+                      // double mindata = 0;
 
                       String dataUNIT =
                           PATTERNlist['FINAL'][fi]['UNIT'].toString();
@@ -350,8 +370,10 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                         // print(SPECIFICATIONdata['HIM_L']);
                         SPECIFICATION =
                             '≥ ${SPECIFICATIONdata['HIM_L'].toString()} ${unitP.replaceAll('?', 'µ')}';
+
                         mindata = double.parse(
                             ConverstStr(SPECIFICATIONdata['HIM_L'].toString()));
+                        print(mindata);
                       } else if (condition.contains("Actual")) {
                         // print(SPECIFICATIONdata['TARGET']);
                         SPECIFICATION = 'Actual';
@@ -423,6 +445,12 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                                   double.parse(ConverstStr(
                                       datainside[pcsi]['PO3'].toString())))
                               .toString());
+
+                          print(checkdata(
+                              maxdata,
+                              mindata,
+                              double.parse(ConverstStr(
+                                  datainside[pcsi]['PO3'].toString()))));
                         } else if (pcsi == 1) {
                           datainpcsi.DATA02 = double.parse(ConverstStr(
                                   datainside[pcsi]['PO3'].toString()))
@@ -1139,6 +1167,8 @@ class BasicCommonDATA {
     this.PARTNAMEref = '',
     this.PARTref = '',
     this.PASS = '',
+    this.INC01 = '',
+    this.INC02 = '',
   });
 
   String PO;
@@ -1161,6 +1191,9 @@ class BasicCommonDATA {
   String PARTref;
 
   String PASS;
+
+  String INC01;
+  String INC02;
 }
 
 class CommonReportOutput {

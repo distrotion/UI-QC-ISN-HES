@@ -42,6 +42,9 @@ class SINGLESHOTIMGmain extends StatelessWidget {
     this.preview,
     this.confirmdata,
     this.wchild,
+    this.CPreadbool,
+    this.PRreadbool,
+
     //------- Right
     required this.CLEAR,
     required this.BACKPAGE,
@@ -92,6 +95,8 @@ class SINGLESHOTIMGmain extends StatelessWidget {
   List<INSDATA>? confirmdata; //ok
 
   Widget? wchild;
+
+  bool? CPreadbool, PRreadbool;
 
   //Right --------------------------------------------
   Function CLEAR;
@@ -179,7 +184,9 @@ class SINGLESHOTIMGmain extends StatelessWidget {
                           child: Container(
                             height: 40,
                             width: 140,
-                            color: Colors.blue,
+                            color: (PRreadbool ?? false)
+                                ? Colors.blue
+                                : Colors.red,
                             child: const Center(
                               child: Text("PR READ",
                                   style: TxtStyle(
@@ -195,7 +202,9 @@ class SINGLESHOTIMGmain extends StatelessWidget {
                           child: Container(
                             height: 40,
                             width: 140,
-                            color: Colors.blue,
+                            color: (CPreadbool ?? false)
+                                ? Colors.blue
+                                : Colors.red,
                             child: const Center(
                               child: Text("CP READ",
                                   style: TxtStyle(

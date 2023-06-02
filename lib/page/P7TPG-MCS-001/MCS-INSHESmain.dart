@@ -218,15 +218,31 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
         MCSINSHESvar.selectINS = v;
       },
       INSddData: MCSINSHESvar.selectINS,
-      CPread: (v) {
-        MCSINSHESvar.iscontrol = true;
-        context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetPR());
-        print(MCSINSHESvar.base64pic02data);
-      },
       PRread: (v) {
-        MCSINSHESvar.iscontrol = true;
-        context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetCP());
+        if (MCSINSHESvar.ItemPickSELECT.contains("Compound")) {
+          MCSINSHESvar.iscontrol = true;
+          context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetCP());
+        } else if (MCSINSHESvar.ItemPickSELECT.contains("Porous")) {
+          WORNINGpop(context, "ITEM Porous");
+        } else {
+          MCSINSHESvar.iscontrol = true;
+          context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetCP());
+        }
       },
+      CPreadbool: MCSINSHESvar.ItemPickSELECT.contains("Compound"),
+      CPread: (v) {
+        if (MCSINSHESvar.ItemPickSELECT.contains("Porous")) {
+          MCSINSHESvar.iscontrol = true;
+          context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetPR());
+        } else if (MCSINSHESvar.ItemPickSELECT.contains("Compound")) {
+          //Porous
+          WORNINGpop(context, "ITEM Compound");
+        } else {
+          MCSINSHESvar.iscontrol = true;
+          context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetPR());
+        }
+      },
+      PRreadbool: MCSINSHESvar.ItemPickSELECT.contains("Porous"),
       //-------------
       FINISH: (v) {},
       preview: MCSINSHESvar.preview,
