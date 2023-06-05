@@ -119,58 +119,61 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
 
               // print(dataSRHSC.length);
               // print(dataSH.length);
+              if (dataCP.length > 0 && dataPT.length > 0) {
+                dataACT.add(reportCSV(
+                  PO: dataIN[i]['PO'] != null ? dataIN[i]['PO'].toString() : '',
+                  CP: dataIN[i]['CP'] != null ? dataIN[i]['CP'].toString() : '',
+                  F01: dataAFR.length > 0 ? dataAFR[0].toString() : '',
+                  F02: dataAFB.length > 0 ? dataAFB[0].toString() : '',
+                  F03: dataAFC.length > 0 ? dataAFC[0].toString() : '',
+                  F04: dataWWA.length > 0 ? dataWWA[0].toString() : '',
+                  F05: dataRCP.length > 0 ? dataRCP[0].toString() : '',
+                  //
+                  F06: dataSRHSC.length > 0 ? dataSRHSC[0].toString() : '',
+                  F07: dataSRHSC.length >= 1 ? dataSRHSC[1].toString() : '',
+                  F08: dataSRHSC.length >= 2 ? dataSRHSC[2].toString() : '',
+                  F09: dataSH.length > 0 ? dataSH[0].toString() : '',
+                  F10: dataSH.length >= 1 ? dataSH[1].toString() : '',
+                  F11: dataSH.length >= 2 ? dataSH[2].toString() : '',
 
-              dataACT.add(reportCSV(
-                PO: dataIN[i]['PO'] != null ? dataIN[i]['PO'].toString() : '',
-                CP: dataIN[i]['CP'] != null ? dataIN[i]['CP'].toString() : '',
-                F01: dataAFR.length > 0 ? dataAFR[0].toString() : '',
-                F02: dataAFB.length > 0 ? dataAFB[0].toString() : '',
-                F03: dataAFC.length > 0 ? dataAFC[0].toString() : '',
-                F04: dataWWA.length > 0 ? dataWWA[0].toString() : '',
-                F05: dataRCP.length > 0 ? dataRCP[0].toString() : '',
-                //
-                F06: dataSRHSC.length > 0 ? dataSRHSC[0].toString() : '',
-                F07: dataSRHSC.length >= 1 ? dataSRHSC[1].toString() : '',
-                F08: dataSRHSC.length >= 2 ? dataSRHSC[2].toString() : '',
-                F09: dataSH.length > 0 ? dataSH[0].toString() : '',
-                F10: dataSH.length >= 1 ? dataSH[1].toString() : '',
-                F11: dataSH.length >= 2 ? dataSH[2].toString() : '',
+                  F12: dataCP.length > 0 ? dataCP[0][0].toString() : '',
+                  F13: dataCP.length > 0 ? dataCP[0][1].toString() : '',
+                  F14: dataCP.length > 0 ? dataCP[0][2].toString() : '',
 
-                F12: dataCP.length > 0 ? dataCP[0][0].toString() : '',
-                F13: dataCP.length > 0 ? dataCP[0][1].toString() : '',
-                F14: dataCP.length > 0 ? dataCP[0][2].toString() : '',
+                  F15: dataPT.length > 0 ? dataPT[0][0].toString() : '',
+                  F16: dataPT.length > 0 ? dataPT[0][1].toString() : '',
+                  F17: dataPT.length > 0 ? dataPT[0][2].toString() : '',
 
-                F15: dataPT.length > 0 ? dataPT[0][0].toString() : '',
-                F16: dataPT.length > 0 ? dataPT[0][1].toString() : '',
-                F17: dataPT.length > 0 ? dataPT[0][2].toString() : '',
+                  F21: dataIN[i]['dateG'] != null
+                      ? dataIN[i]['dateG'].toString()
+                      : '',
+                  F22: dataIN[i]['CUSTNAME'] != null
+                      ? dataIN[i]['CUSTNAME'].toString()
+                      : '',
+                  F23: dataIN[i]['CUSLOTNO'] != null
+                      ? dataIN[i]['CUSLOTNO'].toString()
+                      : '',
+                  F24: dataIN[i]['PART'] != null
+                      ? dataIN[i]['PART'].toString()
+                      : '',
+                  F25: dataIN[i]['PARTNAME'] != null
+                      ? dataIN[i]['PARTNAME'].toString()
+                      : '',
+                  F26: dataIN[i]['MATERIAL'] != null
+                      ? dataIN[i]['MATERIAL'].toString()
+                      : '',
+                  F27: dataIN[i]['QUANTITY'] != null
+                      ? dataIN[i]['QUANTITY'].toString()
+                      : '',
+                  F28: dataIN[i]['FG_CHARG'] != null
+                      ? dataIN[i]['FG_CHARG'].toString()
+                      : '',
 
-                F21: dataIN[i]['dateG'] != null
-                    ? dataIN[i]['dateG'].toString()
-                    : '',
-                F22: dataIN[i]['CUSTNAME'] != null
-                    ? dataIN[i]['CUSTNAME'].toString()
-                    : '',
-                F23: dataIN[i]['CUSLOTNO'] != null
-                    ? dataIN[i]['CUSLOTNO'].toString()
-                    : '',
-                F24: dataIN[i]['PART'] != null
-                    ? dataIN[i]['PART'].toString()
-                    : '',
-                F25: dataIN[i]['PARTNAME'] != null
-                    ? dataIN[i]['PARTNAME'].toString()
-                    : '',
-                F26: dataIN[i]['MATERIAL'] != null
-                    ? dataIN[i]['MATERIAL'].toString()
-                    : '',
-                F27: dataIN[i]['QUANTITY'] != null
-                    ? dataIN[i]['QUANTITY'].toString()
-                    : '',
-                F28: dataIN[i]['FG_CHARG'] != null
-                    ? dataIN[i]['FG_CHARG'].toString()
-                    : '',
-
-                //FG_CHARG
-              ));
+                  //FG_CHARG
+                ));
+              } else {
+                print("nan neee !!");
+              }
 
               break;
             }

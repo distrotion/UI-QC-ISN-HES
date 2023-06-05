@@ -104,6 +104,7 @@ class _CsvPickerState extends State<CsvPicker> {
                       MapEntry("2022", "2022"),
                       MapEntry("2023", "2023"),
                       MapEntry("2024", "2024"),
+                      MapEntry("2025", "2025"),
                     ],
                     onChangeinside: (d, v) {
                       setState(() {
