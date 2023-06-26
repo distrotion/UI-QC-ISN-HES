@@ -52,9 +52,10 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
       for (int i = 0; i < dataIN.length; i++) {
         if (dataIN[i]['DATA'] != null) {
           var datain = dataIN[i]['DATA'];
-          // print(datain.length);
+
           for (int j = 0; j < datain.length; j++) {
             //Water wet ability
+
             if (datain[j]['Water wet ability'] != null) {
               List dataAFR = [];
               List dataAFB = [];
@@ -92,7 +93,7 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
                   dataRCP.add(datain[k]['Remain of CN on part']);
                 }
               }
-//----------
+
               for (var k = 0; k < datain.length; k++) {
                 if (datain[k]['Surface Roughness  (HSC)'] != null) {
                   dataSRHSC.add(datain[k]['Surface Roughness  (HSC)']);
@@ -119,6 +120,7 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
 
               // print(dataSRHSC.length);
               // print(dataSH.length);
+              print(dataIN[i]);
               if (dataCP.length > 0 && dataPT.length > 0) {
                 dataACT.add(reportCSV(
                   PO: dataIN[i]['PO'] != null ? dataIN[i]['PO'].toString() : '',
@@ -180,9 +182,12 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
           }
         }
       }
+      print(dataIN.length);
 
       // dataACT.add(reportCSV(PO: dataIN[i]['PO'].toString()));
     }
+
+    print('>>>${dataACT.length}');
     Navigator.pop(CsvPickerContext);
     dataoutCSV csv = dataoutCSV(name: "ACT", data: dataACT);
 

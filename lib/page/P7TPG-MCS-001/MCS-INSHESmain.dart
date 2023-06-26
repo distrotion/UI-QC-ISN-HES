@@ -229,7 +229,9 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
           context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetCP());
         }
       },
-      CPreadbool: MCSINSHESvar.ItemPickSELECT.contains("Compound"),
+      CPreadbool: MCSINSHESvar.ItemPickSELECT.contains("Compound") ||
+          !(MCSINSHESvar.ItemPickSELECT.contains("Compound") &&
+              MCSINSHESvar.ItemPickSELECT.contains("Porous")),
       CPread: (v) {
         if (MCSINSHESvar.ItemPickSELECT.contains("Porous")) {
           MCSINSHESvar.iscontrol = true;
@@ -242,7 +244,9 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
           context.read<TRICKER_MCSINSHES_Bloc>().add(TRICKER_MCSINSHESgetPR());
         }
       },
-      PRreadbool: MCSINSHESvar.ItemPickSELECT.contains("Porous"),
+      PRreadbool: MCSINSHESvar.ItemPickSELECT.contains("Porous") ||
+          !(MCSINSHESvar.ItemPickSELECT.contains("Compound") &&
+              MCSINSHESvar.ItemPickSELECT.contains("Porous")),
       //-------------
       FINISH: (v) {},
       preview: MCSINSHESvar.preview,
@@ -299,6 +303,7 @@ class _FileUploadButton01State extends State<FileUploadButton01> {
           ComInputText(
             sLabel: "value",
             height: 40,
+            isEnabled: false,
             isContr: MCSINSHESvar.iscontrol,
             fnContr: (input) {
               setState(() {
@@ -347,6 +352,7 @@ class _FileUploadButton02State extends State<FileUploadButton02> {
           ComInputText(
             sLabel: "value",
             height: 40,
+            isEnabled: false,
             isContr: MCSINSHESvar.iscontrol,
             fnContr: (input) {
               setState(() {
@@ -395,6 +401,7 @@ class _FileUploadButton03State extends State<FileUploadButton03> {
           ComInputText(
             sLabel: "value",
             height: 40,
+            isEnabled: false,
             isContr: MCSINSHESvar.iscontrol,
             fnContr: (input) {
               setState(() {
@@ -443,6 +450,7 @@ class _FileUploadButton04State extends State<FileUploadButton04> {
           ComInputText(
             sLabel: "value",
             height: 40,
+            isEnabled: false,
             isContr: MCSINSHESvar.iscontrol,
             fnContr: (input) {
               setState(() {
