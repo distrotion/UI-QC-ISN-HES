@@ -206,6 +206,7 @@ class SINGLESHOTKEYmain extends StatelessWidget {
                         height: 40,
                         width: 300,
                         isNumberOnly: true,
+                        isEnabled: false,
                         isContr: iscon01,
                         fnContr: (input) {
                           iscon01 = input;
