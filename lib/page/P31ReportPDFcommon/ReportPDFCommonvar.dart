@@ -24,6 +24,7 @@ class ReportPDFCommonvar {
   static List<rawlist> rawlistHardness = [];
   static List<rawlist> rawlistCompound = [];
   static List<rawlist> rawlistRoughness = [];
+  static List<rawlist> rawlistCORE = [];
 
   static String remark = '';
 

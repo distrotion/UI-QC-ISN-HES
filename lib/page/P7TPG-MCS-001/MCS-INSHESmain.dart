@@ -99,7 +99,7 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
   @override
   Widget build(BuildContext context) {
     PageMemory = 6;
-    // print(widget.data?.UPDATE);
+
     MICROSCOPEMCSINSHES_CONTEXT = context;
 
     if (widget.data?.UPDATE == 'OK') {
@@ -149,6 +149,7 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
       // });
       // MCSINSHESvar.DHtimer = timer;
     }
+
     return SINGLESHOTIMGmain(
       //------ Left
       LABEL: "TPG-MCS-001",
@@ -166,8 +167,10 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
       //------- Top
       ItemPickres: (v) {
         print(v);
+
         MCSINSHESvar.ItemPickSELECT = v;
         //
+
         context
             .read<TRICKER_MCSINSHES_Bloc>()
             .add(TRICKER_MCSINSHESgeteachITEM());
@@ -193,24 +196,29 @@ class _ROCKWELL_MCSINSHESbodyState extends State<ROCKWELL_MCSINSHESbody> {
 
       //------- Bottom
       ACCEPT: (v) {
-        if (pointpic()) {
-          if (MCSINSHESvar.PCS != '' &&
-              MCSINSHESvar.POINTs != '' &&
-              MCSINSHESvar.ItemPickSELECT != '') {
-            onLoadingFAKEintTIME(context, 3);
-            if (int.parse(MCSINSHESvar.PCSleft) > 0) {
-              context
-                  .read<TRICKER_MCSINSHES_Bloc>()
-                  .add(TRICKER_MCSINSHESFINISH());
-              Timer(const Duration(seconds: 3), () {
-                context.read<MCSINSHES_Bloc>().add(MCSINSHES_READ());
-              });
+        // print(checkpic());
+        if (checkpic()) {
+          if (pointpic()) {
+            if (MCSINSHESvar.PCS != '' &&
+                MCSINSHESvar.POINTs != '' &&
+                MCSINSHESvar.ItemPickSELECT != '') {
+              onLoadingFAKEintTIME(context, 3);
+              if (int.parse(MCSINSHESvar.PCSleft) > 0) {
+                context
+                    .read<TRICKER_MCSINSHES_Bloc>()
+                    .add(TRICKER_MCSINSHESFINISH());
+                Timer(const Duration(seconds: 3), () {
+                  context.read<MCSINSHES_Bloc>().add(MCSINSHES_READ());
+                });
+              }
+            } else {
+              WORNINGpop(context, "Please select item");
             }
           } else {
-            WORNINGpop(context, "Please select item");
+            WORNINGpop(context, "Please insert data");
           }
         } else {
-          WORNINGpop(context, "Please insert data");
+          WORNINGpop(context, "Please upload picture for Compound Layer");
         }
       },
       //-------------
@@ -518,5 +526,17 @@ bool pointpic() {
     }
   }
 
+  return out;
+}
+
+bool checkpic() {
+  bool out = false;
+  if (MCSINSHESvar.ItemPickSELECT == 'Compound Layer') {
+    if (MCSINSHESvar.base64pic01 != imgw) {
+      out = true;
+    }
+  } else {
+    out = true;
+  }
   return out;
 }

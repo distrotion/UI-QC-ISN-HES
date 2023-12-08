@@ -86,6 +86,10 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
 
       // print(_dataCOMMON.datain[0]);
       // print(_dataCOMMON.datain.length);
+      ReportPDFCommonvar.rawlistHardness = [];
+      ReportPDFCommonvar.rawlistCompound = [];
+      ReportPDFCommonvar.rawlistRoughness = [];
+      ReportPDFCommonvar.rawlistCORE = [];
 
       for (var i = 0; i < _dataCOMMON.datain.length; i++) {
         String Loadin = '';
@@ -584,9 +588,13 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.PIC01 = '';
       ReportPDFCommonvar.PIC02 = '';
 
+      ReportPDFCommonvar.INC01 = '';
+      ReportPDFCommonvar.INC02 = '';
+
       ReportPDFCommonvar.rawlistHardness = [];
       ReportPDFCommonvar.rawlistCompound = [];
       ReportPDFCommonvar.rawlistRoughness = [];
+      ReportPDFCommonvar.rawlistCORE = [];
 
       ReportPDFCommonvar.datalist = [
         ReportPDFCommonlist(),
@@ -694,6 +702,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                       MapEntry("-", "-"),
                       MapEntry("TYPE01", "1"),
                       MapEntry("TYPE02", "2"),
+                      MapEntry("TYPE03", "3"),
                     ],
                     onChangeinside: (d, v) {
                       // print(d);
@@ -701,6 +710,10 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                       if (d == '2') {
                         setState(() {
                           ReportPDFCommonvar.SCMASKTYPE = SCMASK02;
+                        });
+                      } else if (d == '3') {
+                        setState(() {
+                          ReportPDFCommonvar.SCMASKTYPE = SCMASK04;
                         });
                       } else {
                         setState(() {

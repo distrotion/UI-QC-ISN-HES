@@ -52,8 +52,10 @@ class LOADSAP_Bloc extends Bloc<LOADSAP_Event, List<dataset>> {
           f04: databuff[i]['TIME_START'] != null
               ? databuff[i]['TIME_START'].toString()
               : '',
-          f05: databuff[i]['TIME_FINISH'].toString(),
-          f06: databuff[i]['CP'].toString(),
+          f05: databuff[i]['TIME_FINISH'] != null
+              ? databuff[i]['TIME_FINISH'].toString()
+              : '',
+          f06: databuff[i]['CP'] != null ? databuff[i]['CP'].toString() : '',
           f07: databuff[i]['FG'].toString(),
           f08: databuff[i]['STATUS'].toString(),
           f09: databuff[i]['QUANTITY'].toString(),
@@ -77,7 +79,9 @@ class LOADSAP_Bloc extends Bloc<LOADSAP_Event, List<dataset>> {
           f27: databuff[i]['ACTQTY'].toString(),
           f28: databuff[i]['CUSLOTNO'].toString(),
           f29: databuff[i]['STDTIME400'].toString(),
-          f30: databuff[i]['FG_CHARG'].toString(),
+          f30: databuff[i]['FG_CHARG'] != null
+              ? databuff[i]['FG_CHARG'].toString()
+              : '',
           f31: databuff[i]['PK_STADATE'].toString(),
           f32: databuff[i]['PK_STATIME'].toString(),
           f33: databuff[i]['PK_FINDATE'].toString(),

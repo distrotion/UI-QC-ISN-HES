@@ -19,6 +19,7 @@ class GetINS_Bloc extends Bloc<GetINS_Event, List<String>> {
     });
   }
   Future<void> _GetINS(List<String> toAdd, Emitter<List<String>> emit) async {
+    List<String> output = [];
     final response = await Dio().post(
       server + 'GETINSset',
       data: {
@@ -26,7 +27,10 @@ class GetINS_Bloc extends Bloc<GetINS_Event, List<String>> {
         "CP": FIRSTUI.CPACTIVE,
       },
     );
-    List<String> output = [];
+
+    print("------------>${FIRSTUI.POACTIVE}");
+    print("------------>${FIRSTUI.CPACTIVE}");
+    print(response);
     if (response.statusCode == 200) {
       var databuff = response.data;
       print(databuff);
