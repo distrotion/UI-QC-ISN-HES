@@ -26,7 +26,7 @@ class LCRUVS001var {
   static String GAP = '';
   static String GAPname = '';
   static String GAPnamePick = '';
-  static String SINGLEINPUT = '0.03';
+  static String SINGLEINPUT = '0.02';
   static List<String> GAPnameList = [''];
   static List<INSDATA> preview = [];
   static List<INSDATA> confirmdata = [];

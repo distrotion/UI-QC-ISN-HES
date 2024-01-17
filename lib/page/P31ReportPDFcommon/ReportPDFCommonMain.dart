@@ -28,6 +28,7 @@ class ReportPDFCommon extends StatefulWidget {
 class _ReportPDFCommonState extends State<ReportPDFCommon> {
   @override
   void initState() {
+    ReportPDFCommonvar.SCMASKTYPE = SCMASK03;
     if (ReportPDFCommonvar.PO != '') {
       ReportPDFCommonvar.canf = false;
       context
@@ -701,7 +702,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                     listdropdown: const [
                       MapEntry("-", "-"),
                       MapEntry("TYPE01", "1"),
-                      MapEntry("TYPE02", "2"),
+                      MapEntry("ihara", "2"),
                       MapEntry("TYPE03", "3"),
                     ],
                     onChangeinside: (d, v) {
