@@ -459,7 +459,11 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                   ['PSC1'][0]['PO3']));
                           if (datain <= 0.03) {
-                            ITEMlist[le].DATA01 = '< 0.03';
+                            // ITEMlist[le].DATA01 = '< 0.03';
+                            ITEMlist[le].DATA01 = double.parse(ConverstStr(
+                                    FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
+                                        ['PSC1'][0]['PO3']))
+                                .toStringAsFixed(2);
                           } else {
                             ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                     FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
