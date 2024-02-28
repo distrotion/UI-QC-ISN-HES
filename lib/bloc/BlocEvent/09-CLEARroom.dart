@@ -51,10 +51,10 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       server + "LCRUVS001db",
       data: {},
     );
-    // final resPO7 = await Dio().post(
-    //   server + "APPGASGWdb",
-    //   data: {},
-    // );
+    final resPO8 = await Dio().post(
+      server + "HIMICM001db",
+      data: {},
+    );
 
     CLEARroomENV output = CLEARroomENV();
 
@@ -72,6 +72,7 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       output.PO5 = resPO5.data['PO'] ?? '';
       output.PO6 = resPO6.data['PO'] ?? '';
       output.PO7 = resPO7.data['PO'] ?? '';
+      output.PO8 = resPO8.data['PO'] ?? '';
     }
 
     emit(output);
@@ -115,7 +116,13 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
         server + 'LCRUVS001-SETZERO',
         data: {},
       );
+    } else if (CLEARroomdata.room == 'PO8') {
+      final response = await Dio().post(
+        server + 'HIMICM001-SETZERO',
+        data: {},
+      );
     }
+    //HIMICM001-preview
 
     //-============
 
@@ -147,6 +154,12 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       server + "LCRUVS001db",
       data: {},
     );
+    final resPO8 = await Dio().post(
+      server + "HIMICM001db",
+      data: {},
+    );
+
+    //HIMICM001
 
     CLEARroomENV output = CLEARroomENV();
 
@@ -164,6 +177,7 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       output.PO5 = resPO5.data['PO'] ?? '';
       output.PO6 = resPO6.data['PO'] ?? '';
       output.PO7 = resPO7.data['PO'] ?? '';
+      output.PO8 = resPO8.data['PO'] ?? '';
     }
 
     emit(output);
@@ -183,6 +197,7 @@ class CLEARroomENV {
     this.PO5 = '',
     this.PO6 = '',
     this.PO7 = '',
+    this.PO8 = '',
   });
 
   String PO1;
@@ -192,4 +207,5 @@ class CLEARroomENV {
   String PO5;
   String PO6;
   String PO7;
+  String PO8;
 }

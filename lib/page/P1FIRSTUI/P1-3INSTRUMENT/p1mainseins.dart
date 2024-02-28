@@ -10,6 +10,7 @@ import '../../../data/global.dart';
 import '../../../mainBody.dart';
 import '../../../styles/TextStyle.dart';
 import '../../../widget/onlyINqcui/popup.dart';
+import '../../page12.dart';
 import '../../page2.dart';
 import '../../page3.dart';
 
@@ -18,6 +19,7 @@ import '../../page5.dart';
 import '../../page6.dart';
 import '../../page7.dart';
 import '../../page8.dart';
+import '../../page9.dart';
 import '../FIRSTuiMAIN.dart';
 import '../FIRSTuiVAR.dart';
 import 'p1instrument.dart';
@@ -98,7 +100,7 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
         CuPage = Page8();
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
       } else if (FIRSTUI.SECLECTins == 'HI-MICM-001') {
-        CuPage = Page8();
+        CuPage = Page12();
         MainBodyContext.read<ChangePage_Bloc>().add(ChangePage_nodrower());
       }
     } else {
@@ -272,7 +274,7 @@ class SELECtINSTRUMENTbody extends StatelessWidget {
                               if (_INSlist[i] == 'HI-MICM-001') {
                                 context
                                     .read<TRICKERMASTER_Bloc>()
-                                    .add(TRICKERMASTER_GETINtoLCRUVS001());
+                                    .add(TRICKERMASTER_GETINtoHIMICM001());
                               }
                             },
                             child: INSBOX(
