@@ -412,7 +412,7 @@ class HEAD6SLOT extends StatelessWidget {
             flex: _ListFlex[0],
             child: Container(
               child: widget01 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
@@ -422,7 +422,7 @@ class HEAD6SLOT extends StatelessWidget {
             flex: _ListFlex[1],
             child: Container(
               child: widget02 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -437,7 +437,7 @@ class HEAD6SLOT extends StatelessWidget {
             flex: _ListFlex[2],
             child: Container(
               child: widget03 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -454,7 +454,7 @@ class HEAD6SLOT extends StatelessWidget {
             flex: _ListFlex[3],
             child: Container(
               child: widget04 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -471,7 +471,7 @@ class HEAD6SLOT extends StatelessWidget {
             flex: _ListFlex[4],
             child: Container(
               child: widget05 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -491,7 +491,7 @@ class HEAD6SLOT extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
         ],
@@ -657,7 +657,7 @@ class HEAD1SLOT extends StatelessWidget {
             flex: 1,
             child: Container(
               child: widget01 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
@@ -701,7 +701,7 @@ class HEAD7SLOT extends StatelessWidget {
             flex: _ListFlex[0],
             child: Container(
               child: widget01 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
@@ -711,7 +711,7 @@ class HEAD7SLOT extends StatelessWidget {
             flex: _ListFlex[1],
             child: Container(
               child: widget02 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -726,7 +726,7 @@ class HEAD7SLOT extends StatelessWidget {
             flex: _ListFlex[2],
             child: Container(
               child: widget03 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -743,7 +743,7 @@ class HEAD7SLOT extends StatelessWidget {
             flex: _ListFlex[3],
             child: Container(
               child: widget04 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -760,7 +760,7 @@ class HEAD7SLOT extends StatelessWidget {
             flex: _ListFlex[4],
             child: Container(
               child: widget05 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -777,7 +777,7 @@ class HEAD7SLOT extends StatelessWidget {
             flex: _ListFlex[5],
             child: Container(
               child: widget06 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -797,7 +797,7 @@ class HEAD7SLOT extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
         ],
@@ -1006,7 +1006,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[0],
             child: Container(
               child: widget01 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
@@ -1016,7 +1016,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[1],
             child: Container(
               child: widget02 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -1031,7 +1031,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[2],
             child: Container(
               child: widget03 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1048,7 +1048,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[3],
             child: Container(
               child: widget04 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1065,7 +1065,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[4],
             child: Container(
               child: widget05 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1082,7 +1082,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[5],
             child: Container(
               child: widget06 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1099,7 +1099,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[6],
             child: Container(
               child: widget07 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1116,7 +1116,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[7],
             child: Container(
               child: widget08 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1133,7 +1133,7 @@ class HEAD10SLOT extends StatelessWidget {
             flex: _ListFlex[8],
             child: Container(
               child: widget09 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1153,7 +1153,7 @@ class HEAD10SLOT extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
         ],
@@ -1691,7 +1691,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[0],
             child: Container(
               child: widget01 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
@@ -1701,7 +1701,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[1],
             child: Container(
               child: widget02 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -1716,7 +1716,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[2],
             child: Container(
               child: widget03 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1733,7 +1733,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[3],
             child: Container(
               child: widget04 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1750,7 +1750,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[4],
             child: Container(
               child: widget05 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1767,7 +1767,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[5],
             child: Container(
               child: widget06 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1784,7 +1784,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[6],
             child: Container(
               child: widget07 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1801,7 +1801,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[7],
             child: Container(
               child: widget08 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1818,7 +1818,7 @@ class HEAD16SLOT extends StatelessWidget {
             flex: _ListFlex[8],
             child: Container(
               child: widget09 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -1845,7 +1845,7 @@ class HEAD16SLOT extends StatelessWidget {
                       color: Colors.black, width: 3, style: BorderStyle.solid),
                 ),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
           Expanded(
@@ -1862,7 +1862,7 @@ class HEAD16SLOT extends StatelessWidget {
                       color: Colors.black, width: 3, style: BorderStyle.solid),
                 ),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
           Expanded(
@@ -1879,7 +1879,7 @@ class HEAD16SLOT extends StatelessWidget {
                       color: Colors.black, width: 3, style: BorderStyle.solid),
                 ),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
           Expanded(
@@ -1896,7 +1896,7 @@ class HEAD16SLOT extends StatelessWidget {
                       color: Colors.black, width: 3, style: BorderStyle.solid),
                 ),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
           Expanded(
@@ -1913,7 +1913,7 @@ class HEAD16SLOT extends StatelessWidget {
                       color: Colors.black, width: 3, style: BorderStyle.solid),
                 ),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
           Expanded(
@@ -1930,7 +1930,7 @@ class HEAD16SLOT extends StatelessWidget {
                       color: Colors.black, width: 3, style: BorderStyle.solid),
                 ),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
           Expanded(
@@ -1940,7 +1940,7 @@ class HEAD16SLOT extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
-              height: 55,
+              height: 47,
             ),
           ),
         ],
@@ -2366,7 +2366,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[0],
             child: Container(
               child: widget01 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 3),
               ),
@@ -2376,7 +2376,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[1],
             child: Container(
               child: widget02 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -2391,7 +2391,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[2],
             child: Container(
               child: widget03 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -2408,7 +2408,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[3],
             child: Container(
               child: widget04 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -2425,7 +2425,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[4],
             child: Container(
               child: widget05 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -2442,7 +2442,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[5],
             child: Container(
               child: widget06 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -2459,7 +2459,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[6],
             child: Container(
               child: widget07 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -2476,7 +2476,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[7],
             child: Container(
               child: widget08 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(
@@ -2493,7 +2493,7 @@ class HEAD9SLOT extends StatelessWidget {
             flex: _ListFlex[8],
             child: Container(
               child: widget09 ?? const SizedBox(),
-              height: 55,
+              height: 47,
               decoration: const BoxDecoration(
                 border: Border(
                   left: BorderSide(

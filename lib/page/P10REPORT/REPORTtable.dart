@@ -21,9 +21,11 @@ import '../../widget/onlyINqcui/popup.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../P32ReportPDFACT/ReportPDFACTvar.dart';
 import '../P33ReportPDFTEST/ReportPDFTESTvar.dart';
+import '../P35ReportPDFcommon2/ReportPDFCommon2var.dart';
 import '../Page32.dart';
 import '../page31.dart';
 import '../page33.dart';
+import '../page35.dart';
 import 'REPORTvar.dart';
 
 late BuildContext REPORTuiMAINcontext;
@@ -468,13 +470,32 @@ class _MyData extends DataTableSource {
               children: [
                 InkWell(
                   onTap: () {
+                    // onLoadingFAKE(context);
+                    // REPORTvar.reportTYPE = 0;
+                    // REPORTvar.PO = data.f01;
+                    // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    ReportPDFCommon2var.PO = data.f01;
+                    STDreportDai(context);
+                  },
+                  child: Container(
+                    width: 50,
+                    color: Colors.blue,
+                    child: const Center(
+                        child: Text(
+                      "Re_Dia",
+                      style: TxtStyle(color: Colors.white),
+                    )),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
                     ReportPDFTESTvar.PO = data.f01;
                     NEWreport(context);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 15),
                     child: Container(
-                      width: 100,
+                      width: 50,
                       color: Colors.pink,
                       child: const Center(
                           child: Text(
@@ -580,6 +601,29 @@ void STDreport(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Page31(),
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void STDreportDai(
+  BuildContext contextin,
+) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: SizedBox(
+          height: 1000,
+          width: 1500,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Page35(),
             ),
           ),
         ),

@@ -408,6 +408,9 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                       if (ITEMSlist[Fci]['ITEMs'].toString().contains("trid")) {
                         desinal = 1;
                       }
+                      if (ITEMSlist[Fci]['ITEMs'].toString().contains("Dia")) {
+                        desinal = 3;
+                      }
                     }
                   }
                   // print(ITEMname);
