@@ -725,15 +725,15 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                         });
                       } else if (d == '4') {
                         setState(() {
-                          ReportPDFCommonvar.SCMASKTYPE = SCMASK04;
+                          ReportPDFCommonvar.SCMASKTYPE = new19062401;
                         });
                       } else if (d == '5') {
                         setState(() {
-                          ReportPDFCommonvar.SCMASKTYPE = new19062401;
+                          ReportPDFCommonvar.SCMASKTYPE = new19062402;
                         });
                       } else {
                         setState(() {
-                          ReportPDFCommonvar.SCMASKTYPE = new19062402;
+                          ReportPDFCommonvar.SCMASKTYPE = SCMASK03;
                         });
                       }
                     },
