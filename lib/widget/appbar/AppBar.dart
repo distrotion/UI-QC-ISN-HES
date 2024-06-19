@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/LoginEvent.dart';
+import '../../data/global.dart';
 import '../../mainBody.dart';
 // import 'package:tpk_login_arsa_01/script/bloc/login/login_bloc.dart';
 // import 'package:tpk_login_arsa_01/script/bloc/login/login_event.dart';
@@ -35,7 +36,10 @@ class _App_BarState extends State<App_Bar> {
           Spacer(),
           //Text(MediaQuery.of(context).size.width.toString()),
           //Text("  |  <--->  |  " + current_page.toString()),
-          Spacer(),
+          SizedBox(
+            width: 200,
+            child: Text("${USERDATA.NAME} (${USERDATA.Section})"),
+          ),
           Pack_topright_bar(),
         ],
       ),
@@ -43,7 +47,6 @@ class _App_BarState extends State<App_Bar> {
   }
 
   ///###################################################################################
-
 }
 
 class Logo2 extends StatelessWidget {

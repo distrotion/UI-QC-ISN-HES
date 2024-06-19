@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/Cubit/31-ReportPDFCommoncubit.dart';
+import '../../data/global.dart';
 import '../../widget/ReportComponent/CommonReport.dart';
 import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
@@ -28,6 +29,7 @@ class ReportPDFCommon2 extends StatefulWidget {
 class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
   @override
   void initState() {
+    ReportPDFCommon2var.PASS = '';
     ReportPDFCommon2var.SCMASKTYPE = SCMASK03;
     if (ReportPDFCommon2var.PO != '') {
       ReportPDFCommon2var.canf = false;
@@ -74,7 +76,9 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
       ReportPDFCommon2var.PIC02 = _dataCOMMON.databasic.PIC02;
       ReportPDFCommon2var.PICstd = _dataCOMMON.databasic.PICstd;
 
-      ReportPDFCommon2var.PASS = _dataCOMMON.databasic.PASS;
+      if (ReportPDFCommon2var.PASS != 'N/A') {
+        ReportPDFCommon2var.PASS = _dataCOMMON.databasic.PASS;
+      }
       ReportPDFCommon2var.remark = '';
 
       ReportPDFCommon2var.INC01 = _dataCOMMON.databasic.INC01;
@@ -864,6 +868,8 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
                       MapEntry("TYPE01", "1"),
                       MapEntry("ihara", "2"),
                       MapEntry("TYPE03", "3"),
+                      MapEntry("KJN", "4"),
+                      MapEntry("KMT", "5"),
                     ],
                     onChangeinside: (d, v) {
                       // print(d);
@@ -876,9 +882,17 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
                         setState(() {
                           ReportPDFCommon2var.SCMASKTYPE = SCMASK04;
                         });
+                      } else if (d == '4') {
+                        setState(() {
+                          ReportPDFCommon2var.SCMASKTYPE = SCMASK04;
+                        });
+                      } else if (d == '5') {
+                        setState(() {
+                          ReportPDFCommon2var.SCMASKTYPE = new19062401;
+                        });
                       } else {
                         setState(() {
-                          ReportPDFCommon2var.SCMASKTYPE = SCMASK03;
+                          ReportPDFCommon2var.SCMASKTYPE = new19062402;
                         });
                       }
                     },
@@ -889,32 +903,65 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
                 ),
               ),
               const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: InkWell(
-                  onTap: () {
-                    PDFloader(context);
-                    Future.delayed(const Duration(milliseconds: 1000), () {
-                      captureToback(
-                        _globalKey,
-                        ReportPDFCommon2var.PO,
-                      ).then((value) {
-                        print(value);
+              if (ReportPDFCommon2var.PASS == "PASSED") ...[
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: InkWell(
+                    onTap: () {
+                      PDFloader(context);
+                      Future.delayed(const Duration(milliseconds: 1000), () {
+                        captureToback(
+                          _globalKey,
+                          ReportPDFCommon2var.PO,
+                        ).then((value) {
+                          print(value);
 
-                        Navigator.pop(context);
+                          Navigator.pop(context);
+                        });
                       });
-                    });
-                  },
-                  child: Container(
-                    color: Colors.yellow,
-                    height: 50,
-                    width: 100,
-                    child: const Center(
-                      child: Text("Print"),
+                    },
+                    child: Container(
+                      color: Colors.yellow,
+                      height: 50,
+                      width: 100,
+                      child: const Center(
+                        child: Text("Print"),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ] else ...[
+                if (USERDATA.UserLV > 5) ...[
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: InkWell(
+                      onTap: () {
+                        ReportPDFCommon2var.PASS = "N/A";
+                        setState(() {});
+                        PDFloader(context);
+                        Future.delayed(const Duration(milliseconds: 1000), () {
+                          captureToback(
+                            _globalKey,
+                            ReportPDFCommon2var.PO,
+                          ).then((value) {
+                            print(value);
+
+                            Navigator.pop(context);
+                          });
+                        });
+                      },
+                      child: Container(
+                        color: Colors.yellow,
+                        height: 50,
+                        width: 100,
+                        child: const Center(
+                          child: Text("Print"),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]
+              ],
             ],
           ),
           // Row(

@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/BlocEvent/11-01-ReportCSV.dart';
+import '../../bloc/BlocEvent/11-02-SumReportGET.dart';
 import '../../data/global.dart';
 import '../../model/model.dart';
 
 import '../../widget/common/Advancedropdown.dart';
+import '../../widget/common/Calendarwid.dart';
+import '../../widget/common/ComInputText.dart';
 import 'INDreportVAR.dart';
 
 DateTime selectedDate = DateTime.now();
@@ -17,9 +20,14 @@ DateTime selectedDate = DateTime.now();
 late BuildContext CsvPickerContext;
 
 class CsvPicker extends StatefulWidget {
-  CsvPicker({Key? key, this.dataACT}) : super(key: key);
+  CsvPicker({
+    Key? key,
+    this.dataACT,
+    this.datain,
+  }) : super(key: key);
 
   dataoutCSV? dataACT;
+  datauoutraw? datain;
 
   @override
   State<CsvPicker> createState() => _CsvPickerState();
@@ -201,6 +209,156 @@ class _CsvPickerState extends State<CsvPicker> {
               ),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 100),
+            child: Column(
+              // mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Column(
+                      children: [
+                        Text("start"),
+                        InkWell(
+                          onTap: () {
+                            CalendaSelectDate(context, DateTime.now(), (v) {
+                              P01SumReportvar.startDATE = v;
+                              P01SumReportvar.startDATElist = v.split('-');
+
+                              if (P01SumReportvar.startDATElist.isNotEmpty) {
+                                P01SumReportvar.startDATEout.year =
+                                    P01SumReportvar.startDATElist[0];
+                                P01SumReportvar.startDATEout.month =
+                                    P01SumReportvar.startDATElist[1];
+                                P01SumReportvar.startDATEout.day =
+                                    P01SumReportvar.startDATElist[2];
+                              }
+                              setState(() {});
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // color: Color(0x00b23127),
+                              // color: LOGOorCLOSE ? Colors.transparent : Colors.transparent,
+
+                              // image: DecorationImage(
+                              //   image: AssetImage("assets/icons/groupNEW@3x.png"),
+                              //   fit: BoxFit.fitWidth,
+                              // ),
+                              border: Border.all(color: Colors.black),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(8.0),
+                                topRight: Radius.circular(8.0),
+                                bottomLeft: Radius.circular(8.0),
+                                bottomRight: Radius.circular(8.0),
+                              ),
+                            ),
+                            height: 40,
+                            width: 200,
+                            child: Center(
+                              child: Text(P01SumReportvar.startDATE),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text("end"),
+                        InkWell(
+                          onTap: () {
+                            CalendaSelectDate(context, DateTime.now(), (v) {
+                              P01SumReportvar.endDATE = v;
+                              P01SumReportvar.endDATElist = v.split('-');
+
+                              if (P01SumReportvar.endDATElist.isNotEmpty) {
+                                P01SumReportvar.endDATEout.year =
+                                    P01SumReportvar.endDATElist[0];
+                                P01SumReportvar.endDATEout.month =
+                                    P01SumReportvar.endDATElist[1];
+                                P01SumReportvar.endDATEout.day =
+                                    P01SumReportvar.endDATElist[2];
+                              }
+                              setState(() {});
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              // color: Color(0x00b23127),
+                              // color: LOGOorCLOSE ? Colors.transparent : Colors.transparent,
+
+                              // image: DecorationImage(
+                              //   image: AssetImage("assets/icons/groupNEW@3x.png"),
+                              //   fit: BoxFit.fitWidth,
+                              // ),
+                              border: Border.all(color: Colors.black),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(8.0),
+                                topRight: Radius.circular(8.0),
+                                bottomLeft: Radius.circular(8.0),
+                                bottomRight: Radius.circular(8.0),
+                              ),
+                            ),
+                            height: 40,
+                            width: 200,
+                            child: Center(
+                              child: Text(P01SumReportvar.endDATE),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      width: 300,
+                      // child: _tabtableB3(
+                      //   height: 40,
+                      //   value: preview ?? [INSDATA()],
+                      // ),
+                      child: ComInputText(
+                        height: 40,
+                        width: 300,
+                        isNumberOnly: true,
+                        isContr: P01SumReportvar.iscon01,
+                        fnContr: (input) {
+                          P01SumReportvar.iscon01 = input;
+                        },
+                        sValue: P01SumReportvar.MAT,
+                        returnfunc: (String s) {
+                          // input = s;
+                          P01SumReportvar.MAT = s;
+                        },
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        //
+                        if (P01SumReportvar.MAT != '') {
+                          context
+                              .read<SumReportGET_Bloc>()
+                              .add(SumReportGET_GET());
+                        }
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+              ],
+            ),
+          )
           // TableCsvPreview(data: widget.datatable ?? [])
         ],
       ),

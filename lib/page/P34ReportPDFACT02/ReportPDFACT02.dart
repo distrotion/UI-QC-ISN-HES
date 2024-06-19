@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/Cubit/34-ReportPDFACT02cubit.dart';
+import '../../data/global.dart';
 import '../../widget/ReportComponent/CommonReport.dart';
 import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
@@ -27,6 +28,7 @@ class ReportPDFACT02 extends StatefulWidget {
 class _ReportPDFACT02State extends State<ReportPDFACT02> {
   @override
   void initState() {
+    ReportPDFACT02var.PASS = '';
     if (ReportPDFACT02var.PO != '') {
       ReportPDFACT02var.canf = false;
       context
@@ -64,7 +66,9 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
       ReportPDFACT02var.PIC02 = _dataACT.databasic.PIC02;
       ReportPDFACT02var.PICstd = _dataACT.databasic.PICstd;
 
-      ReportPDFACT02var.PASS = _dataACT.databasic.PASS;
+      if (ReportPDFACT02var.PASS != 'N/A') {
+        ReportPDFACT02var.PASS = _dataACT.databasic.PASS;
+      }
 
       if (_dataACT.databasic.PARTNAMEref != '') {
         ReportPDFACT02var.remark =
@@ -207,6 +211,60 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
             ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
             ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
           }
+
+          if (i == 9 &&
+              _dataACT.datain[j].ITEM == 'TYPE-5f171c36fe12be0020dbd354') {
+            ReportPDFACT02var.datalist[i].ITEMname =
+                _dataACT.datain[j].ITEMname;
+            ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+            ReportPDFACT02var.datalist[i].METHODname =
+                _dataACT.datain[j].METHODname;
+            ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+            ReportPDFACT02var.datalist[i].CONTROLlimmit =
+                _dataACT.datain[j].CONTROLlimmit;
+            ReportPDFACT02var.datalist[i].SPECIFICATION =
+                _dataACT.datain[j].SPECIFICATION;
+            ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
+            ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
+            ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
+            ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+          }
+
+          if (i == 10 &&
+              _dataACT.datain[j].ITEM == 'TYPE-5f19a79ffe12be0020dbd3a8') {
+            ReportPDFACT02var.datalist[i].ITEMname =
+                _dataACT.datain[j].ITEMname;
+            ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+            ReportPDFACT02var.datalist[i].METHODname =
+                _dataACT.datain[j].METHODname;
+            ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+            ReportPDFACT02var.datalist[i].CONTROLlimmit =
+                _dataACT.datain[j].CONTROLlimmit;
+            ReportPDFACT02var.datalist[i].SPECIFICATION =
+                _dataACT.datain[j].SPECIFICATION;
+            ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
+            ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
+            ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
+            ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+          }
+
+          if (i == 11 &&
+              _dataACT.datain[j].ITEM == 'TYPE-60407ff193e8d91950acb5d1') {
+            ReportPDFACT02var.datalist[i].ITEMname =
+                _dataACT.datain[j].ITEMname;
+            ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+            ReportPDFACT02var.datalist[i].METHODname =
+                _dataACT.datain[j].METHODname;
+            ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+            ReportPDFACT02var.datalist[i].CONTROLlimmit =
+                _dataACT.datain[j].CONTROLlimmit;
+            ReportPDFACT02var.datalist[i].SPECIFICATION =
+                _dataACT.datain[j].SPECIFICATION;
+            ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
+            ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
+            ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
+            ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+          }
         }
       }
     } else {
@@ -323,32 +381,65 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                 ),
               ),
               const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: InkWell(
-                  onTap: () {
-                    PDFloader(context);
-                    Future.delayed(const Duration(milliseconds: 1000), () {
-                      captureToback(
-                        _globalKey,
-                        ReportPDFACT02var.PO,
-                      ).then((value) {
-                        print(value);
+              if (ReportPDFACT02var.PASS == "PASSED") ...[
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: InkWell(
+                    onTap: () {
+                      PDFloader(context);
+                      Future.delayed(const Duration(milliseconds: 1000), () {
+                        captureToback(
+                          _globalKey,
+                          ReportPDFACT02var.PO,
+                        ).then((value) {
+                          print(value);
 
-                        Navigator.pop(context);
+                          Navigator.pop(context);
+                        });
                       });
-                    });
-                  },
-                  child: Container(
-                    color: Colors.yellow,
-                    height: 50,
-                    width: 100,
-                    child: const Center(
-                      child: Text("Print"),
+                    },
+                    child: Container(
+                      color: Colors.yellow,
+                      height: 50,
+                      width: 100,
+                      child: const Center(
+                        child: Text("Print"),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ] else ...[
+                if (USERDATA.UserLV > 5) ...[
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: InkWell(
+                      onTap: () {
+                        ReportPDFACT02var.PASS = "N/A";
+                        setState(() {});
+                        PDFloader(context);
+                        Future.delayed(const Duration(milliseconds: 1000), () {
+                          captureToback(
+                            _globalKey,
+                            ReportPDFACT02var.PO,
+                          ).then((value) {
+                            print(value);
+
+                            Navigator.pop(context);
+                          });
+                        });
+                      },
+                      child: Container(
+                        color: Colors.yellow,
+                        height: 50,
+                        width: 100,
+                        child: const Center(
+                          child: Text("Print"),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]
+              ],
             ],
           ),
           SingleChildScrollView(
@@ -1190,186 +1281,6 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                   ListFlex: [5, 1, 3, 2, 4, 4],
                                   widget01: Center(
                                     child: Text(
-                                      ReportPDFACT02var.datalist[3].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[3].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[3].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[3].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[3].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[3].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[3].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
                                       ReportPDFACT02var.datalist[4].ITEMname,
                                       style: const TextStyle(
                                         fontSize: 16,
@@ -1419,6 +1330,186 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                   widget06: Center(
                                     child: Text(
                                       ReportPDFACT02var.datalist[4].RESULT,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                BODY6SLOT(
+                                  ListFlex: [5, 1, 3, 2, 4, 4],
+                                  widget01: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[9].ITEMname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget02: Center(
+                                    child:
+                                        ReportPDFACT02var.datalist[9].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                  ),
+                                  widget03: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[9].METHODname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget04: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[9].FREQ,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget05: Center(
+                                    child: Text(
+                                      ReportPDFACT02var
+                                          .datalist[9].SPECIFICATIONname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget06: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[9].RESULT,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                BODY6SLOT(
+                                  ListFlex: [5, 1, 3, 2, 4, 4],
+                                  widget01: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[10].ITEMname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget02: Center(
+                                    child:
+                                        ReportPDFACT02var.datalist[10].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                  ),
+                                  widget03: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[10].METHODname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget04: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[10].FREQ,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget05: Center(
+                                    child: Text(
+                                      ReportPDFACT02var
+                                          .datalist[10].SPECIFICATIONname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget06: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[10].RESULT,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                BODY6SLOT(
+                                  ListFlex: [5, 1, 3, 2, 4, 4],
+                                  widget01: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[11].ITEMname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget02: Center(
+                                    child:
+                                        ReportPDFACT02var.datalist[11].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                  ),
+                                  widget03: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[11].METHODname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget04: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[11].FREQ,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget05: Center(
+                                    child: Text(
+                                      ReportPDFACT02var
+                                          .datalist[11].SPECIFICATIONname,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  widget06: Center(
+                                    child: Text(
+                                      ReportPDFACT02var.datalist[11].RESULT,
                                       style: const TextStyle(
                                         fontSize: 16,
                                       ),
@@ -2112,7 +2203,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                   ),
                                 ),
                                 PICSLOT(
-                                  HIs: 300,
+                                  HIs: 330,
                                   PIC01: _dataACT.databasic.PIC01,
                                   PIC02: _dataACT.databasic.PIC02,
                                 ),
@@ -2120,6 +2211,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                   PASS: ReportPDFACT02var.PASS,
                                   PICS: _dataACT.databasic.PICstd,
                                   Remark: ReportPDFACT02var.remark,
+                                  NAME03: "Saowapak",
                                 ),
                               ],
                             ),

@@ -14,6 +14,7 @@ import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../model/model.dart';
 import '../../styles/TextStyle.dart';
+import '../../widget/common/Calendarwid.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Freescroll.dart';
 import '../../widget/common/Loading.dart';
@@ -21,10 +22,12 @@ import '../../widget/onlyINqcui/popup.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../P32ReportPDFACT/ReportPDFACTvar.dart';
 import '../P33ReportPDFTEST/ReportPDFTESTvar.dart';
+import '../P34ReportPDFACT02/ReportPDFACT02var.dart';
 import '../P35ReportPDFcommon2/ReportPDFCommon2var.dart';
 import '../Page32.dart';
 import '../page31.dart';
 import '../page33.dart';
+import '../page34.dart';
 import '../page35.dart';
 import 'REPORTvar.dart';
 
@@ -393,7 +396,7 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -529,6 +532,25 @@ class _MyData extends DataTableSource {
                     // REPORTvar.reportTYPE = 2;
                     // REPORTvar.PO = data.f01;
                     // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    ReportPDFACT02var.PO = data.f01;
+                    ACTreport2(context);
+                  },
+                  child: Container(
+                    width: 50,
+                    color: Colors.blueGrey,
+                    child: const Center(
+                        child: Text(
+                      "ACT2",
+                      style: TxtStyle(color: Colors.white),
+                    )),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    // onLoadingFAKE(context);
+                    // REPORTvar.reportTYPE = 2;
+                    // REPORTvar.PO = data.f01;
+                    // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
                     ReportPDFACTvar.PO = data.f01;
                     ACTreport(context);
                   },
@@ -580,6 +602,27 @@ void ACTreport(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
                   child: Page32(),
+                ))),
+      );
+    },
+  );
+}
+
+void ACTreport2(
+  BuildContext contextin,
+) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: SizedBox(
+            height: 1000,
+            width: 1500,
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Page34(),
                 ))),
       );
     },

@@ -1,9 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/BlocEvent/01-01-SAP.dart';
 import '../../../bloc/BlocEvent/01-02-GetINS.dart';
 
+import '../../../data/global.dart';
 import '../../../model/model.dart';
 import '../../../widget/common/ComInputText.dart';
 
@@ -47,6 +49,10 @@ class _MAINTABLEP1State extends State<MAINTABLEP1> {
                   returnfunc: (String s) {
                     setState(() {
                       FIRSTUI.SEARCH = s;
+
+                      if (s.substring(0, 4) == '0033') {
+                        FIRSTUI.SEARCH = s.substring(2);
+                      }
                     });
                   },
                 ),
@@ -191,9 +197,25 @@ class tabledetailsearch extends StatelessWidget {
           print(CP);
           print(FG);
           FIRSTUI.POACTIVE = PO;
-          FIRSTUI.CPACTIVE = CP;
 
-          context.read<GetINS_Bloc>().add(GETINSset());
+          if (CP.toString().substring(0, 2) == '21') {
+            Dio().post(
+              GLOserver + 'GETfg',
+              data: {
+                "FG": CP,
+              },
+            ).then((value) {
+              var input = value.data;
+              if (input.length > 0) {
+                FIRSTUI.CPACTIVE = input[0]['CP'].toString();
+                print(FIRSTUI.CPACTIVE);
+                context.read<GetINS_Bloc>().add(GETINSset());
+              }
+            });
+          } else {
+            FIRSTUI.CPACTIVE = CP;
+            context.read<GetINS_Bloc>().add(GETINSset());
+          }
         },
       ));
     }

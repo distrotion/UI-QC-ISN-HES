@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/Cubit/32-ReportPDFACTcubit.dart';
+import '../../data/global.dart';
 import '../../widget/ReportComponent/CommonReport.dart';
 import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
@@ -27,6 +28,7 @@ class ReportPDFACT extends StatefulWidget {
 class _ReportPDFACTState extends State<ReportPDFACT> {
   @override
   void initState() {
+    ReportPDFACTvar.PASS = '';
     if (ReportPDFACTvar.PO != '') {
       ReportPDFACTvar.canf = false;
       context.read<ReportPDFACTcubit_Cubit>().ReportPDF_ACT(ReportPDFACTvar.PO);
@@ -62,7 +64,9 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
       ReportPDFACTvar.PIC02 = _dataACT.databasic.PIC02;
       ReportPDFACTvar.PICstd = _dataACT.databasic.PICstd;
 
-      ReportPDFACTvar.PASS = _dataACT.databasic.PASS;
+      if (ReportPDFACTvar.PASS != 'N/A') {
+        ReportPDFACTvar.PASS = _dataACT.databasic.PASS;
+      }
 
       if (_dataACT.databasic.PARTNAMEref != '') {
         ReportPDFACTvar.remark =
@@ -312,32 +316,65 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                 ),
               ),
               const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: InkWell(
-                  onTap: () {
-                    PDFloader(context);
-                    Future.delayed(const Duration(milliseconds: 1000), () {
-                      captureToback(
-                        _globalKey,
-                        ReportPDFACTvar.PO,
-                      ).then((value) {
-                        print(value);
+              if (ReportPDFACTvar.PASS == "PASSED") ...[
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: InkWell(
+                    onTap: () {
+                      PDFloader(context);
+                      Future.delayed(const Duration(milliseconds: 1000), () {
+                        captureToback(
+                          _globalKey,
+                          ReportPDFACTvar.PO,
+                        ).then((value) {
+                          print(value);
 
-                        Navigator.pop(context);
+                          Navigator.pop(context);
+                        });
                       });
-                    });
-                  },
-                  child: Container(
-                    color: Colors.yellow,
-                    height: 50,
-                    width: 100,
-                    child: const Center(
-                      child: Text("Print"),
+                    },
+                    child: Container(
+                      color: Colors.yellow,
+                      height: 50,
+                      width: 100,
+                      child: const Center(
+                        child: Text("Print"),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ] else ...[
+                if (USERDATA.UserLV > 5) ...[
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: InkWell(
+                      onTap: () {
+                        ReportPDFACTvar.PASS = "N/A";
+                        setState(() {});
+                        PDFloader(context);
+                        Future.delayed(const Duration(milliseconds: 1000), () {
+                          captureToback(
+                            _globalKey,
+                            ReportPDFACTvar.PO,
+                          ).then((value) {
+                            print(value);
+
+                            Navigator.pop(context);
+                          });
+                        });
+                      },
+                      child: Container(
+                        color: Colors.yellow,
+                        height: 50,
+                        width: 100,
+                        child: const Center(
+                          child: Text("Print"),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]
+              ],
             ],
           ),
           SingleChildScrollView(
@@ -1915,6 +1952,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                                   PASS: ReportPDFACTvar.PASS,
                                   PICS: _dataACT.databasic.PICstd,
                                   Remark: ReportPDFACTvar.remark,
+                                  NAME03: "Saowapak",
                                 ),
                               ],
                             ),
