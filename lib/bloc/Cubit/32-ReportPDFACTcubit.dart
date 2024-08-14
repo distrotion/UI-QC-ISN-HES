@@ -405,7 +405,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                                 .length ==
                             4) {
                           ITEMlist[le].SPECIFICATION = '26-60 HSC';
-                          ITEMlist[le].CONTROLlimmit = '30-58';
+                          ITEMlist[le].CONTROLlimmit = '30-58 HSC';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                   ['PSC1'][0]['PO3']));

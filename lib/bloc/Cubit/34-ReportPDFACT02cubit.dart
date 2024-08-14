@@ -37,6 +37,7 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
         var FINALCHECKlist = databuff['DATA'][0]['CHECKlist'] ?? [];
         var METHODlist = databuff['METHOD'] ?? [];
         var PATTERNlist = databuff['PATTERN'][0] ?? {};
+        print(databuff['PATTERN']);
         var SPECIFICATIONlist = databuff['SPECIFICATION'] ?? [];
 
         List<String> ITEMslist = [];
@@ -199,6 +200,7 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                   //FREQ;
                   // String SPECIFICATIONve;
                   for (var i = 0; i < PATTERNlist['FINAL'].length; i++) {
+                    print(PATTERNlist['FINAL'][i]['ITEMs']);
                     if (PATTERNlist['FINAL'][i]['ITEMs'] == ITEMlist[le].ITEM) {
                       // print(PATTERNlist['FINAL'][i]['FREQUENCY']);
                       ITEMlist[le].SCMARK =
@@ -406,7 +408,7 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                                 .length ==
                             4) {
                           ITEMlist[le].SPECIFICATION = '26-60 HSC';
-                          ITEMlist[le].CONTROLlimmit = '30-58';
+                          ITEMlist[le].CONTROLlimmit = '30-58 HSC';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                   ['PSC1'][0]['PO3']));
@@ -459,14 +461,14 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                           double datain = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
                                   ['PSC1'][0]['PO3']));
-                          if (datain <= 0.03) {
-                            ITEMlist[le].DATA01 = '< 0.03';
-                          } else {
-                            ITEMlist[le].DATA01 = double.parse(ConverstStr(
-                                    FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                        ['PSC1'][0]['PO3']))
-                                .toStringAsFixed(2);
-                          }
+                          // if (datain <= 0.03) {
+                          //   ITEMlist[le].DATA01 = '< 0.03';
+                          // } else {
+                          ITEMlist[le].DATA01 = double.parse(ConverstStr(
+                                  FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
+                                      ['PSC1'][0]['PO3']))
+                              .toStringAsFixed(2);
+                          // }
 
                           if (datain > 0.07) {
                             pass13 = false;

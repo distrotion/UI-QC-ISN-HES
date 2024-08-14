@@ -49,6 +49,7 @@ class SumReportGET_Bloc extends Bloc<SumReportGET_Event, datauoutraw> {
     final response = await Dio().post(
       server + "TOBEREPOR/GETDATA",
       data: {
+        "DB": P01SumReportvar.DATABASE,
         "MATCP": P01SumReportvar.MAT,
         "STARTyear": P01SumReportvar.startDATEout.year.toString(),
         "STARTmonth": P01SumReportvar.startDATEout.month.toString(),
@@ -130,6 +131,13 @@ class SumReportGET_Bloc extends Bloc<SumReportGET_Event, datauoutraw> {
               dataname.add('${input[0][itemlist[j].toString()]['name']}(X)');
               dataname.add('${input[0][itemlist[j].toString()]['name']}(Y)');
             }
+            if (input[0][itemlist[j].toString()]['RESULTFORMAT'].toString() ==
+                'OCR') {
+              dataname.add('${input[0][itemlist[j].toString()]['name']}-P1');
+              dataname.add('${input[0][itemlist[j].toString()]['name']}-P2');
+              dataname.add('${input[0][itemlist[j].toString()]['name']}-P3');
+              dataname.add('${input[0][itemlist[j].toString()]['name']}-P4');
+            }
           }
         }
 
@@ -171,11 +179,31 @@ class SumReportGET_Bloc extends Bloc<SumReportGET_Event, datauoutraw> {
               } else if (input[i][itemlist[j].toString()]['RESULTFORMAT']
                       .toString() ==
                   'Graph') {
-                print("----------->");
+                // print("----------->");
                 datacsvin.add(ConverstStr(
                     '${input[i][itemlist[j].toString()]['data_ans']['x']}'));
                 datacsvin.add(ConverstStr(
                     '${input[i][itemlist[j].toString()]['data_ans']['y']}'));
+              } else if (input[i][itemlist[j].toString()]['RESULTFORMAT']
+                      .toString() ==
+                  'OCR') {
+                for (var k = 0;
+                    k < input[i][itemlist[j].toString()]['data'].length;
+                    k++) {
+                  for (var v = 0;
+                      v < input[i][itemlist[j].toString()]['data'][k].length;
+                      v++) {
+                    if (v !=
+                        input[i][itemlist[j].toString()]['data'][k].length -
+                            1) {
+                      datacsvin.add(ConverstStr(
+                          '${input[i][itemlist[j].toString()]['data'][k][v]}'));
+                    } else {
+                      datacsvin.add(ConverstStr(
+                          '${input[i][itemlist[j].toString()]['data'][k][v]}'));
+                    }
+                  }
+                }
               }
             }
           }

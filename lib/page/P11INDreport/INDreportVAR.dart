@@ -24,4 +24,5 @@ class P01SumReportvar {
   static String endDATE = '';
   static List<String> endDATElist = [];
   static dateout endDATEout = dateout();
+  static String DATABASE = '';
 }

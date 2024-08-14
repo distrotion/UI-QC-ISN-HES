@@ -78,8 +78,10 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
       for (var i = 0; i < _dataACT.datain.length; i++) {
         for (var j = 0; j < _dataACT.datain.length; j++) {
           //
+          //
           if (i == 0 &&
               _dataACT.datain[j].ITEM == 'ITEMs-5f19aa43fe12be0020dbd3bf') {
+            //1
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -90,8 +92,9 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                 _dataACT.datain[j].SPECIFICATIONname;
             ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
           }
-          if (i == 1 &&
+          if (i == 2 &&
               _dataACT.datain[j].ITEM == 'ITEMs-60405bcf93e8d91950acb5c3') {
+            //3
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -103,20 +106,9 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
             ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
           }
 
-          if (i == 2 &&
-              _dataACT.datain[j].ITEM == 'ITEMs-60403f1693e8d91950acb5c0') {
-            ReportPDFACT02var.datalist[i].ITEMname =
-                _dataACT.datain[j].ITEMname;
-            ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
-            ReportPDFACT02var.datalist[i].METHODname =
-                _dataACT.datain[j].METHODname;
-            ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
-            ReportPDFACT02var.datalist[i].SPECIFICATIONname =
-                _dataACT.datain[j].SPECIFICATIONname;
-            ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
-          }
           if (i == 3 &&
-              _dataACT.datain[j].ITEM == 'ITEMs-60407f8f93e8d91950acb5d0') {
+              _dataACT.datain[j].ITEM == 'ITEMs-60403f1693e8d91950acb5c0') {
+            //4
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -127,21 +119,72 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                 _dataACT.datain[j].SPECIFICATIONname;
             ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
           }
-          if (i == 4 &&
-              _dataACT.datain[j].ITEM == 'ITEMs-6040817293e8d91950acb5d5') {
-            ReportPDFACT02var.datalist[i].ITEMname =
-                _dataACT.datain[j].ITEMname;
-            ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
-            ReportPDFACT02var.datalist[i].METHODname =
-                _dataACT.datain[j].METHODname;
-            ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
-            ReportPDFACT02var.datalist[i].SPECIFICATIONname =
-                _dataACT.datain[j].SPECIFICATION;
-            ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].DATA01;
+          //9 _dataACT.datain.length==11? i==9:
+          if (_dataACT.datain.length == 11) {
+            if (i == 9 &&
+                _dataACT.datain[j].ITEM == 'ITEMs-60407f8f93e8d91950acb5d0') {
+              //10
+              ReportPDFACT02var.datalist[i].ITEMname =
+                  _dataACT.datain[j].ITEMname;
+              ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+              ReportPDFACT02var.datalist[i].METHODname =
+                  _dataACT.datain[j].METHODname;
+              ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+              ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                  _dataACT.datain[j].SPECIFICATIONname;
+              ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
+            }
+          } else {
+            if (i == 10 &&
+                _dataACT.datain[j].ITEM == 'ITEMs-60407f8f93e8d91950acb5d0') {
+              //10
+              ReportPDFACT02var.datalist[i].ITEMname =
+                  _dataACT.datain[j].ITEMname;
+              ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+              ReportPDFACT02var.datalist[i].METHODname =
+                  _dataACT.datain[j].METHODname;
+              ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+              ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                  _dataACT.datain[j].SPECIFICATIONname;
+              ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
+            }
+          }
+
+          if (_dataACT.datain.length == 11) {
+            if (i == 10 &&
+                _dataACT.datain[j].ITEM == 'ITEMs-6040817293e8d91950acb5d5') {
+              //11
+
+              ReportPDFACT02var.datalist[i].ITEMname =
+                  _dataACT.datain[j].ITEMname;
+              ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+              ReportPDFACT02var.datalist[i].METHODname =
+                  _dataACT.datain[j].METHODname;
+              ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+              ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                  _dataACT.datain[j].SPECIFICATION;
+              ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].DATA01;
+            }
+          } else {
+            if (i == 11 &&
+                _dataACT.datain[j].ITEM == 'ITEMs-6040817293e8d91950acb5d5') {
+              //11
+
+              ReportPDFACT02var.datalist[i].ITEMname =
+                  _dataACT.datain[j].ITEMname;
+              ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+              ReportPDFACT02var.datalist[i].METHODname =
+                  _dataACT.datain[j].METHODname;
+              ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+              ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                  _dataACT.datain[j].SPECIFICATION;
+              ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].DATA01;
+            }
           }
 
           if (i == 5 &&
               _dataACT.datain[j].ITEM == 'ITEMs-5f19a97cfe12be0020dbd3bc') {
+            //6
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -160,6 +203,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
 
           if (i == 6 &&
               _dataACT.datain[j].ITEM == 'ITEMs-6040810993e8d91950acb5d4') {
+            //7
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -178,6 +222,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
 
           if (i == 7 &&
               _dataACT.datain[j].ITEM == 'ITEMs-5f19a922fe12be0020dbd3ba') {
+            //8
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -196,6 +241,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
 
           if (i == 8 &&
               _dataACT.datain[j].ITEM == 'ITEMs-60407f6193e8d91950acb5cf') {
+            //9
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
@@ -212,58 +258,100 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
             ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
           }
 
-          if (i == 9 &&
-              _dataACT.datain[j].ITEM == 'TYPE-5f171c36fe12be0020dbd354') {
+          //ITEMs-63f6065e9ea2e30a1031d846
+          //ITEMs-63f606389ea2e30a1031d845
+          //ITEMs-63f6060b9ea2e30a1031d844
+
+          if (i == 1 &&
+              // _dataACT.datain[j].ITEM == 'TYPE-5f171c36fe12be0020dbd354' ||
+              _dataACT.datain[j].ITEM == 'ITEMs-63f6065e9ea2e30a1031d846') {
+            // ReportPDFACT02var.datalist[i].ITEMname =
+            //     _dataACT.datain[j].ITEMname;
+            // ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+            // ReportPDFACT02var.datalist[i].METHODname =
+            //     _dataACT.datain[j].METHODname;
+            // ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+            // ReportPDFACT02var.datalist[i].CONTROLlimmit =
+            //     _dataACT.datain[j].CONTROLlimmit;
+            // ReportPDFACT02var.datalist[i].SPECIFICATION =
+            //     _dataACT.datain[j].SPECIFICATION;
+            // ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
+            // ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
+            // ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
+            // ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
             ReportPDFACT02var.datalist[i].METHODname =
                 _dataACT.datain[j].METHODname;
             ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
-            ReportPDFACT02var.datalist[i].CONTROLlimmit =
-                _dataACT.datain[j].CONTROLlimmit;
-            ReportPDFACT02var.datalist[i].SPECIFICATION =
-                _dataACT.datain[j].SPECIFICATION;
-            ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
-            ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
-            ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
-            ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+            ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                _dataACT.datain[j].SPECIFICATIONname;
+            ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
           }
 
-          if (i == 10 &&
-              _dataACT.datain[j].ITEM == 'TYPE-5f19a79ffe12be0020dbd3a8') {
+          if (i == 4 &&
+              // _dataACT.datain[j].ITEM == 'TYPE-5f19a79ffe12be0020dbd3a8' ||
+              _dataACT.datain[j].ITEM == 'ITEMs-63f606389ea2e30a1031d845') {
+            // ReportPDFACT02var.datalist[i].ITEMname =
+            //     _dataACT.datain[j].ITEMname;
+            // ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+            // ReportPDFACT02var.datalist[i].METHODname =
+            //     _dataACT.datain[j].METHODname;
+            // ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+            // ReportPDFACT02var.datalist[i].CONTROLlimmit =
+            //     _dataACT.datain[j].CONTROLlimmit;
+            // ReportPDFACT02var.datalist[i].SPECIFICATION =
+            //     _dataACT.datain[j].SPECIFICATION;
+            // ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
+            // ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
+            // ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
+            // ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
             ReportPDFACT02var.datalist[i].ITEMname =
                 _dataACT.datain[j].ITEMname;
             ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
             ReportPDFACT02var.datalist[i].METHODname =
                 _dataACT.datain[j].METHODname;
             ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
-            ReportPDFACT02var.datalist[i].CONTROLlimmit =
-                _dataACT.datain[j].CONTROLlimmit;
-            ReportPDFACT02var.datalist[i].SPECIFICATION =
-                _dataACT.datain[j].SPECIFICATION;
-            ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
-            ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
-            ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
-            ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+            ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                _dataACT.datain[j].SPECIFICATIONname;
+            ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
           }
-
-          if (i == 11 &&
-              _dataACT.datain[j].ITEM == 'TYPE-60407ff193e8d91950acb5d1') {
-            ReportPDFACT02var.datalist[i].ITEMname =
-                _dataACT.datain[j].ITEMname;
-            ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
-            ReportPDFACT02var.datalist[i].METHODname =
-                _dataACT.datain[j].METHODname;
-            ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
-            ReportPDFACT02var.datalist[i].CONTROLlimmit =
-                _dataACT.datain[j].CONTROLlimmit;
-            ReportPDFACT02var.datalist[i].SPECIFICATION =
-                _dataACT.datain[j].SPECIFICATION;
-            ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
-            ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
-            ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
-            ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+          if (_dataACT.datain.length == 11) {
+          } else {
+            if (i == 9 &&
+                // _dataACT.datain[j].ITEM == 'TYPE-60407ff193e8d91950acb5d1' ||
+                _dataACT.datain[j].ITEM == 'ITEMs-63f6060b9ea2e30a1031d844') {
+              // ReportPDFACT02var.datalist[i].ITEMname =
+              //     _dataACT.datain[j].ITEMname;
+              // ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+              // ReportPDFACT02var.datalist[i].METHODname =
+              //     _dataACT.datain[j].METHODname;
+              // ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+              // ReportPDFACT02var.datalist[i].CONTROLlimmit =
+              //     _dataACT.datain[j].CONTROLlimmit;
+              // ReportPDFACT02var.datalist[i].SPECIFICATION =
+              //     _dataACT.datain[j].SPECIFICATION;
+              // ReportPDFACT02var.datalist[i].DATA01 = _dataACT.datain[j].DATA01;
+              // ReportPDFACT02var.datalist[i].DATA02 = _dataACT.datain[j].DATA02;
+              // ReportPDFACT02var.datalist[i].DATA03 = _dataACT.datain[j].DATA03;
+              // ReportPDFACT02var.datalist[i].DATAAVG = _dataACT.datain[j].DATAAVG;
+              print(_dataACT.datain[j].ITEMname);
+              print(_dataACT.datain[j].SCMARK);
+              print(_dataACT.datain[j].METHODname);
+              print(_dataACT.datain[j].FREQ);
+              print(_dataACT.datain[j].SPECIFICATIONname);
+              print(_dataACT.datain[j].RESULT);
+              ReportPDFACT02var.datalist[i].ITEMname =
+                  _dataACT.datain[j].ITEMname;
+              ReportPDFACT02var.datalist[i].SCMARK = _dataACT.datain[j].SCMARK;
+              ReportPDFACT02var.datalist[i].METHODname =
+                  _dataACT.datain[j].METHODname;
+              ReportPDFACT02var.datalist[i].FREQ = _dataACT.datain[j].FREQ;
+              ReportPDFACT02var.datalist[i].SPECIFICATIONname =
+                  _dataACT.datain[j].SPECIFICATIONname;
+              ReportPDFACT02var.datalist[i].RESULT = _dataACT.datain[j].RESULT;
+            }
           }
         }
       }

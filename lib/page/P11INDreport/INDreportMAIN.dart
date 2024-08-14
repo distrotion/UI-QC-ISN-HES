@@ -209,11 +209,39 @@ class _CsvPickerState extends State<CsvPicker> {
               ),
             ],
           ),
+          SizedBox(
+            height: 200,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 100),
             child: Column(
-              // mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: AdvanceDropDown(
+                        sLabel: "DATABASE",
+                        imgpath: 'assets/icons/icon-down_4@3x.png',
+                        listdropdown: const [
+                          MapEntry("", ""),
+                          MapEntry("MAIN", "MAIN"),
+                          MapEntry("MAIN_210624", "MAIN_210624"),
+                          MapEntry("MAIN_251023", "MAIN_251023"),
+                        ],
+                        onChangeinside: (d, v) {
+                          setState(() {
+                            P01SumReportvar.DATABASE = d;
+                          });
+                        },
+                        value: P01SumReportvar.DATABASE,
+                        height: 40,
+                        width: 100,
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   // mainAxisSize: MainAxisSize.min,
                   children: [
