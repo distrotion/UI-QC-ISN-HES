@@ -1042,7 +1042,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
         print('>>${ITEMlist.length}');
 
         if (passlist.contains("false")) {
-          BasicCommonDATAs.PASS = 'NO PASSED';
+          // BasicCommonDATAs.PASS = 'NO PASSED';
+          BasicCommonDATAs.PASS = 'N/A';
         } else {
           BasicCommonDATAs.PASS = 'PASSED';
         }

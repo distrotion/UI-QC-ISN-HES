@@ -533,7 +533,8 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
               pass13) {
             BasicDATAs.PASS = 'PASSED';
           } else {
-            BasicDATAs.PASS = 'NO PASSED';
+            // BasicDATAs.PASS = 'NO PASSED';
+            BasicDATAs.PASS = 'N/A';
           }
 
           output.databasic = BasicDATAs;

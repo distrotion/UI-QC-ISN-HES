@@ -510,7 +510,8 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
               pass13) {
             BasicDATAs.PASS = 'PASSED';
           } else {
-            BasicDATAs.PASS = 'NO PASSED';
+            // BasicDATAs.PASS = 'NO PASSED';
+            BasicDATAs.PASS = 'N/A';
           }
 
           output.databasic = BasicDATAs;
