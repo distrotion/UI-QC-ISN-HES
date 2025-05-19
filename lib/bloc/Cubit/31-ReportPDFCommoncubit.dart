@@ -2,13 +2,16 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/ACTtestdata.dart';
 import '../../data/CommonTestData.dart';
+import '../../data/global.dart';
 import '../../page/P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../../widget/common/Safty.dart';
 
 String server = 'http://172.23.10.40:16700/';
+// String server = 'http://127.0.0.1:16700/';
 
 class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
   ReportPDFCommon_Cubit()
@@ -178,6 +181,83 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           }
         }
 
+        if (RepoteData.SUMLOT == 'SUM') {
+          final response03 = await Dio().post(
+            server + "INS_Report_by_ref",
+            data: {
+              // "PO": BasicDATAr['ReferFrom'].toString(),
+              "PO": BasicDATAr['ReferFrom'] != null
+                  ? BasicDATAr['ReferFrom'].toString()
+                  : BasicDATAr['PO'].toString(),
+            },
+          );
+
+          if (response03.statusCode == 200) {
+            var databuffref = response03.data;
+
+            double qty = 0;
+
+            if (databuffref['DATAlist'].length > 0) {
+              // print(databuffref['DATAlist']);
+              if (databuffref['DATA'].length > 0) {
+                BasicCommonDATAs.TPKLOT =
+                    databuffref['DATA']?[0]['TPKLOT'].toString() ?? '';
+
+                BasicCommonDATAs.CUSLOT =
+                    databuffref['DATA']?[0]['CUSLOT'].toString() ?? '';
+
+                qty = double.parse(ConverstStr(
+                    databuffref['DATA']?[0]['QTY'].toString() ?? ''));
+
+                List<String> lotlist = [];
+                for (var p = 0; p < databuffref['DATAlist'].length; p++) {
+                  String lastst =
+                      databuffref['DATAlist']?[p]['TPKLOT'].toString() ?? '';
+                  // BasicCommonDATAs.TPKLOT = BasicCommonDATAs.TPKLOT +
+                  //     ',' +
+                  //     ('${lastst.substring(7, 10)}');
+                  // lotlist
+                  //   .add(int.parse(ConverstStr('${lastst.substring(7, 10)}')));
+                  if (lastst.length >= 10) {
+                    lotlist.add('${lastst.substring(7, 10)}');
+                  }
+
+                  BasicCommonDATAs.CUSLOT = BasicCommonDATAs.CUSLOT +
+                      ',' +
+                      '${databuffref['DATAlist']?[p]['CUSLOT'].toString() ?? ''}';
+
+                  qty = qty +
+                      double.parse(ConverstStr(
+                          databuffref['DATAlist']?[p]['QTY'].toString() ?? ''));
+                }
+                lotlist = lotlist..sort();
+                BasicCommonDATAs.TPKLOT = BasicCommonDATAs.TPKLOT +
+                    ',' +
+                    lotlist.toString().replaceAll("]", "").replaceAll("[", "");
+                BasicCommonDATAs.QTY = qty.toString();
+              }
+            }
+            // print(qty);
+            BasicCommonDATAs.CUSLOT =
+                BasicCommonDATAs.CUSLOT.replaceAll(",,", ",");
+            List<String> datalist = BasicCommonDATAs.CUSLOT.split(",");
+            BasicCommonDATAs.CUSLOT = datalist
+                .toSet()
+                .toString()
+                .replaceAll("}", "")
+                .replaceAll("{", "");
+            // BasicCommonDATAs.PARTNAMEref =
+            //     databuffref['DATA']?[0]['PARTNAME'].toString() ?? '';
+            // BasicCommonDATAs.PARTref =
+            //     databuffref['DATA']?[0]['PART'].toString() ?? '';
+            // BasicCommonDATAs.TPKLOTref =
+            //     databuffref['DATA']?[0]['TPKLOT'].toString() ?? '';
+            // BasicCommonDATAs.TPKLOT =
+            //     BasicCommonDATAs.TPKLOT + "," + BasicCommonDATAs.TPKLOTref;
+            // print(databuffref['DATA']?[0]['PART']);
+            // print(databuffref['DATA']?[0]['PARTNAME']);
+          }
+        }
         if (PATTERNlist['Pimg'] != null) {
           if (PATTERNlist['Pimg']['P1'] != null) {
             List<String> datalist =
@@ -990,7 +1070,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
                                 datainside[pcsi]['PIC2'].toString();
                           }
                         }
-//3310275880
+
                         if (pcsi == 1) {
                           if (BasicCommonDATAs.PIC02 == '') {
                             BasicCommonDATAs.PIC02 =
@@ -1050,6 +1130,42 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
 
         output.databasic = BasicCommonDATAs;
         output.datain = ITEMlist;
+      }
+    }
+    //-----------
+    var now1 = DateTime.now().subtract(Duration(days: 30));
+    var now2 = DateTime.now().add(Duration(days: 5));
+    String day = DateFormat('dd').format(now1);
+    String month = DateFormat('MM').format(now1);
+    String year = DateFormat('yyyy').format(now1);
+
+    String days = DateFormat('dd').format(now2);
+    String months = DateFormat('MM').format(now2);
+    String years = DateFormat('yyyy').format(now2);
+    final response9 = await Dio().post(
+      "${server2}10GETDATAFROMJOBBINGAQC/GETDATA",
+      data: {
+        "HEADER": {
+          "PLANT": "2300",
+          "ORD_ST_DATE_FR": "${day}.${month}.${year}",
+          "ORD_ST_DATE_TO": "${days}.${months}.${years}",
+          "ORDER_TYPE": "",
+          "PROD_SUP": ""
+        },
+        "PROC_ORD": [
+          {"PROCESS_ORDER": PO, "MATERIAL": ""}
+        ]
+      },
+    );
+    if (response9.statusCode == 200) {
+      var databuffref = response9.data;
+      // print(databuffref);
+      if (databuffref['HEADER_INFO'] != null) {
+        if (databuffref['HEADER_INFO'].length > 0) {
+          // print(databuffref['HEADER_INFO'][0]['USER_STATUS']);
+          output.databasic.USER_STATUS =
+              databuffref['HEADER_INFO'][0]['USER_STATUS'].toString();
+        }
       }
     }
 
@@ -1173,6 +1289,7 @@ class BasicCommonDATA {
     this.PASS = '',
     this.INC01 = '',
     this.INC02 = '',
+    this.USER_STATUS = '',
   });
 
   String PO;
@@ -1198,6 +1315,8 @@ class BasicCommonDATA {
 
   String INC01;
   String INC02;
+
+  String USER_STATUS;
 }
 
 class CommonReportOutput {
@@ -1232,4 +1351,8 @@ bool checkdata(double maxdata, double mindata, double input) {
   } else {
     return true;
   }
+}
+
+class RepoteData {
+  static String SUMLOT = '';
 }

@@ -116,7 +116,7 @@ class Login_Bloc extends Bloc<LoginEvent, String> {
       );
       if (response.statusCode == 200) {
         var databuff = response.data;
-        print(databuff);
+        // print(databuff);
         if (databuff['return'] == 'OK') {
           token =
               '{"ID":"${databuff['ID'].toString()}","NAME":"${databuff['NAME'].toString()}","LV":"${databuff['LV'].toString()}","Section":"${databuff['Section'].toString()}","Def":"${databuff['Def'].toString()}"  ,"LOCATION":"${databuff['LOCATION'].toString()}"}';

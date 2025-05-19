@@ -8,8 +8,11 @@ import '../../page/page1.dart';
 
 import '../../page/page10.dart';
 import '../../page/page11.dart';
+
+import '../../page/page15..dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
+import '../../page/page303.dart';
 import '../../page/page9.dart';
 import 'sub_widget.dart';
 
@@ -129,6 +132,11 @@ class Data_Menu_mainmenu extends StatelessWidget {
           Lv: 1,
         ),
         menu_normal(
+          name: "REPORT-TEST",
+          page: Page15(),
+          Lv: 1,
+        ),
+        menu_normal(
           name: " SUMMARY REPORT",
           page: Page11(),
           Lv: 1,
@@ -137,6 +145,11 @@ class Data_Menu_mainmenu extends StatelessWidget {
         menu_normal(
           name: "ACT Report",
           page: Page32(),
+          Lv: 1,
+        ),
+        menu_normal(
+          name: "Special QCFN",
+          page: Page303(),
           Lv: 1,
         ),
         menu_logout(

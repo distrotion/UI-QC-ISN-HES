@@ -19,26 +19,27 @@ import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Freescroll.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/onlyINqcui/popup.dart';
+import '../P10REPORT/REPORTtable.dart';
+import '../P30SELECTReport/P30SELECTReportvar.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../P32ReportPDFACT/ReportPDFACTvar.dart';
 import '../P33ReportPDFTEST/ReportPDFTESTvar.dart';
 import '../P34ReportPDFACT02/ReportPDFACT02var.dart';
 import '../P35ReportPDFcommon2/ReportPDFCommon2var.dart';
 import '../Page32.dart';
+import '../page30.dart';
 import '../page31.dart';
 import '../page33.dart';
 import '../page34.dart';
 import '../page35.dart';
-import 'REPORTvar.dart';
-
-late BuildContext REPORTuiMAINcontext;
+import 'P15REPORTNEWvar.dart';
 
 class _REPORTuiVAR {
   static String searchResult = '';
 }
 
-class REPORTuiMAIN extends StatelessWidget {
-  REPORTuiMAIN({Key? key, this.data}) : super(key: key);
+class P15REPORTNEWuiMAIN extends StatelessWidget {
+  P15REPORTNEWuiMAIN({Key? key, this.data}) : super(key: key);
   List<dataset>? data;
 
   @override
@@ -106,30 +107,30 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
     if (widget.ret == 'get') {
       //
 
-      if (REPORTvar.reportTYPE == 0) {
+      if (REPORTNEWvar.reportTYPE == 0) {
         js.context.callMethod('open', [
-          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-STD&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
+          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-STD&rs:Format=PDF&rs:Command=Render&PO=${REPORTNEWvar.PO}'
         ]);
         context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
         widget.ret = '';
-        // REPORTvar.PO = '';
-        REPORTvar.reportTYPE = 0;
-      } else if (REPORTvar.reportTYPE == 2) {
+        // REPORTNEWvar.PO = '';
+        REPORTNEWvar.reportTYPE = 0;
+      } else if (REPORTNEWvar.reportTYPE == 2) {
         js.context.callMethod('open', [
-          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-ACTN&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
+          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-ACTN&rs:Format=PDF&rs:Command=Render&PO=${REPORTNEWvar.PO}'
         ]);
         context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
         widget.ret = '';
-        // REPORTvar.PO = '';
-        REPORTvar.reportTYPE = 0;
+        // REPORTNEWvar.PO = '';
+        REPORTNEWvar.reportTYPE = 0;
       } else {
         js.context.callMethod('open', [
-          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-COMMON1&rs:Format=PDF&rs:Command=Render&PO=${REPORTvar.PO}'
+          'http://172.20.30.46/ReportServer?%2fReport+Project4%2fHESISN-COMMON1&rs:Format=PDF&rs:Command=Render&PO=${REPORTNEWvar.PO}'
         ]);
         context.read<REPORT_CALL_Bloc>().add(REPORT_CALL_FLUSH());
         widget.ret = '';
-        // REPORTvar.PO = '';
-        REPORTvar.reportTYPE = 0;
+        // REPORTNEWvar.PO = '';
+        REPORTNEWvar.reportTYPE = 0;
       }
     }
 
@@ -281,15 +282,15 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                       sLabel: "original",
                       height: 40,
                       width: 120,
-                      isContr: REPORTvar.iscontrol,
+                      isContr: REPORTNEWvar.iscontrol,
                       fnContr: (input) {
                         setState(() {
-                          REPORTvar.iscontrol = input;
+                          REPORTNEWvar.iscontrol = input;
                         });
                       },
-                      sValue: REPORTvar.original,
+                      sValue: REPORTNEWvar.original,
                       returnfunc: (String s) {
-                        REPORTvar.original = s;
+                        REPORTNEWvar.original = s;
                       },
                     ),
                     const SizedBox(
@@ -299,15 +300,15 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                       sLabel: "newreport",
                       height: 40,
                       width: 120,
-                      isContr: REPORTvar.iscontrol,
+                      isContr: REPORTNEWvar.iscontrol,
                       fnContr: (input) {
                         setState(() {
-                          REPORTvar.iscontrol = input;
+                          REPORTNEWvar.iscontrol = input;
                         });
                       },
-                      sValue: REPORTvar.newreport,
+                      sValue: REPORTNEWvar.newreport,
                       returnfunc: (String s) {
-                        REPORTvar.newreport = s;
+                        REPORTNEWvar.newreport = s;
                       },
                     ),
                     const SizedBox(
@@ -343,15 +344,15 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                     sLabel: "Recall order",
                     height: 40,
                     width: 120,
-                    isContr: REPORTvar.iscontrol,
+                    isContr: REPORTNEWvar.iscontrol,
                     fnContr: (input) {
                       setState(() {
-                        REPORTvar.iscontrol = input;
+                        REPORTNEWvar.iscontrol = input;
                       });
                     },
-                    sValue: REPORTvar.recall,
+                    sValue: REPORTNEWvar.recall,
                     returnfunc: (String s) {
-                      REPORTvar.recall = s;
+                      REPORTNEWvar.recall = s;
                     },
                   ),
                   const SizedBox(
@@ -474,47 +475,14 @@ class _MyData extends DataTableSource {
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
-                    // REPORTvar.reportTYPE = 0;
-                    // REPORTvar.PO = data.f01;
+                    // REPORTNEWvar.reportTYPE = 0;
+                    // REPORTNEWvar.PO = data.f01;
                     // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
+                    SELECTReportvar.PO = data.f01;
                     ReportPDFCommon2var.PO = data.f01;
-                    STDreportDai(context);
-                  },
-                  child: Container(
-                    width: 50,
-                    color: Colors.blue,
-                    child: const Center(
-                        child: Text(
-                      "Re_Dia",
-                      style: TxtStyle(color: Colors.white),
-                    )),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
                     ReportPDFTESTvar.PO = data.f01;
-                    NEWreport(context);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: Container(
-                      width: 50,
-                      color: Colors.pink,
-                      child: const Center(
-                          child: Text(
-                        "STD test",
-                        style: TxtStyle(color: Colors.white),
-                      )),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    // onLoadingFAKE(context);
-                    // REPORTvar.reportTYPE = 0;
-                    // REPORTvar.PO = data.f01;
-                    // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
                     ReportPDFCommonvar.PO = data.f01;
+                    ReportPDFACT02var.PO = data.f01;
                     STDreport(context);
                   },
                   child: Container(
@@ -529,46 +497,8 @@ class _MyData extends DataTableSource {
                 InkWell(
                   onTap: () {
                     // onLoadingFAKE(context);
-                    // REPORTvar.reportTYPE = 2;
-                    // REPORTvar.PO = data.f01;
-                    // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
-                    ReportPDFACT02var.PO = data.f01;
-                    ACTreport2(context);
-                  },
-                  child: Container(
-                    width: 50,
-                    color: Colors.blueGrey,
-                    child: const Center(
-                        child: Text(
-                      "ACT2",
-                      style: TxtStyle(color: Colors.white),
-                    )),
-                  ),
-                ),
-                // InkWell(
-                //   onTap: () {
-                //     // onLoadingFAKE(context);
-                //     // REPORTvar.reportTYPE = 2;
-                //     // REPORTvar.PO = data.f01;
-                //     // context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
-                //     ReportPDFACTvar.PO = data.f01;
-                //     ACTreport(context);
-                //   },
-                //   child: Container(
-                //     width: 50,
-                //     color: Colors.orange,
-                //     child: const Center(
-                //         child: Text(
-                //       "ACT",
-                //       style: TxtStyle(color: Colors.white),
-                //     )),
-                //   ),
-                // ),
-                InkWell(
-                  onTap: () {
-                    // onLoadingFAKE(context);
-                    REPORTvar.reportTYPE = 1;
-                    REPORTvar.PO = data.f01;
+                    REPORTNEWvar.reportTYPE = 1;
+                    REPORTNEWvar.PO = data.f01;
                     context.read<REPORT_CALL_Bloc>().add(REPORT_CALL());
                   },
                   child: Container(
@@ -587,48 +517,6 @@ class _MyData extends DataTableSource {
   }
 }
 
-void ACTreport(
-  BuildContext contextin,
-) {
-  showDialog(
-    context: contextin,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return Dialog(
-        child: SizedBox(
-            height: 1000,
-            width: 1500,
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
-                  child: Page32(),
-                ))),
-      );
-    },
-  );
-}
-
-void ACTreport2(
-  BuildContext contextin,
-) {
-  showDialog(
-    context: contextin,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return Dialog(
-        child: SizedBox(
-            height: 1000,
-            width: 1500,
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
-                  child: Page34(),
-                ))),
-      );
-    },
-  );
-}
-
 void STDreport(
   BuildContext contextin,
 ) {
@@ -643,54 +531,10 @@ void STDreport(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
-              child: Page31(),
+              child: Page30(),
             ),
           ),
         ),
-      );
-    },
-  );
-}
-
-void STDreportDai(
-  BuildContext contextin,
-) {
-  showDialog(
-    context: contextin,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return Dialog(
-        child: SizedBox(
-          height: 1000,
-          width: 1500,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Page35(),
-            ),
-          ),
-        ),
-      );
-    },
-  );
-}
-
-void NEWreport(
-  BuildContext contextin,
-) {
-  showDialog(
-    context: contextin,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return Dialog(
-        child: SizedBox(
-            height: 1000,
-            width: 1500,
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SingleChildScrollView(
-                  child: Page33(),
-                ))),
       );
     },
   );

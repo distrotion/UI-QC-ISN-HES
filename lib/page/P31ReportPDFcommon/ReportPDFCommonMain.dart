@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../bloc/Cubit/31-ReportPDFCommoncubit.dart';
 import '../../data/global.dart';
@@ -8,10 +10,14 @@ import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
 import '../../widget/common/Advancedropdown.dart';
 import '../../widget/common/ComInputText.dart';
+import '../../widget/common/ErrorPopup.dart';
+import '../../widget/common/Error_NO_Popup.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
+import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
+import '../page303.dart';
 import 'ReportPDFCommonvar.dart';
 
 late BuildContext ReportPDFCommoncontext;
@@ -31,6 +37,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
   void initState() {
     ReportPDFCommonvar.SCMASKTYPE = SCMASK03;
     ReportPDFCommonvar.PASS = '';
+    RepoteData.SUMLOT = '-';
     if (ReportPDFCommonvar.PO != '') {
       ReportPDFCommonvar.canf = false;
       context
@@ -88,7 +95,6 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
         ReportPDFCommonvar.remark =
             'Reference data from\n${_dataCOMMON.databasic.PARTNAMEref}\n${_dataCOMMON.databasic.PARTref}';
       }
-//remark
 
       // print(_dataCOMMON.datain[0]);
       // print(_dataCOMMON.datain.length);
@@ -743,6 +749,30 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: SizedBox(
+                  height: 40,
+                  width: 150,
+                  child: AdvanceDropDown(
+                    imgpath: 'assets/icons/icon-down_4@3x.png',
+                    listdropdown: const [
+                      MapEntry("", "-"),
+                      MapEntry("SUM", "SUM"),
+                    ],
+                    onChangeinside: (d, v) {
+                      // print(d);
+                      RepoteData.SUMLOT = d;
+                      context
+                          .read<ReportPDFCommon_Cubit>()
+                          .ReportPDFCommonCubit(ReportPDFCommonvar.PO);
+                    },
+                    value: RepoteData.SUMLOT,
+                    height: 40,
+                    width: 100,
+                  ),
+                ),
+              ),
               const Spacer(),
               if (ReportPDFCommonvar.PASS == "PASSED") ...[
                 Padding(
@@ -805,6 +835,48 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
               ],
             ],
           ),
+          Row(children: [
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: InkWell(
+                onTap: () {
+                  P303QMMASTERQCVAR.SETDAY = 'OK';
+                  P303QMMASTERQCVAR.SEARCH = ReportPDFCommonvar.PO;
+                  var now = DateTime.now().subtract(Duration(days: 25));
+                  P303QMMASTERQCVAR.day = DateFormat('dd').format(now);
+                  P303QMMASTERQCVAR.month = DateFormat('MM').format(now);
+                  P303QMMASTERQCVAR.year = DateFormat('yyyy').format(now);
+                  STDreport2(context);
+                },
+                child: Container(
+                  color: Colors.yellow,
+                  height: 50,
+                  width: 100,
+                  child: const Center(
+                    child: Text("UD and QCFN"),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: InkWell(
+                onTap: () {
+                  //ReportPDFCommonvar.PO
+                  QCFN(context);
+                },
+                child: Container(
+                  color: Colors.yellow,
+                  height: 50,
+                  width: 100,
+                  child: const Center(
+                    child: Text("_QCFN"),
+                  ),
+                ),
+              ),
+            ),
+          ]),
+
           // Row(
           //   children: [
           //     Padding(
@@ -835,6 +907,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
             scrollDirection: Axis.horizontal,
             child: RepaintBoundary(
               key: _globalKey,
+              //VV
               child: Column(
                 children: [
                   Row(
@@ -3114,3 +3187,95 @@ List<int> S16slot = const [
   1,
   1
 ];
+
+void STDreport2(
+  BuildContext contextin,
+) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: SizedBox(
+          height: 1000,
+          width: 1500,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Page303(),
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void QCFN(BuildContext contextin) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: QCFNWD(),
+      );
+    },
+  );
+}
+
+class QCFNWD extends StatefulWidget {
+  const QCFNWD({super.key});
+
+  @override
+  State<QCFNWD> createState() => _QCFNWDState();
+}
+
+class _QCFNWDState extends State<QCFNWD> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400,
+      width: 600,
+      child: Center(
+        child: SizedBox(
+          child: InkWell(
+            onTap: () {
+              print("00" + ReportPDFCommonvar.PO);
+              Dio().post(
+                "${server2}10GETDATAFROMJOBBINGAQC/QCFN",
+                // "${'http://127.0.0.1:14094/'}10GETDATAFROMJOBBINGAQC/QCFN",
+                data: {
+                  "BAPI_NAME": "ZFMPP_QCFN_IN",
+                  "ORDERID": ReportPDFCommonvar.PO,
+                  "PERNR_ID": USERDATA.ID
+                },
+              ).then((v) {
+                Navigator.pop(context);
+                if (v.data['ExportParameter'] != null) {
+                  if (v.data['ExportParameter']['INACT_NEW'].toString() ==
+                      'E') {
+                    showErrorPopup(context, v.data.toString());
+                  } else {
+                    showGoodPopup(context, v.data.toString());
+                  }
+                } else {
+                  showErrorPopup(context, v.data.toString());
+                }
+                //
+                print(v.data);
+              });
+            },
+            child: Container(
+              width: 400,
+              height: 100,
+              color: Colors.blue,
+              child: Center(
+                child: Text("QCFN"),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

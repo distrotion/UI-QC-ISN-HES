@@ -536,6 +536,6 @@ ExpCSV2(List<reportCSV> data) {
   String datetada = "${selectedDate.toLocal()}".split(' ')[0];
   String csv = const ListToCsvConverter().convert(rows);
   AnchorElement(href: "data:text/plain;charset=utf-8,$csv")
-    ..setAttribute("download", "ISN-NISHINBO-DATA ${datetada}.csv")
+    ..setAttribute("download", "MASTER ${datetada}.csv")
     ..click();
 }

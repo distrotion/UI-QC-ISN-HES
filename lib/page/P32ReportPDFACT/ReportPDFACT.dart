@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
+import '../../bloc/Cubit/31-ReportPDFCommoncubit.dart';
 import '../../bloc/Cubit/32-ReportPDFACTcubit.dart';
 import '../../data/global.dart';
 import '../../widget/ReportComponent/CommonReport.dart';
 import '../../widget/ReportComponent/PicSlot.dart';
 import '../../widget/ReportComponent/SignSide.dart';
+import '../../widget/common/Advancedropdown.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
+import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
+import '../P31ReportPDFcommon/ReportPDFCommonMain.dart';
+import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import 'ReportPDFACTvar.dart';
 
 late BuildContext ReportPDFACTcontext;
@@ -29,6 +35,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
   @override
   void initState() {
     ReportPDFACTvar.PASS = '';
+    RepoteData.SUMLOT = '-';
     if (ReportPDFACTvar.PO != '') {
       ReportPDFACTvar.canf = false;
       context.read<ReportPDFACTcubit_Cubit>().ReportPDF_ACT(ReportPDFACTvar.PO);
@@ -316,6 +323,30 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                 ),
               ),
               const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: SizedBox(
+                  height: 40,
+                  width: 150,
+                  child: AdvanceDropDown(
+                    imgpath: 'assets/icons/icon-down_4@3x.png',
+                    listdropdown: const [
+                      MapEntry("", "-"),
+                      MapEntry("SUM", "SUM"),
+                    ],
+                    onChangeinside: (d, v) {
+                      // print(d);
+                      RepoteData.SUMLOT = d;
+                      context
+                          .read<ReportPDFACTcubit_Cubit>()
+                          .ReportPDF_ACT(ReportPDFACTvar.PO);
+                    },
+                    value: RepoteData.SUMLOT,
+                    height: 40,
+                    width: 100,
+                  ),
+                ),
+              ),
               if (ReportPDFACTvar.PASS == "PASSED") ...[
                 Padding(
                   padding: const EdgeInsets.all(3.0),
@@ -377,6 +408,47 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
               ],
             ],
           ),
+          Row(children: [
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: InkWell(
+                onTap: () {
+                  P303QMMASTERQCVAR.SETDAY = 'OK';
+                  P303QMMASTERQCVAR.SEARCH = ReportPDFCommonvar.PO;
+                  var now = DateTime.now().subtract(Duration(days: 25));
+                  P303QMMASTERQCVAR.day = DateFormat('dd').format(now);
+                  P303QMMASTERQCVAR.month = DateFormat('MM').format(now);
+                  P303QMMASTERQCVAR.year = DateFormat('yyyy').format(now);
+                  STDreport2(context);
+                },
+                child: Container(
+                  color: Colors.yellow,
+                  height: 50,
+                  width: 100,
+                  child: const Center(
+                    child: Text("UD and QCFN"),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: InkWell(
+                onTap: () {
+                  //ReportPDFCommonvar.PO
+                  QCFN(context);
+                },
+                child: Container(
+                  color: Colors.yellow,
+                  height: 50,
+                  width: 100,
+                  child: const Center(
+                    child: Text("_QCFN"),
+                  ),
+                ),
+              ),
+            ),
+          ]),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: RepaintBoundary(

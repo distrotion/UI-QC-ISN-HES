@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
+import '../../page/P303QMMASTERQC/P303QMMASTERQCVAR.dart';
+import '../../page/P31ReportPDFcommon/ReportPDFCommonvar.dart';
 
 class menu_normal extends StatelessWidget {
   menu_normal(
@@ -17,6 +19,9 @@ class menu_normal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String _name = name ?? "";
+    ReportPDFCommonvar.PO = '';
+    ReportPDFCommonvar.PO = '';
+    P303QMMASTERQCVAR.SETDAY = '';
 
     return InkWell(
       onTap: () {
