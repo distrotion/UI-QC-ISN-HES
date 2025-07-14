@@ -55,6 +55,47 @@ class PicShowActState extends State<PicShowAct> {
           child: Image.memory(
             bytes,
           )),
+      // child: Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: Image.memory(
+      //     bytes,
+      //   ),
+      // ),
+    );
+  }
+}
+
+class PicShowAct2 extends StatefulWidget {
+  PicShowAct2({Key? key, required this.base64, this.height, this.width})
+      : super(key: key);
+  String base64;
+  double? height;
+  double? width;
+  @override
+  State createState() => PicShowAct2State();
+}
+
+class PicShowAct2State extends State<PicShowAct2> {
+  // String _base64 = base64pic01;
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.base64 == "") return Container();
+    Uint8List bytes = base64.decode(widget.base64);
+    return SizedBox(
+      height: widget.height ?? 50,
+      width: widget.width ?? 50,
+      // child: Transform.rotate(
+      //     angle: 1.57,
+      //     child: Image.memory(
+      //       bytes,
+      //     )),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.memory(
+          bytes,
+        ),
+      ),
     );
   }
 }

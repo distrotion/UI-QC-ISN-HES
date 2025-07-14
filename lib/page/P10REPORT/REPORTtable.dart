@@ -253,6 +253,11 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                                 _sort<String>((dataset d) => d.f05, columnIndex,
                                     ascending)),
                         DataColumn(
+                            label: const Text('STATUS'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f05, columnIndex,
+                                    ascending)),
+                        DataColumn(
                             label: const Text('ACTION'),
                             onSort: (int columnIndex, bool ascending) =>
                                 _sort<String>((dataset d) => d.f05, columnIndex,
@@ -451,6 +456,17 @@ class _MyData extends DataTableSource {
   @override
   DataRow getRow(int index) {
     final dataset data = _data_exp[index];
+    String STATUS = '-';
+
+    if (data.f21 != '') {
+      STATUS = 'Inspected';
+    }
+    if (data.f22 != '') {
+      STATUS = 'Checked';
+    }
+    if (data.f23 != '') {
+      STATUS = 'Approved';
+    }
 
     return DataRow.byIndex(
         index: index,
@@ -467,6 +483,22 @@ class _MyData extends DataTableSource {
           DataCell(Text(data.f03)),
           DataCell(Text(data.f04)),
           DataCell(Text(data.f05)),
+          DataCell(
+            Container(
+              height: 45,
+              width: 90,
+              color: STATUS == 'Inspected'
+                  ? Colors.blue.shade400
+                  : STATUS == 'Checked'
+                      ? Colors.blue
+                      : STATUS == 'Approved'
+                          ? Colors.green
+                          : Colors.white,
+              child: Center(
+                child: Text(STATUS),
+              ),
+            ),
+          ),
           DataCell(Padding(
             padding: const EdgeInsets.all(2.0),
             child: Row(

@@ -154,10 +154,71 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           INC01: inc01,
           INC02: inc02,
 
+          Inspected: BasicDATAr['IDInspected'] != null
+              ? BasicDATAr['IDInspected'].toString()
+              : '',
+          Check: BasicDATAr['IDCheck'] != null
+              ? BasicDATAr['IDCheck'].toString()
+              : '',
+          Approve: BasicDATAr['IDApprove'] != null
+              ? BasicDATAr['IDApprove'].toString()
+              : '',
+
           // PICstd: BasicDATAr['PIC'] != null
           //     ? BasicDATAr['PIC'].toString().split(',')[1]
           //     : '',
         );
+
+        if (BasicCommonDATAs.Inspected != '') {
+          final responseS1 = await Dio().post(
+            'http://172.23.10.40:16714/' + "re_login",
+            data: {
+              "ID": BasicCommonDATAs.Inspected,
+              // "PASS": logindata.userPASS,
+            },
+          );
+          if (responseS1.statusCode == 200) {
+            //SIGNATURE
+            // print(responseS1.data);
+            var input = responseS1.data;
+            BasicCommonDATAs.Inspected_sign =
+                input['SIGNATURE'] != null ? input['SIGNATURE'].toString() : '';
+          }
+        }
+
+        if (BasicCommonDATAs.Check != '') {
+          final responseS2 = await Dio().post(
+            'http://172.23.10.40:16714/' + "re_login",
+            data: {
+              "ID": BasicCommonDATAs.Check,
+              // "PASS": logindata.userPASS,
+            },
+          );
+          if (responseS2.statusCode == 200) {
+            //SIGNATURE
+            // print(response.data);
+            var input = responseS2.data;
+            BasicCommonDATAs.Check_sign =
+                input['SIGNATURE'] != null ? input['SIGNATURE'].toString() : '';
+          }
+        }
+
+        if (BasicCommonDATAs.Approve != '') {
+          final responseS3 = await Dio().post(
+            'http://172.23.10.40:16714/' + "re_login",
+            data: {
+              "ID": BasicCommonDATAs.Approve,
+              // "PASS": logindata.userPASS,
+            },
+          );
+          if (responseS3.statusCode == 200) {
+            //SIGNATURE
+            // print(response.data);
+            var input = responseS3.data;
+            BasicCommonDATAs.Approve_sign =
+                input['SIGNATURE'] != null ? input['SIGNATURE'].toString() : '';
+          }
+        }
 
         if (BasicDATAr['ReferFrom'].toString() != PO) {
           if (BasicDATAr['ReferFrom'] != null) {
@@ -1119,7 +1180,7 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
             }
           }
         }
-        print('>>${ITEMlist.length}');
+        print('>>${passlist}');
 
         if (passlist.contains("false")) {
           // BasicCommonDATAs.PASS = 'NO PASSED';
@@ -1290,6 +1351,12 @@ class BasicCommonDATA {
     this.INC01 = '',
     this.INC02 = '',
     this.USER_STATUS = '',
+    this.Inspected = '',
+    this.Check = '',
+    this.Approve = '',
+    this.Inspected_sign = '',
+    this.Check_sign = '',
+    this.Approve_sign = '',
   });
 
   String PO;
@@ -1317,6 +1384,14 @@ class BasicCommonDATA {
   String INC02;
 
   String USER_STATUS;
+
+  String Inspected;
+  String Check;
+  String Approve;
+
+  String Inspected_sign;
+  String Check_sign;
+  String Approve_sign;
 }
 
 class CommonReportOutput {

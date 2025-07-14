@@ -47,6 +47,16 @@ class REPORT_Bloc extends Bloc<REPORT_Event, List<dataset>> {
             f05: databuff[i]['PARTNAME'] == null
                 ? ''
                 : databuff[i]['PARTNAME'].toString(),
+            //-------------------------------------------
+            f21: databuff[i]['IDInspected'] == null
+                ? ''
+                : databuff[i]['IDInspected'].toString(),
+            f22: databuff[i]['IDCheck'] == null
+                ? ''
+                : databuff[i]['IDCheck'].toString(),
+            f23: databuff[i]['IDApprove'] == null
+                ? ''
+                : databuff[i]['IDApprove'].toString(),
           ),
         );
       }

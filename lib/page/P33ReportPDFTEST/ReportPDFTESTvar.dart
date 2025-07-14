@@ -1,10 +1,12 @@
+import '../../widget/common/imgset.dart';
+
 class ReportPDFTESTvar {
   static bool iscontrol = false;
   static bool canf = true;
   static String PO = '';
 
   static String STATUS = '';
-
+  static String SCMASKTYPE = SCMASK03;
   static String CUSTOMER = '';
   static String PROCESS = '';
   static String PARTNAME = '';

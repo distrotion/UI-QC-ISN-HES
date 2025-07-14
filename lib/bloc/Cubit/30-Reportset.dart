@@ -83,10 +83,17 @@ class Reportset_Cubit extends Cubit<CommonReportSet> {
         print(databuff['PATTERN'][0]['reportset']);
         print(">>>>>>>>>>>>>>>>>-----+");
 
+        print(databuff['PATTERN'][0]['logoset']);
+        print(">>>>>>>>>>>>>>>>>-----+");
+
         BasicCommonDATAsets = BasicCommonDATAset(
           reportset: databuff['PATTERN'][0]['reportset'] != null
               ? databuff['PATTERN'][0]['reportset'].toString()
               : '-',
+
+          logoset: databuff['PATTERN'][0]['logoset'] != null
+              ? databuff['PATTERN'][0]['logoset'].toString()
+              : '',
           // PO: BasicDATAr['PO'] != null ? BasicDATAr['PO'].toString() : '',
           // CP: BasicDATAr['CP'] != null ? BasicDATAr['CP'].toString() : '',
           // CUSTOMER: BasicDATAr['CUSTNAME'] != null
@@ -373,6 +380,7 @@ class BasicCommonDATAset {
     this.INC02 = '',
     this.USER_STATUS = '',
     this.reportset = '',
+    this.logoset = '',
   });
 
   String PO;
@@ -401,6 +409,7 @@ class BasicCommonDATAset {
 
   String USER_STATUS;
   String reportset;
+  String logoset;
 }
 
 class CommonReportSet {

@@ -137,7 +137,71 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             // PICstd: BasicDATAr['PIC'] != null
             //     ? BasicDATAr['PIC'].toString().split(',')[1]
             //     : '',
+
+            Inspected: BasicDATAr['IDInspected'] != null
+                ? BasicDATAr['IDInspected'].toString()
+                : '',
+            Check: BasicDATAr['IDCheck'] != null
+                ? BasicDATAr['IDCheck'].toString()
+                : '',
+            Approve: BasicDATAr['IDApprove'] != null
+                ? BasicDATAr['IDApprove'].toString()
+                : '',
           );
+
+          if (BasicDATAs.Inspected != '') {
+            final responseS1 = await Dio().post(
+              'http://172.23.10.40:16714/' + "re_login",
+              data: {
+                "ID": BasicDATAs.Inspected,
+                // "PASS": logindata.userPASS,
+              },
+            );
+            if (responseS1.statusCode == 200) {
+              //SIGNATURE
+              // print(responseS1.data);
+              var input = responseS1.data;
+              BasicDATAs.Inspected_sign = input['SIGNATURE'] != null
+                  ? input['SIGNATURE'].toString()
+                  : '';
+            }
+          }
+
+          if (BasicDATAs.Check != '') {
+            final responseS2 = await Dio().post(
+              'http://172.23.10.40:16714/' + "re_login",
+              data: {
+                "ID": BasicDATAs.Check,
+                // "PASS": logindata.userPASS,
+              },
+            );
+            if (responseS2.statusCode == 200) {
+              //SIGNATURE
+              // print(response.data);
+              var input = responseS2.data;
+              BasicDATAs.Check_sign = input['SIGNATURE'] != null
+                  ? input['SIGNATURE'].toString()
+                  : '';
+            }
+          }
+
+          if (BasicDATAs.Approve != '') {
+            final responseS3 = await Dio().post(
+              'http://172.23.10.40:16714/' + "re_login",
+              data: {
+                "ID": BasicDATAs.Approve,
+                // "PASS": logindata.userPASS,
+              },
+            );
+            if (responseS3.statusCode == 200) {
+              //SIGNATURE
+              // print(response.data);
+              var input = responseS3.data;
+              BasicDATAs.Approve_sign = input['SIGNATURE'] != null
+                  ? input['SIGNATURE'].toString()
+                  : '';
+            }
+          }
 
           if (BasicDATAr['ReferFrom'].toString() != PO) {
             if (BasicDATAr['ReferFrom'] != null) {
@@ -192,7 +256,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                   for (var p = 0; p < databuffref['DATAlist'].length; p++) {
                     String lastst =
                         databuffref['DATAlist']?[p]['TPKLOT'].toString() ?? '';
-                    // BasicCommonDATAs.TPKLOT = BasicCommonDATAs.TPKLOT +
+                    // BasicDATAs.TPKLOT = BasicDATAs.TPKLOT +
                     //     ',' +
                     //     ('${lastst.substring(7, 10)}');
                     // lotlist
@@ -228,14 +292,14 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
                   .toString()
                   .replaceAll("}", "")
                   .replaceAll("{", "");
-              // BasicCommonDATAs.PARTNAMEref =
+              // BasicDATAs.PARTNAMEref =
               //     databuffref['DATA']?[0]['PARTNAME'].toString() ?? '';
-              // BasicCommonDATAs.PARTref =
+              // BasicDATAs.PARTref =
               //     databuffref['DATA']?[0]['PART'].toString() ?? '';
-              // BasicCommonDATAs.TPKLOTref =
+              // BasicDATAs.TPKLOTref =
               //     databuffref['DATA']?[0]['TPKLOT'].toString() ?? '';
-              // BasicCommonDATAs.TPKLOT =
-              //     BasicCommonDATAs.TPKLOT + "," + BasicCommonDATAs.TPKLOTref;
+              // BasicDATAs.TPKLOT =
+              //     BasicDATAs.TPKLOT + "," + BasicDATAs.TPKLOTref;
               // print(databuffref['DATA']?[0]['PART']);
               // print(databuffref['DATA']?[0]['PARTNAME']);
             }
@@ -728,6 +792,12 @@ class BasicACTDATA {
     this.PARTNAMEref = '',
     this.PARTref = '',
     this.USER_STATUS = '',
+    this.Inspected = '',
+    this.Check = '',
+    this.Approve = '',
+    this.Inspected_sign = '',
+    this.Check_sign = '',
+    this.Approve_sign = '',
   });
 
   String PO;
@@ -749,6 +819,14 @@ class BasicACTDATA {
   String PARTref;
 
   String USER_STATUS;
+
+  String Inspected;
+  String Check;
+  String Approve;
+
+  String Inspected_sign;
+  String Check_sign;
+  String Approve_sign;
 }
 
 class ACTReportOutput {

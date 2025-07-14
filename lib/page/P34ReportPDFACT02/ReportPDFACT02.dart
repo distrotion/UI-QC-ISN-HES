@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +16,7 @@ import '../../widget/common/Safty.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
 import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
+import '../P30SELECTReport/P30SELECTReportvar.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonMain.dart';
 import 'ReportPDFACT02var.dart';
 
@@ -33,6 +35,28 @@ class ReportPDFACT02 extends StatefulWidget {
 class _ReportPDFACT02State extends State<ReportPDFACT02> {
   @override
   void initState() {
+    String d = SELECTReportvar.logo;
+    if (d == '2') {
+      setState(() {
+        ReportPDFACT02var.SCMASKTYPE = SCMASK02;
+      });
+    } else if (d == '3') {
+      setState(() {
+        ReportPDFACT02var.SCMASKTYPE = SCMASK04;
+      });
+    } else if (d == '4') {
+      setState(() {
+        ReportPDFACT02var.SCMASKTYPE = new19062401;
+      });
+    } else if (d == '5') {
+      setState(() {
+        ReportPDFACT02var.SCMASKTYPE = new19062402;
+      });
+    } else {
+      setState(() {
+        ReportPDFACT02var.SCMASKTYPE = SCMASK03;
+      });
+    }
     ReportPDFACT02var.PASS = '';
     RepoteData.SUMLOT = '-';
     if (ReportPDFACT02var.PO != '') {
@@ -394,6 +418,10 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
         ReportPDFACT02list(),
       ];
     }
+    double sizep = 16;
+    if (ReportPDFACT02var.CUSLOT.length > 100) {
+      sizep = 12;
+    }
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -603,1784 +631,1963 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
           ]),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: RepaintBoundary(
-              key: _globalKey,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 24.0, right: 16.0, left: 16.0, bottom: 16.0),
-                child: Column(
-                  children: [
-                    Row(
+            child: Column(
+              children: [
+                RepaintBoundary(
+                  key: _globalKey,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 24.0, right: 16.0, left: 16.0, bottom: 16.0),
+                    child: Column(
                       children: [
-                        // const SizedBox(
-                        //   width: 50,
-                        // ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Container(
-                            height: 2000,
-                            width: 1364,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 3),
-                              // color: Colors.red,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(0)),
-                            ),
-                            child: Column(
-                              children: [
-                                HEAD3SLOT(
-                                  ListFlex: const [5, 4, 1],
-                                  widget01: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 15, right: 15),
-                                        child: Container(
-                                          height: 120,
-                                          width: 230,
-                                          decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                "assets/images/logoonly_tpkpng.png",
+                        Row(
+                          children: [
+                            // const SizedBox(
+                            //   width: 50,
+                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                height: 2000,
+                                width: 1364,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.black, width: 3),
+                                  // color: Colors.red,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(0)),
+                                ),
+                                child: Column(
+                                  children: [
+                                    HEAD3SLOT(
+                                      ListFlex: const [5, 4, 1],
+                                      widget01: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 15, right: 15),
+                                            child: Container(
+                                              height: 120,
+                                              width: 230,
+                                              decoration: const BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                    "assets/images/logoonly_tpkpng.png",
+                                                  ),
+                                                  fit: BoxFit.fitWidth,
+                                                ),
                                               ),
-                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          ),
+                                          // PicShow(
+                                          //     width: 120, height: 230, base64: tpklogo),
+                                          SizedBox(
+                                            height: 120,
+                                            width: 400,
+                                            child: Column(
+                                              children: const [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 20,
+                                                  ),
+                                                  child: Text(
+                                                    "THAI PARKERIZING CO.,LTD.",
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 40,
+                                                  ),
+                                                  child: Text(
+                                                    "Heat & Surface Treatment Division",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      widget02: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              height: 120,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Column(
+                                                      children: const [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                            top: 20,
+                                                          ),
+                                                          child: Text(
+                                                            "Quality Testing Report (ISONITE ESIE 1)",
+                                                            style: TextStyle(
+                                                              fontSize: 24,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 30,
+                                                                  bottom: 10),
+                                                          child: Text(
+                                                            "(ใบรายงานผลการตรวจสอบผลิตภัณฑ์สำหรับกระบวนการ ISN)",
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  "FR-HQC-03/028-00-25/10/22",
+                                                  style: TextStyle(
+                                                    fontSize: 24,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget03: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              children: const [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 40,
+                                                  ),
+                                                  child: Text(
+                                                    "PAGE",
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 30, bottom: 10),
+                                                  child: Text(
+                                                    "1/1",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    HEAD4SLOT(
+                                      ListFlex: [4, 8, 3, 5],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "Customer",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.CUSTOMER,
+                                            style: const TextStyle(
+                                              fontSize: 16,
                                             ),
                                           ),
                                         ),
                                       ),
-                                      // PicShow(
-                                      //     width: 120, height: 230, base64: tpklogo),
-                                      SizedBox(
-                                        height: 120,
-                                        width: 400,
-                                        child: Column(
-                                          children: const [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 20,
-                                              ),
-                                              child: Text(
-                                                "THAI PARKERIZING CO.,LTD.",
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Process",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.PROCESS,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY4SLOT(
+                                      ListFlex: [4, 8, 3, 5],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "Part Name",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.PARTNAME,
+                                            style: const TextStyle(
+                                              fontSize: 16,
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 40,
-                                              ),
-                                              child: Text(
-                                                "Heat & Surface Treatment Division",
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Part No.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.PARTNO,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY2SLOT(
+                                      ListFlex: [4, 16],
+                                      widget01: Center(
+                                        child: Text(
+                                          "Customer Lot No.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.CUSLOT,
+                                            style: TextStyle(
+                                              // fontSize: 16,
+                                              fontSize: sizep,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [4, 6, 3, 3, 1, 3],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "TPK. Lot No.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.TPKLOT,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Material",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.MATERIAL,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "Qty.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.QTY,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    HEAD1SLOT(
+                                      widget01: const Center(
+                                        child: Text(
+                                          "INCOMING INSPECTION",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    HEAD7SLOT(
+                                      ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "ITEM",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: const Center(
+                                        child: Text(
+                                          "SC",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Check Method",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: const Center(
+                                        child: Text(
+                                          "Frequency",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "Specification",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: const Center(
+                                        child: Text(
+                                          "Result",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY7SLOT(
+                                      ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "Appearance for Rust",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: const Center(
+                                        child: Text(
+                                          "",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Visual",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: const Center(
+                                        child: Text(
+                                          "10 pcs/rcv.Lot",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "No Rust",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: const Center(
+                                        child: Text(
+                                          "No Rust",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget07: const Center(
+                                        child: Text(
+                                          "",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY7SLOT(
+                                      ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "Appearance for Scratch",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: const Center(
+                                        child: Text(
+                                          "",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Visual",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: const Center(
+                                        child: Text(
+                                          "10 pcs/rcv.Lot",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "No Scratch",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: const Center(
+                                        child: Text(
+                                          "No Scratch",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget07: const Center(
+                                        child: Text(
+                                          "",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    HEAD1SLOT(
+                                      widget01: const Center(
+                                        child: Text(
+                                          "FINAL INSPECTION",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    HEAD6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "ITEM",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: const Center(
+                                        child: Text(
+                                          "SC",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Check Method",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: const Center(
+                                        child: Text(
+                                          "Frequency",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "Specification",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: const Center(
+                                        child: Text(
+                                          "Result",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[0].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[0].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
                                                 style: TextStyle(
                                                   fontSize: 16,
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[0].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  widget02: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Container(
-                                          height: 120,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[0].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[0].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[0].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[1].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[1].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[1].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[1].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[1].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[1].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[2].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[2].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[2].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[2].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[2].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[2].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[3].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[3].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[3].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[3].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[3].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[3].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[4].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[4].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[4].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[4].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[4].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[4].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[9].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[9].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[9].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[9].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[9].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[9].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[10].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[10].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[10].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[10].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[10].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[10].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    BODY6SLOT(
+                                      ListFlex: [5, 1, 3, 2, 4, 4],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[11].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[11].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[11].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[11].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[11].SPECIFICATIONname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[11].RESULT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    // HEAD1SLOT(),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    HEAD10SLOT(
+                                      ListFlex: [
+                                        16,
+                                        4,
+                                        12,
+                                        8,
+                                        6,
+                                        6,
+                                        4,
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                      ],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "ITEM",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: const Center(
+                                        child: Text(
+                                          "SC",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Check Method",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: const Center(
+                                        child: Text(
+                                          "Frequency",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "Specification",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: const Center(
+                                        child: Text(
+                                          "Control limit",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget07: const Center(
+                                        child: Text(
+                                          "1",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget08: const Center(
+                                        child: Text(
+                                          "2",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget09: const Center(
+                                        child: Text(
+                                          "3",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget10: const Center(
+                                        child: Text(
+                                          "AVG",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY10SLOT(
+                                      ListFlex: [
+                                        16,
+                                        4,
+                                        12,
+                                        8,
+                                        6,
+                                        6,
+                                        4,
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                      ],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[5].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[5].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[5].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[5].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[5].SPECIFICATION,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[5].CONTROLlimmit,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget07: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[5].DATA01,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget08: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[5].DATA02,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget09: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[5].DATA03,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget10: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[5].DATAAVG,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY10SLOT(
+                                      ListFlex: [
+                                        16,
+                                        4,
+                                        12,
+                                        8,
+                                        6,
+                                        6,
+                                        4,
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                      ],
+                                      widget01: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[6].ITEMname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Center(
+                                        child: ReportPDFACT02var
+                                                    .datalist[6].SCMARK ==
+                                                'YES'
+                                            ? PicShow(
+                                                width: 42,
+                                                height: 42,
+                                                base64: SCMASK01)
+                                            : const Text(
+                                                "",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                      ),
+                                      widget03: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[6].METHODname,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[6].FREQ,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[6].SPECIFICATION,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var
+                                              .datalist[6].CONTROLlimmit,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget07: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[6].DATA01,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget08: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[6].DATA02,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget09: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[6].DATA03,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget10: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.datalist[6].DATAAVG,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    BODY10SLOTX2(
+                                      ListFlex: [
+                                        16,
+                                        4,
+                                        12,
+                                        8,
+                                        6,
+                                        6,
+                                        4,
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                      ],
+                                      widget01: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[7].ITEMname,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Column(
-                                                  children: const [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                      ),
-                                                      child: Text(
-                                                        "Quality Testing Report (ISONITE ESIE 1)",
-                                                        style: TextStyle(
-                                                          fontSize: 24,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 30, bottom: 10),
-                                                      child: Text(
-                                                        "(ใบรายงานผลการตรวจสอบผลิตภัณฑ์สำหรับกระบวนการ ISN)",
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[8].ITEMname,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget02: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: ReportPDFACT02var
+                                                            .datalist[7]
+                                                            .SCMARK ==
+                                                        'YES'
+                                                    ? PicShow(
+                                                        width: 42,
+                                                        height: 42,
+                                                        base64: SCMASK01)
+                                                    : const Text(
+                                                        "",
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      const Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              "FR-HQC-03/028-00-25/10/22",
-                                              style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget03: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          children: const [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 40,
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: ReportPDFACT02var
+                                                            .datalist[8]
+                                                            .SCMARK ==
+                                                        'YES'
+                                                    ? PicShow(
+                                                        width: 42,
+                                                        height: 42,
+                                                        base64: SCMASK01)
+                                                    : const Text(
+                                                        "",
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                        ),
+                                                      ),
                                               ),
-                                              child: Text(
-                                                "PAGE",
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 30, bottom: 10),
-                                              child: Text(
-                                                "1/1",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                HEAD4SLOT(
-                                  ListFlex: [4, 8, 3, 5],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "Customer",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        ReportPDFACT02var.CUSTOMER,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Process",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.PROCESS,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY4SLOT(
-                                  ListFlex: [4, 8, 3, 5],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "Part Name",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        ReportPDFACT02var.PARTNAME,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Part No.",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.PARTNO,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY2SLOT(
-                                  ListFlex: [4, 16],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "Customer Lot No.",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        ReportPDFACT02var.CUSLOT,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY6SLOT(
-                                  ListFlex: [4, 6, 3, 3, 1, 3],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "TPK. Lot No.",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        ReportPDFACT02var.TPKLOT,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Material",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.MATERIAL,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: const Center(
-                                    child: Text(
-                                      "Qty.",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.QTY,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                HEAD1SLOT(
-                                  widget01: const Center(
-                                    child: Text(
-                                      "INCOMING INSPECTION",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                HEAD7SLOT(
-                                  ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "ITEM",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: const Center(
-                                    child: Text(
-                                      "SC",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Check Method",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: const Center(
-                                    child: Text(
-                                      "Frequency",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: const Center(
-                                    child: Text(
-                                      "Specification",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: const Center(
-                                    child: Text(
-                                      "Result",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY7SLOT(
-                                  ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "Appearance for Rust",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: const Center(
-                                    child: Text(
-                                      "",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Visual",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: const Center(
-                                    child: Text(
-                                      "10 pcs/rcv.Lot",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: const Center(
-                                    child: Text(
-                                      "No Rust",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: const Center(
-                                    child: Text(
-                                      "No Rust",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget07: const Center(
-                                    child: Text(
-                                      "",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY7SLOT(
-                                  ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "Appearance for Scratch",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: const Center(
-                                    child: Text(
-                                      "",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Visual",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: const Center(
-                                    child: Text(
-                                      "10 pcs/rcv.Lot",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: const Center(
-                                    child: Text(
-                                      "No Scratch",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: const Center(
-                                    child: Text(
-                                      "No Scratch",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget07: const Center(
-                                    child: Text(
-                                      "",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                HEAD1SLOT(
-                                  widget01: const Center(
-                                    child: Text(
-                                      "FINAL INSPECTION",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                HEAD6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "ITEM",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: const Center(
-                                    child: Text(
-                                      "SC",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Check Method",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: const Center(
-                                    child: Text(
-                                      "Frequency",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: const Center(
-                                    child: Text(
-                                      "Specification",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: const Center(
-                                    child: Text(
-                                      "Result",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[0].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[0].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[0].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[0].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[0].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[0].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[1].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[1].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[1].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[1].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[1].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[1].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[2].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[2].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[2].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[2].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[2].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[2].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[3].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[3].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[3].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[4].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[4].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[4].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[4].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[4].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[4].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[9].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[9].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[9].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[9].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[9].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[9].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[10].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[10].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[10].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[10].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[10].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[10].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY6SLOT(
-                                  ListFlex: [5, 1, 3, 2, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[11].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[11].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[11].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[11].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[11].SPECIFICATIONname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[11].RESULT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                // HEAD1SLOT(),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                HEAD10SLOT(
-                                  ListFlex: [16, 4, 12, 8, 6, 6, 4, 4, 4, 4, 4],
-                                  widget01: const Center(
-                                    child: Text(
-                                      "ITEM",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: const Center(
-                                    child: Text(
-                                      "SC",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget03: const Center(
-                                    child: Text(
-                                      "Check Method",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: const Center(
-                                    child: Text(
-                                      "Frequency",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: const Center(
-                                    child: Text(
-                                      "Specification",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: const Center(
-                                    child: Text(
-                                      "Control limit",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget07: const Center(
-                                    child: Text(
-                                      "1",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget08: const Center(
-                                    child: Text(
-                                      "2",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget09: const Center(
-                                    child: Text(
-                                      "3",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  widget10: const Center(
-                                    child: Text(
-                                      "AVG",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY10SLOT(
-                                  ListFlex: [16, 4, 12, 8, 6, 6, 4, 4, 4, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[5].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[5].SPECIFICATION,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[5].CONTROLlimmit,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget07: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].DATA01,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget08: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].DATA02,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget09: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].DATA03,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget10: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[5].DATAAVG,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                BODY10SLOT(
-                                  ListFlex: [16, 4, 12, 8, 6, 6, 4, 4, 4, 4, 4],
-                                  widget01: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].ITEMname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget02: Center(
-                                    child:
-                                        ReportPDFACT02var.datalist[6].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                ),
-                                              ),
-                                  ),
-                                  widget03: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].METHODname,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget04: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].FREQ,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget05: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[6].SPECIFICATION,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget06: Center(
-                                    child: Text(
-                                      ReportPDFACT02var
-                                          .datalist[6].CONTROLlimmit,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget07: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].DATA01,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget08: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].DATA02,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget09: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].DATA03,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  widget10: Center(
-                                    child: Text(
-                                      ReportPDFACT02var.datalist[6].DATAAVG,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                BODY10SLOTX2(
-                                  ListFlex: [16, 4, 12, 8, 6, 6, 4, 4, 4, 4, 4],
-                                  widget01: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
                                             ),
                                           ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].ITEMname,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
+                                        ],
+                                      ),
+                                      widget03: const SizedBox(
+                                        height: 97,
+                                        child: Center(
+                                          child: Text(
+                                            "Micro Vickers Scope (X 500)",
+                                            style: TextStyle(
+                                              fontSize: 16,
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].ITEMname,
-                                              style: const TextStyle(
-                                                fontSize: 16,
+                                      widget04: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget02: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: ReportPDFACT02var
-                                                        .datalist[7].SCMARK ==
-                                                    'YES'
-                                                ? PicShow(
-                                                    width: 42,
-                                                    height: 42,
-                                                    base64: SCMASK01)
-                                                : const Text(
-                                                    "",
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                    ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[7].FREQ,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
                                                   ),
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: ReportPDFACT02var
-                                                        .datalist[8].SCMARK ==
-                                                    'YES'
-                                                ? PicShow(
-                                                    width: 42,
-                                                    height: 42,
-                                                    base64: SCMASK01)
-                                                : const Text(
-                                                    "",
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                    ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[8].FREQ,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
                                                   ),
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  widget03: const SizedBox(
-                                    height: 97,
-                                    child: Center(
-                                      child: Text(
-                                        "Micro Vickers Scope (X 500)",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        ),
+                                      widget05: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var.datalist[7]
+                                                      .SPECIFICATION,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  "${ReportPDFACT02var.datalist[8].SPECIFICATION}",
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget06: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var.datalist[7]
+                                                      .CONTROLlimmit,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var.datalist[8]
+                                                      .CONTROLlimmit,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget07: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[7].DATA01,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[8].DATA01,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget08: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[7].DATA02,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[8].DATA02,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget09: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[7].DATA03,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[8].DATA03,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget10: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 47,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[7].DATAAVG,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  ReportPDFACT02var
+                                                      .datalist[8].DATAAVG,
+                                                  style: const TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                  widget04: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].FREQ,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].FREQ,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget05: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].SPECIFICATION,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              "${ReportPDFACT02var.datalist[8].SPECIFICATION}",
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget06: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].CONTROLlimmit,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].CONTROLlimmit,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget07: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].DATA01,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].DATA01,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget08: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].DATA02,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].DATA02,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget09: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].DATA03,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].DATA03,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  widget10: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          height: 47,
-                                          decoration: const BoxDecoration(
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Colors.black,
-                                                  width: 3,
-                                                  style: BorderStyle.solid),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[7].DATAAVG,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Center(
-                                            child: Text(
-                                              ReportPDFACT02var
-                                                  .datalist[8].DATAAVG,
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    PICSLOT(
+                                      HIs: 330,
+                                      PIC01: _dataACT.databasic.PIC01,
+                                      PIC02: _dataACT.databasic.PIC02,
+                                    ),
+                                    TAILSLOT(
+                                      PASS: ReportPDFACT02var.PASS,
+                                      PICS: _dataACT.databasic.PICstd,
+                                      Remark: ReportPDFACT02var.remark,
+                                      signs: true,
+                                      NAME01: _dataACT.databasic.Inspected_sign,
+                                      NAME02: _dataACT.databasic.Check_sign,
+                                      NAME03: _dataACT.databasic.Approve_sign,
+                                    ),
+                                  ],
                                 ),
-                                PICSLOT(
-                                  HIs: 330,
-                                  PIC01: _dataACT.databasic.PIC01,
-                                  PIC02: _dataACT.databasic.PIC02,
-                                ),
-                                TAILSLOT(
-                                  PASS: ReportPDFACT02var.PASS,
-                                  PICS: _dataACT.databasic.PICstd,
-                                  Remark: ReportPDFACT02var.remark,
-                                  NAME03: "Saowapak",
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    if ((USERDATA.UserLV) > 1) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Dio().post(
+                              GLOserver + "Inspected-sign",
+                              data: {
+                                "ID": USERDATA.ID,
+                                "PO": ReportPDFACT02var.PO,
+                              },
+                            ).then((v) {
+                              var databuff = v.data;
+                              context
+                                  .read<ReportPDFCommon_Cubit>()
+                                  .ReportPDFCommonCubit(ReportPDFACT02var.PO);
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 80,
+                            color: Colors.blue,
+                            child: Center(
+                              child: Text("Inspected"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    if ((USERDATA.UserLV) > 20) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Dio().post(
+                              GLOserver + "Check-sign",
+                              data: {
+                                "ID": USERDATA.ID,
+                                "PO": ReportPDFACT02var.PO,
+                              },
+                            ).then((v) {
+                              var databuff = v.data;
+                              context
+                                  .read<ReportPDFCommon_Cubit>()
+                                  .ReportPDFCommonCubit(ReportPDFACT02var.PO);
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 80,
+                            color: Colors.blue,
+                            child: Center(
+                              child: Text("Check"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    if ((USERDATA.UserLV) > 30) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Dio().post(
+                              GLOserver + "Approve-sign",
+                              data: {
+                                "ID": USERDATA.ID,
+                                "PO": ReportPDFACT02var.PO,
+                              },
+                            ).then((v) {
+                              var databuff = v.data;
+                              context
+                                  .read<ReportPDFCommon_Cubit>()
+                                  .ReportPDFCommonCubit(ReportPDFACT02var.PO);
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 80,
+                            color: Colors.blue,
+                            child: Center(
+                              child: Text("Approve"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
-              ),
+              ],
             ),
           ),
           Container(

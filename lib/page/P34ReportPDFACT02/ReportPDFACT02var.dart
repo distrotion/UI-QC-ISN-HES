@@ -1,3 +1,5 @@
+import '../../widget/common/imgset.dart';
+
 class ReportPDFACT02var {
   static bool iscontrol = false;
   static bool canf = true;
@@ -13,7 +15,7 @@ class ReportPDFACT02var {
   static String TPKLOT = '';
   static String MATERIAL = '';
   static String QTY = '';
-
+  static String SCMASKTYPE = SCMASK03;
   static String PICstd = '';
   static String PIC01 = '';
   static String PIC02 = '';

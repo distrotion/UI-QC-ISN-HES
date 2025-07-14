@@ -48,7 +48,6 @@ class SELECTReport extends StatefulWidget {
 class _SELECTReportState extends State<SELECTReport> {
   @override
   void initState() {
-    SELECTReportvar.TPKLOTEDIT = '';
     if (SELECTReportvar.PO != '') {
       SELECTReportvar.canf = false;
       context.read<Reportset_Cubit>().ReportsetCubit(SELECTReportvar.PO);
@@ -75,7 +74,7 @@ class _SELECTReportState extends State<SELECTReport> {
     print(">>>>>>>>>>>>>>>>>-----2");
     print(_dataCommon.databasic.reportset);
     print(">>>>>>>>>>>>>>>>>-----+2");
-
+    SELECTReportvar.logo = _dataCommon.databasic.logoset;
     if (_dataCommon.databasic.reportset != '') {
       if (_dataCommon.databasic.reportset == 'ACT2') {
         return Page34();

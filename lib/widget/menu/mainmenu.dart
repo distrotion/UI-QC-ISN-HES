@@ -10,6 +10,7 @@ import '../../page/page10.dart';
 import '../../page/page11.dart';
 
 import '../../page/page15..dart';
+import '../../page/page18.dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
 import '../../page/page303.dart';
@@ -151,6 +152,12 @@ class Data_Menu_mainmenu extends StatelessWidget {
           name: "Special QCFN",
           page: Page303(),
           Lv: 1,
+        ),
+        menu_normal(
+          name: "CHANGE PASSWORD",
+          page: Page18(),
+          Lv: 1,
+          // tapcolor: Colors.white,
         ),
         menu_logout(
           name: "Logout",

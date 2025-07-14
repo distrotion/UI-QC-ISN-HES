@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -14,6 +15,7 @@ import '../../widget/common/Safty.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
 import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
+import '../P30SELECTReport/P30SELECTReportvar.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonMain.dart';
 import 'ReportPDFCommon2var.dart';
 
@@ -32,9 +34,31 @@ class ReportPDFCommon2 extends StatefulWidget {
 class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
   @override
   void initState() {
+    String d = SELECTReportvar.logo;
+    if (d == '2') {
+      setState(() {
+        ReportPDFCommon2var.SCMASKTYPE = SCMASK02;
+      });
+    } else if (d == '3') {
+      setState(() {
+        ReportPDFCommon2var.SCMASKTYPE = SCMASK04;
+      });
+    } else if (d == '4') {
+      setState(() {
+        ReportPDFCommon2var.SCMASKTYPE = new19062401;
+      });
+    } else if (d == '5') {
+      setState(() {
+        ReportPDFCommon2var.SCMASKTYPE = new19062402;
+      });
+    } else {
+      setState(() {
+        ReportPDFCommon2var.SCMASKTYPE = SCMASK03;
+      });
+    }
     ReportPDFCommon2var.PASS = '';
     RepoteData.SUMLOT = '-';
-    ReportPDFCommon2var.SCMASKTYPE = SCMASK03;
+    // ReportPDFCommon2var.SCMASKTYPE = SCMASK03;
     if (ReportPDFCommon2var.PO != '') {
       ReportPDFCommon2var.canf = false;
       context
@@ -781,6 +805,13 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
         ReportPDFCommon2list(),
       ];
     }
+
+    print("length-------");
+    print(ReportPDFCommon2var.CUSLOT.length);
+    double sizep = 16;
+    if (ReportPDFCommon2var.CUSLOT.length > 100) {
+      sizep = 12;
+    }
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -1063,2874 +1094,3118 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
           ]),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: RepaintBoundary(
-              key: _globalKey,
-              child: Column(
-                children: [
-                  Row(
+            child: Column(
+              children: [
+                RepaintBoundary(
+                  key: _globalKey,
+                  child: Column(
                     children: [
-                      // const SizedBox(
-                      //   width: 50,
-                      // ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          height: 2000,
-                          width: 1364,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 3),
-                            // color: Colors.red,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(0)),
-                          ),
-                          child: Column(
-                            children: [
-                              HEAD3SLOT(
-                                ListFlex: const [5, 4, 1],
-                                widget01: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, right: 15),
-                                      child: Container(
-                                        height: 120,
-                                        width: 230,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              "assets/images/logoonly_tpkpng.png",
+                      Row(
+                        children: [
+                          // const SizedBox(
+                          //   width: 50,
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Container(
+                              height: 2000,
+                              width: 1364,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 3),
+                                // color: Colors.red,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(0)),
+                              ),
+                              child: Column(
+                                children: [
+                                  HEAD3SLOT(
+                                    ListFlex: const [5, 4, 1],
+                                    widget01: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 15, right: 15),
+                                          child: Container(
+                                            height: 120,
+                                            width: 230,
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                  "assets/images/logoonly_tpkpng.png",
+                                                ),
+                                                fit: BoxFit.fitWidth,
+                                              ),
                                             ),
-                                            fit: BoxFit.fitWidth,
+                                          ),
+                                        ),
+                                        // PicShow(
+                                        //     width: 120, height: 230, base64: tpklogo),
+                                        SizedBox(
+                                          height: 120,
+                                          width: 400,
+                                          child: Column(
+                                            children: const [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                ),
+                                                child: Text(
+                                                  "THAI PARKERIZING CO.,LTD.",
+                                                  style: TextStyle(
+                                                    fontSize: 24,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 40,
+                                                ),
+                                                child: Text(
+                                                  "Heat & Surface Treatment Division",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    widget02: Column(
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            height: 120,
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                    color: Colors.black,
+                                                    width: 3,
+                                                    style: BorderStyle.solid),
+                                              ),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    children: const [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          top: 20,
+                                                        ),
+                                                        child: Text(
+                                                          "Quality Testing Report (ISONITE ESIE 1)",
+                                                          style: TextStyle(
+                                                            fontSize: 24,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 30,
+                                                                bottom: 10),
+                                                        child: Text(
+                                                          "(ใบรายงานผลการตรวจสอบผลิตภัณฑ์สำหรับกระบวนการ ISN)",
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        const Expanded(
+                                          flex: 1,
+                                          child: SizedBox(
+                                            height: 60,
+                                            child: Center(
+                                              child: Text(
+                                                "FR-HQC-03/028-00-25/10/22",
+                                                style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    widget03: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            children: const [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 40,
+                                                ),
+                                                child: Text(
+                                                  "PAGE",
+                                                  style: TextStyle(
+                                                    fontSize: 24,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 30, bottom: 10),
+                                                child: Text(
+                                                  "1/1",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  HEAD4SLOT(
+                                    ListFlex: [4, 8, 3, 5],
+                                    widget01: const Center(
+                                      child: Text(
+                                        "Customer",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Text(
+                                          ReportPDFCommon2var.CUSTOMER,
+                                          style: const TextStyle(
+                                            fontSize: 16,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    // PicShow(
-                                    //     width: 120, height: 230, base64: tpklogo),
-                                    SizedBox(
-                                      height: 120,
-                                      width: 400,
-                                      child: Column(
-                                        children: const [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 20,
-                                            ),
-                                            child: Text(
-                                              "THAI PARKERIZING CO.,LTD.",
+                                    widget03: const Center(
+                                      child: Text(
+                                        "Process",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.PROCESS,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY4SLOT(
+                                    ListFlex: [4, 8, 3, 5],
+                                    widget01: const Center(
+                                      child: Text(
+                                        "Part Name",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Text(
+                                          ReportPDFCommon2var.PARTNAME,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: const Center(
+                                      child: Text(
+                                        "Part No.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.PARTNO,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY2SLOT(
+                                    ListFlex: [4, 16],
+                                    widget01: const Center(
+                                      child: Text(
+                                        "Customer Lot No.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Text(
+                                          ReportPDFCommon2var.CUSLOT,
+                                          style: TextStyle(
+                                            fontSize: sizep,
+                                          ),
+                                          // style: TextStyle(
+                                          //   fontSize: ReportPDFCommon2var
+                                          //               .CUSLOT.length >
+                                          //           30
+                                          //       ? 16
+                                          //       : 8,
+                                          // ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY6SLOT(
+                                    ListFlex: [4, 6, 3, 3, 1, 3],
+                                    widget01: const Center(
+                                      child: Text(
+                                        "TPK. Lot No.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Text(
+                                          ReportPDFCommon2var.TPKLOT,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: const Center(
+                                      child: Text(
+                                        "Material",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.MATERIAL,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: const Center(
+                                      child: Text(
+                                        "Qty.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.QTY,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  HEAD1SLOT(
+                                    widget01: const Center(
+                                      child: Text(
+                                        "INCOMING INSPECTION",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  HEAD7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: const Center(
+                                      child: Text(
+                                        "ITEM",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: const Center(
+                                      child: Text(
+                                        "SC",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: const Center(
+                                      child: Text(
+                                        "Check Method",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: const Center(
+                                      child: Text(
+                                        "Frequency",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: const Center(
+                                      child: Text(
+                                        "Specification",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: const Center(
+                                      child: Text(
+                                        "Result",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: const Center(
+                                      child: Text(
+                                        "Remark",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: const [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC01 != ''
+                                            ? "Appearance for Rust"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: const Center(
+                                      child: Text(
+                                        "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC01 != ''
+                                            ? "Visual"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC01 != ''
+                                            ? "10 pcs/rcv.Lot"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC01 != ''
+                                            ? "No Rust"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC01 != ''
+                                            ? "No Rust"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: const Center(
+                                      child: Text(
+                                        "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC02 != ''
+                                            ? "Appearance for scratch"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC02 != ''
+                                            ? ""
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC02 != ''
+                                            ? "Visual"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC02 != ''
+                                            ? "10 pcs/rcv.Lot"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC02 != ''
+                                            ? "No Scratch"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.INC02 != ''
+                                            ? "No Scratch"
+                                            : "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: const Center(
+                                      child: Text(
+                                        "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  HEAD1SLOT(
+                                    widget01: const Center(
+                                      child: Text(
+                                        "FINAL INSPECTION",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  HEAD7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: const Center(
+                                      child: Text(
+                                        "ITEM",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: const Center(
+                                      child: Text(
+                                        "SC",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: const Center(
+                                      child: Text(
+                                        "Check Method",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: const Center(
+                                      child: Text(
+                                        "Frequency",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: const Center(
+                                      child: Text(
+                                        "Specification",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: const Center(
+                                      child: Text(
+                                        "Result",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: const Center(
+                                      child: Text(
+                                        "Remark",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[0].ITEMname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: ReportPDFCommon2var
+                                                  .datalist[0].SCMARK ==
+                                              'YES'
+                                          ? PicShow(
+                                              width: 42,
+                                              height: 42,
+                                              base64: ReportPDFCommon2var
+                                                  .SCMASKTYPE)
+                                          : const Text(
+                                              "",
                                               style: TextStyle(
-                                                fontSize: 24,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[0].METHODname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[0].FREQ,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[0].SPECIFICATIONname,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[0]
+                                                      .SPECIFICATIONname
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[0].RESULT,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[0]
+                                                      .RESULT
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[1].ITEMname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: ReportPDFCommon2var
+                                                  .datalist[1].SCMARK ==
+                                              'YES'
+                                          ? PicShow(
+                                              width: 42,
+                                              height: 42,
+                                              base64: ReportPDFCommon2var
+                                                  .SCMASKTYPE)
+                                          : const Text(
+                                              "",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[1].METHODname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[1].FREQ,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[1].SPECIFICATIONname,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[1]
+                                                      .SPECIFICATIONname
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[1].RESULT,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[1]
+                                                      .RESULT
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[2].ITEMname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: ReportPDFCommon2var
+                                                  .datalist[2].SCMARK ==
+                                              'YES'
+                                          ? PicShow(
+                                              width: 42,
+                                              height: 42,
+                                              base64: ReportPDFCommon2var
+                                                  .SCMASKTYPE)
+                                          : const Text(
+                                              "",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[2].METHODname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[2].FREQ,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[2].SPECIFICATIONname,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[2]
+                                                      .SPECIFICATIONname
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[2].RESULT,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[2]
+                                                      .RESULT
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[3].ITEMname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: ReportPDFCommon2var
+                                                  .datalist[3].SCMARK ==
+                                              'YES'
+                                          ? PicShow(
+                                              width: 42,
+                                              height: 42,
+                                              base64: ReportPDFCommon2var
+                                                  .SCMASKTYPE)
+                                          : const Text(
+                                              "",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[3].METHODname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[3].FREQ,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[3].SPECIFICATIONname,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[3]
+                                                      .SPECIFICATIONname
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[3].RESULT,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[3]
+                                                      .RESULT
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY7SLOT(
+                                    ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                    widget01: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[4].ITEMname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: ReportPDFCommon2var
+                                                  .datalist[4].SCMARK ==
+                                              'YES'
+                                          ? PicShow(
+                                              width: 42,
+                                              height: 42,
+                                              base64: ReportPDFCommon2var
+                                                  .SCMASKTYPE)
+                                          : const Text(
+                                              "",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[4].METHODname,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[4].FREQ,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                            .datalist[4].SPECIFICATIONname,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[4]
+                                                      .SPECIFICATIONname
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.datalist[4].RESULT,
+                                        style: TextStyle(
+                                          fontSize: ReportPDFCommon2var
+                                                      .datalist[4]
+                                                      .RESULT
+                                                      .length >
+                                                  30
+                                              ? 12
+                                              : 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  // BODY7SLOT(
+                                  //   ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                  //   widget01: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[5].ITEMname,
+                                  //       style: const TextStyle(
+                                  //         fontSize: 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget02: Center(
+                                  //     child: ReportPDFCommon2var
+                                  //                 .datalist[5].SCMARK ==
+                                  //             'YES'
+                                  //         ? PicShow(
+                                  //             width: 42,
+                                  //             height: 42,
+                                  //             base64:
+                                  //                 ReportPDFCommon2var.SCMASKTYPE)
+                                  //         : const Text(
+                                  //             "",
+                                  //             style: TextStyle(
+                                  //               fontSize: 16,
+                                  //             ),
+                                  //           ),
+                                  //   ),
+                                  //   widget03: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[5].METHODname,
+                                  //       style: const TextStyle(
+                                  //         fontSize: 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget04: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[5].FREQ,
+                                  //       style: const TextStyle(
+                                  //         fontSize: 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget05: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var
+                                  //           .datalist[5].SPECIFICATIONname,
+                                  //       style: TextStyle(
+                                  //         fontSize: ReportPDFCommon2var.datalist[5]
+                                  //                     .SPECIFICATIONname.length >
+                                  //                 30
+                                  //             ? 12
+                                  //             : 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget06: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[5].RESULT,
+                                  //       style: TextStyle(
+                                  //         fontSize: ReportPDFCommon2var
+                                  //                     .datalist[5].RESULT.length >
+                                  //                 30
+                                  //             ? 12
+                                  //             : 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // BODY7SLOT(
+                                  //   ListFlex: [6, 1, 4, 2, 2, 2, 2],
+                                  //   widget01: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[6].ITEMname,
+                                  //       style: const TextStyle(
+                                  //         fontSize: 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget02: Center(
+                                  //     child: ReportPDFCommon2var
+                                  //                 .datalist[6].SCMARK ==
+                                  //             'YES'
+                                  //         ? PicShow(
+                                  //             width: 42,
+                                  //             height: 42,
+                                  //             base64:
+                                  //                 ReportPDFCommon2var.SCMASKTYPE)
+                                  //         : const Text(
+                                  //             "",
+                                  //             style: TextStyle(
+                                  //               fontSize: 16,
+                                  //             ),
+                                  //           ),
+                                  //   ),
+                                  //   widget03: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[6].METHODname,
+                                  //       style: const TextStyle(
+                                  //         fontSize: 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget04: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[6].FREQ,
+                                  //       style: const TextStyle(
+                                  //         fontSize: 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget05: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var
+                                  //           .datalist[6].SPECIFICATIONname,
+                                  //       style: TextStyle(
+                                  //         fontSize: ReportPDFCommon2var.datalist[6]
+                                  //                     .SPECIFICATIONname.length >
+                                  //                 30
+                                  //             ? 12
+                                  //             : 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   widget06: Center(
+                                  //     child: Text(
+                                  //       ReportPDFCommon2var.datalist[6].RESULT,
+                                  //       style: TextStyle(
+                                  //         fontSize: ReportPDFCommon2var
+                                  //                     .datalist[6].RESULT.length >
+                                  //                 30
+                                  //             ? 12
+                                  //             : 16,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  //-------->
+                                  HEAD16SLOT(
+                                    ListFlex: S16slot,
+                                    widget01: const Center(
+                                      child: Text(
+                                        "SAMPLE NO.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                1
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[0].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                2
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[1].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                3
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[2].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                4
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[3].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                5
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[4].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                6
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[5].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget08: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                7
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[6].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget09: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                8
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[7].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget10: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                9
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[8].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget11: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                10
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[9].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget12: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                11
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[10].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget13: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                12
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[11].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget14: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                13
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[12].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget15: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                14
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[13].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget16: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                15
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[14].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY16SLOT(
+                                    ListFlex: S16slot,
+                                    widget01: const Center(
+                                      child: Text(
+                                        "POINT NO.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                1
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[0].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                2
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[1].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                3
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[2].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                4
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[3].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                5
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[4].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                6
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[5].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget08: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                7
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[6].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget09: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                8
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[7].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget10: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                9
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[8].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget11: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                10
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[9].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget12: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                11
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[10].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget13: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                12
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[11].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget14: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                13
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[12].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget15: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                14
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[13].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget16: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                15
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[14].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY16SLOT(
+                                    ListFlex: S16slot,
+                                    widget01: const Center(
+                                      child: Text(
+                                        "Surface Hardness",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                1
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[0].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                2
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[1].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                3
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[2].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                4
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[3].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                5
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[4].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                6
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[5].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget08: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                7
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[6].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget09: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                8
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[7].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget10: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                9
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[8].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget11: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                10
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[9].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget12: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                11
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[10].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget13: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                12
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[11].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget14: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                13
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[12].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget15: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                14
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[13].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget16: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var
+                                                    .rawlistHardness.length >=
+                                                15
+                                            ? ReportPDFCommon2var
+                                                .rawlistHardness[14].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  //-------->
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  HEAD16SLOT(
+                                    ListFlex: S16slot,
+                                    widget01: const Center(
+                                      child: Text(
+                                        "SAMPLE NO.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                1
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[0].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                2
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[1].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                3
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[2].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                4
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[3].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                5
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[4].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                6
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[5].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget08: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                7
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[6].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget09: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                8
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[7].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget10: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                9
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[8].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget11: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                10
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[9].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget12: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                11
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[10].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget13: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                12
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[11].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget14: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                13
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[12].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget15: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                14
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[13].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget16: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                15
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[14].DATANO
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY16SLOT(
+                                    ListFlex: S16slot,
+                                    widget01: const Center(
+                                      child: Text(
+                                        "POINT NO.",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                1
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[0].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                2
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[1].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                3
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[2].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                4
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[3].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                5
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[4].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                6
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[5].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget08: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                7
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[6].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget09: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                8
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[7].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget10: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                9
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[8].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget11: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                10
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[9].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget12: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                11
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[10].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget13: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                12
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[11].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget14: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                13
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[12].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget15: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                14
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[13].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget16: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                15
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[14].DATAPCS
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  BODY16SLOT(
+                                    ListFlex: S16slot,
+                                    widget01: const Center(
+                                      child: Text(
+                                        "Diameter",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget02: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                1
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[0].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget03: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                2
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[1].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget04: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                3
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[2].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget05: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                4
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[3].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget06: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                5
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[4].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget07: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                6
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[5].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget08: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                7
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[6].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget09: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                8
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[7].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget10: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                9
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[8].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget11: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                10
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[9].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget12: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                11
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[10].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget13: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                12
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[11].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget14: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                13
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[12].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget15: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                14
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[13].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    widget16: Center(
+                                      child: Text(
+                                        ReportPDFCommon2var.rawlistDia.length >=
+                                                15
+                                            ? ReportPDFCommon2var
+                                                .rawlistDia[14].DATA
+                                            : '',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  //-------->
+                                  PICSLO2SIDE(
+                                    PIC01: _dataCOMMON.databasic.PIC01,
+                                    PIC02: _dataCOMMON.databasic.PIC02,
+                                    widget01: Column(
+                                      children: [
+                                        HEAD6SLOT(
+                                          ListFlex: [2, 1, 1, 1, 1, 1],
+                                          widget01: const Center(
+                                            child: Text(
+                                              "SAMPLE NO.",
+                                              style: TextStyle(
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 40,
-                                            ),
+                                          widget02: Center(
                                             child: Text(
-                                              "Heat & Surface Treatment Division",
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      1
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[0]
+                                                      .DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget03: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      2
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[1]
+                                                      .DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget04: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      3
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[2]
+                                                      .DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget05: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      4
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[3]
+                                                      .DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget06: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      5
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[4]
+                                                      .DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        BODY6SLOT(
+                                          ListFlex: [2, 1, 1, 1, 1, 1],
+                                          widget01: const Center(
+                                            child: Text(
+                                              "POINT NO.",
                                               style: TextStyle(
                                                 fontSize: 16,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                widget02: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        height: 120,
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            bottom: BorderSide(
-                                                color: Colors.black,
-                                                width: 3,
-                                                style: BorderStyle.solid),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                children: const [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                    ),
-                                                    child: Text(
-                                                      "Quality Testing Report (ISONITE ESIE 1)",
-                                                      style: TextStyle(
-                                                        fontSize: 24,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 30, bottom: 10),
-                                                    child: Text(
-                                                      "(ใบรายงานผลการตรวจสอบผลิตภัณฑ์สำหรับกระบวนการ ISN)",
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    const Expanded(
-                                      flex: 1,
-                                      child: SizedBox(
-                                        height: 60,
-                                        child: Center(
-                                          child: Text(
-                                            "FR-HQC-03/028-00-25/10/22",
-                                            style: TextStyle(
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                widget03: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: const [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 40,
-                                            ),
+                                          widget02: Center(
                                             child: Text(
-                                              "PAGE",
-                                              style: TextStyle(
-                                                fontSize: 24,
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      1
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[0]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 30, bottom: 10),
+                                          widget03: Center(
                                             child: Text(
-                                              "1/1",
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      2
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[1]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget04: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      3
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[2]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget05: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      4
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[3]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget06: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      5
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[4]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        BODY6SLOT(
+                                          ListFlex: [2, 1, 1, 1, 1, 1],
+                                          widget01: const Center(
+                                            child: Text(
+                                              "Surface Roughness",
                                               style: TextStyle(
                                                 fontSize: 16,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                          widget02: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      1
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[0].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget03: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      2
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[1].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget04: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      3
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[2].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget05: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      4
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[3].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget06: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistRoughness
+                                                          .length >=
+                                                      5
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistRoughness[4].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        HEAD6SLOT(
+                                          ListFlex: [2, 1, 1, 1, 1, 1],
+                                          widget01: const Center(
+                                            child: Text(
+                                              "SAMPLE NO.",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget02: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      1
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[0].DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget03: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      2
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[1].DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget04: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      3
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[2].DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget05: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      4
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[3].DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget06: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      5
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[4].DATANO
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        BODY6SLOT(
+                                          ListFlex: [2, 1, 1, 1, 1, 1],
+                                          widget01: const Center(
+                                            child: Text(
+                                              "POINT NO.",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget02: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      1
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[0]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget03: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      2
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[1]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget04: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      3
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[2]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget05: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      4
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[3]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget06: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      5
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[4]
+                                                      .DATAPCS
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        BODY6SLOT(
+                                          ListFlex: [2, 1, 1, 1, 1, 1],
+                                          widget01: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var.commp,
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget02: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      1
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[0].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget03: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      2
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[1].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget04: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      3
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[2].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget05: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      4
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[3].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          widget06: Center(
+                                            child: Text(
+                                              ReportPDFCommon2var
+                                                          .rawlistCompound
+                                                          .length >=
+                                                      5
+                                                  ? ReportPDFCommon2var
+                                                      .rawlistCompound[4].DATA
+                                                  : '',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  TAILSLOT(
+                                    PASS: ReportPDFCommon2var.PASS,
+                                    PICS: _dataCOMMON.databasic.PICstd,
+                                    Remark: ReportPDFCommon2var.remark,
+                                    signs: true,
+                                    NAME01:
+                                        _dataCOMMON.databasic.Inspected_sign,
+                                    NAME02: _dataCOMMON.databasic.Check_sign,
+                                    NAME03: _dataCOMMON.databasic.Approve_sign,
+                                  ),
+                                ],
                               ),
-                              HEAD4SLOT(
-                                ListFlex: [4, 8, 3, 5],
-                                widget01: const Center(
-                                  child: Text(
-                                    "Customer",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      ReportPDFCommon2var.CUSTOMER,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                widget03: const Center(
-                                  child: Text(
-                                    "Process",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.PROCESS,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY4SLOT(
-                                ListFlex: [4, 8, 3, 5],
-                                widget01: const Center(
-                                  child: Text(
-                                    "Part Name",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      ReportPDFCommon2var.PARTNAME,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                widget03: const Center(
-                                  child: Text(
-                                    "Part No.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.PARTNO,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY2SLOT(
-                                ListFlex: [4, 16],
-                                widget01: const Center(
-                                  child: Text(
-                                    "Customer Lot No.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      ReportPDFCommon2var.CUSLOT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY6SLOT(
-                                ListFlex: [4, 6, 3, 3, 1, 3],
-                                widget01: const Center(
-                                  child: Text(
-                                    "TPK. Lot No.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      ReportPDFCommon2var.TPKLOT,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                widget03: const Center(
-                                  child: Text(
-                                    "Material",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.MATERIAL,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: const Center(
-                                  child: Text(
-                                    "Qty.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.QTY,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              HEAD1SLOT(
-                                widget01: const Center(
-                                  child: Text(
-                                    "INCOMING INSPECTION",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              HEAD7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: const Center(
-                                  child: Text(
-                                    "ITEM",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: const Center(
-                                  child: Text(
-                                    "SC",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: const Center(
-                                  child: Text(
-                                    "Check Method",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: const Center(
-                                  child: Text(
-                                    "Frequency",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: const Center(
-                                  child: Text(
-                                    "Specification",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: const Center(
-                                  child: Text(
-                                    "Result",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: const Center(
-                                  child: Text(
-                                    "Remark",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: const [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC01 != ''
-                                        ? "Appearance for Rust"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: const Center(
-                                  child: Text(
-                                    "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC01 != ''
-                                        ? "Visual"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC01 != ''
-                                        ? "10 pcs/rcv.Lot"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC01 != ''
-                                        ? "No Rust"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC01 != ''
-                                        ? "No Rust"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget07: const Center(
-                                  child: Text(
-                                    "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC02 != ''
-                                        ? "Appearance for scratch"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC02 != '' ? "" : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC02 != ''
-                                        ? "Visual"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC02 != ''
-                                        ? "10 pcs/rcv.Lot"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC02 != ''
-                                        ? "No Scratch"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.INC02 != ''
-                                        ? "No Scratch"
-                                        : "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget07: const Center(
-                                  child: Text(
-                                    "",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              HEAD1SLOT(
-                                widget01: const Center(
-                                  child: Text(
-                                    "FINAL INSPECTION",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              HEAD7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: const Center(
-                                  child: Text(
-                                    "ITEM",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: const Center(
-                                  child: Text(
-                                    "SC",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: const Center(
-                                  child: Text(
-                                    "Check Method",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: const Center(
-                                  child: Text(
-                                    "Frequency",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: const Center(
-                                  child: Text(
-                                    "Specification",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: const Center(
-                                  child: Text(
-                                    "Result",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: const Center(
-                                  child: Text(
-                                    "Remark",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[0].ITEMname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: ReportPDFCommon2var
-                                              .datalist[0].SCMARK ==
-                                          'YES'
-                                      ? PicShow(
-                                          width: 42,
-                                          height: 42,
-                                          base64:
-                                              ReportPDFCommon2var.SCMASKTYPE)
-                                      : const Text(
-                                          "",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[0].METHODname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[0].FREQ,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                        .datalist[0].SPECIFICATIONname,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var.datalist[0]
-                                                  .SPECIFICATIONname.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[0].RESULT,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var
-                                                  .datalist[0].RESULT.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[1].ITEMname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: ReportPDFCommon2var
-                                              .datalist[1].SCMARK ==
-                                          'YES'
-                                      ? PicShow(
-                                          width: 42,
-                                          height: 42,
-                                          base64:
-                                              ReportPDFCommon2var.SCMASKTYPE)
-                                      : const Text(
-                                          "",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[1].METHODname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[1].FREQ,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                        .datalist[1].SPECIFICATIONname,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var.datalist[1]
-                                                  .SPECIFICATIONname.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[1].RESULT,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var
-                                                  .datalist[1].RESULT.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[2].ITEMname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: ReportPDFCommon2var
-                                              .datalist[2].SCMARK ==
-                                          'YES'
-                                      ? PicShow(
-                                          width: 42,
-                                          height: 42,
-                                          base64:
-                                              ReportPDFCommon2var.SCMASKTYPE)
-                                      : const Text(
-                                          "",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[2].METHODname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[2].FREQ,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                        .datalist[2].SPECIFICATIONname,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var.datalist[2]
-                                                  .SPECIFICATIONname.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[2].RESULT,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var
-                                                  .datalist[2].RESULT.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[3].ITEMname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: ReportPDFCommon2var
-                                              .datalist[3].SCMARK ==
-                                          'YES'
-                                      ? PicShow(
-                                          width: 42,
-                                          height: 42,
-                                          base64:
-                                              ReportPDFCommon2var.SCMASKTYPE)
-                                      : const Text(
-                                          "",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[3].METHODname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[3].FREQ,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                        .datalist[3].SPECIFICATIONname,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var.datalist[3]
-                                                  .SPECIFICATIONname.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[3].RESULT,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var
-                                                  .datalist[3].RESULT.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY7SLOT(
-                                ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                                widget01: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[4].ITEMname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: ReportPDFCommon2var
-                                              .datalist[4].SCMARK ==
-                                          'YES'
-                                      ? PicShow(
-                                          width: 42,
-                                          height: 42,
-                                          base64:
-                                              ReportPDFCommon2var.SCMASKTYPE)
-                                      : const Text(
-                                          "",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[4].METHODname,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[4].FREQ,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                        .datalist[4].SPECIFICATIONname,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var.datalist[4]
-                                                  .SPECIFICATIONname.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.datalist[4].RESULT,
-                                    style: TextStyle(
-                                      fontSize: ReportPDFCommon2var
-                                                  .datalist[4].RESULT.length >
-                                              30
-                                          ? 12
-                                          : 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              // BODY7SLOT(
-                              //   ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                              //   widget01: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[5].ITEMname,
-                              //       style: const TextStyle(
-                              //         fontSize: 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget02: Center(
-                              //     child: ReportPDFCommon2var
-                              //                 .datalist[5].SCMARK ==
-                              //             'YES'
-                              //         ? PicShow(
-                              //             width: 42,
-                              //             height: 42,
-                              //             base64:
-                              //                 ReportPDFCommon2var.SCMASKTYPE)
-                              //         : const Text(
-                              //             "",
-                              //             style: TextStyle(
-                              //               fontSize: 16,
-                              //             ),
-                              //           ),
-                              //   ),
-                              //   widget03: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[5].METHODname,
-                              //       style: const TextStyle(
-                              //         fontSize: 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget04: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[5].FREQ,
-                              //       style: const TextStyle(
-                              //         fontSize: 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget05: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var
-                              //           .datalist[5].SPECIFICATIONname,
-                              //       style: TextStyle(
-                              //         fontSize: ReportPDFCommon2var.datalist[5]
-                              //                     .SPECIFICATIONname.length >
-                              //                 30
-                              //             ? 12
-                              //             : 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget06: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[5].RESULT,
-                              //       style: TextStyle(
-                              //         fontSize: ReportPDFCommon2var
-                              //                     .datalist[5].RESULT.length >
-                              //                 30
-                              //             ? 12
-                              //             : 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
-                              // BODY7SLOT(
-                              //   ListFlex: [6, 1, 4, 2, 2, 2, 2],
-                              //   widget01: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[6].ITEMname,
-                              //       style: const TextStyle(
-                              //         fontSize: 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget02: Center(
-                              //     child: ReportPDFCommon2var
-                              //                 .datalist[6].SCMARK ==
-                              //             'YES'
-                              //         ? PicShow(
-                              //             width: 42,
-                              //             height: 42,
-                              //             base64:
-                              //                 ReportPDFCommon2var.SCMASKTYPE)
-                              //         : const Text(
-                              //             "",
-                              //             style: TextStyle(
-                              //               fontSize: 16,
-                              //             ),
-                              //           ),
-                              //   ),
-                              //   widget03: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[6].METHODname,
-                              //       style: const TextStyle(
-                              //         fontSize: 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget04: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[6].FREQ,
-                              //       style: const TextStyle(
-                              //         fontSize: 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget05: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var
-                              //           .datalist[6].SPECIFICATIONname,
-                              //       style: TextStyle(
-                              //         fontSize: ReportPDFCommon2var.datalist[6]
-                              //                     .SPECIFICATIONname.length >
-                              //                 30
-                              //             ? 12
-                              //             : 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              //   widget06: Center(
-                              //     child: Text(
-                              //       ReportPDFCommon2var.datalist[6].RESULT,
-                              //       style: TextStyle(
-                              //         fontSize: ReportPDFCommon2var
-                              //                     .datalist[6].RESULT.length >
-                              //                 30
-                              //             ? 12
-                              //             : 16,
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              //-------->
-                              HEAD16SLOT(
-                                ListFlex: S16slot,
-                                widget01: const Center(
-                                  child: Text(
-                                    "SAMPLE NO.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            1
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[0].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            2
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[1].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            3
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[2].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            4
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[3].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            5
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[4].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            6
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[5].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget08: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            7
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[6].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget09: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            8
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[7].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget10: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            9
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[8].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget11: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            10
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[9].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget12: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            11
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[10].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget13: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            12
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[11].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget14: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            13
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[12].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget15: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            14
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[13].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget16: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            15
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[14].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY16SLOT(
-                                ListFlex: S16slot,
-                                widget01: const Center(
-                                  child: Text(
-                                    "POINT NO.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            1
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[0].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            2
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[1].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            3
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[2].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            4
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[3].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            5
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[4].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            6
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[5].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget08: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            7
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[6].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget09: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            8
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[7].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget10: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            9
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[8].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget11: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            10
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[9].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget12: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            11
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[10].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget13: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            12
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[11].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget14: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            13
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[12].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget15: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            14
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[13].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget16: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            15
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[14].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY16SLOT(
-                                ListFlex: S16slot,
-                                widget01: const Center(
-                                  child: Text(
-                                    "Surface Hardness",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            1
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[0].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            2
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[1].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            3
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[2].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            4
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[3].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            5
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[4].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            6
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[5].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget08: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            7
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[6].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget09: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            8
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[7].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget10: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            9
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[8].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget11: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            10
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[9].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget12: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            11
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[10].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget13: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            12
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[11].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget14: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            13
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[12].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget15: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            14
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[13].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget16: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var
-                                                .rawlistHardness.length >=
-                                            15
-                                        ? ReportPDFCommon2var
-                                            .rawlistHardness[14].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              //-------->
-                              SizedBox(
-                                height: 5,
-                              ),
-                              HEAD16SLOT(
-                                ListFlex: S16slot,
-                                widget01: const Center(
-                                  child: Text(
-                                    "SAMPLE NO.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 1
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[0].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 2
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[1].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 3
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[2].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 4
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[3].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 5
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[4].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 6
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[5].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget08: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 7
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[6].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget09: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 8
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[7].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget10: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 9
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[8].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget11: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 10
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[9].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget12: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 11
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[10].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget13: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 12
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[11].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget14: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 13
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[12].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget15: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 14
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[13].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget16: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 15
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[14].DATANO
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY16SLOT(
-                                ListFlex: S16slot,
-                                widget01: const Center(
-                                  child: Text(
-                                    "POINT NO.",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 1
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[0].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 2
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[1].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 3
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[2].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 4
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[3].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 5
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[4].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 6
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[5].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget08: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 7
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[6].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget09: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 8
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[7].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget10: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 9
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[8].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget11: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 10
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[9].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget12: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 11
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[10].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget13: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 12
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[11].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget14: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 13
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[12].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget15: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 14
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[13].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget16: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 15
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[14].DATAPCS
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              BODY16SLOT(
-                                ListFlex: S16slot,
-                                widget01: const Center(
-                                  child: Text(
-                                    "Diameter",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget02: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 1
-                                        ? ReportPDFCommon2var.rawlistDia[0].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget03: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 2
-                                        ? ReportPDFCommon2var.rawlistDia[1].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget04: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 3
-                                        ? ReportPDFCommon2var.rawlistDia[2].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget05: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 4
-                                        ? ReportPDFCommon2var.rawlistDia[3].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget06: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 5
-                                        ? ReportPDFCommon2var.rawlistDia[4].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget07: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 6
-                                        ? ReportPDFCommon2var.rawlistDia[5].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget08: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 7
-                                        ? ReportPDFCommon2var.rawlistDia[6].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget09: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 8
-                                        ? ReportPDFCommon2var.rawlistDia[7].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget10: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 9
-                                        ? ReportPDFCommon2var.rawlistDia[8].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget11: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 10
-                                        ? ReportPDFCommon2var.rawlistDia[9].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget12: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 11
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[10].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget13: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 12
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[11].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget14: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 13
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[12].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget15: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 14
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[13].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                widget16: Center(
-                                  child: Text(
-                                    ReportPDFCommon2var.rawlistDia.length >= 15
-                                        ? ReportPDFCommon2var
-                                            .rawlistDia[14].DATA
-                                        : '',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              //-------->
-                              PICSLO2SIDE(
-                                PIC01: _dataCOMMON.databasic.PIC01,
-                                PIC02: _dataCOMMON.databasic.PIC02,
-                                widget01: Column(
-                                  children: [
-                                    HEAD6SLOT(
-                                      ListFlex: [2, 1, 1, 1, 1, 1],
-                                      widget01: const Center(
-                                        child: Text(
-                                          "SAMPLE NO.",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget02: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  1
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[0].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  2
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[1].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  3
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[2].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  4
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[3].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  5
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[4].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    BODY6SLOT(
-                                      ListFlex: [2, 1, 1, 1, 1, 1],
-                                      widget01: const Center(
-                                        child: Text(
-                                          "POINT NO.",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget02: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  1
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[0].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  2
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[1].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  3
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[2].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  4
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[3].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  5
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[4].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    BODY6SLOT(
-                                      ListFlex: [2, 1, 1, 1, 1, 1],
-                                      widget01: const Center(
-                                        child: Text(
-                                          "Surface Roughness",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget02: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  1
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[0].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  2
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[1].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  3
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[2].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  4
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[3].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.rawlistRoughness
-                                                      .length >=
-                                                  5
-                                              ? ReportPDFCommon2var
-                                                  .rawlistRoughness[4].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    HEAD6SLOT(
-                                      ListFlex: [2, 1, 1, 1, 1, 1],
-                                      widget01: const Center(
-                                        child: Text(
-                                          "SAMPLE NO.",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget02: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  1
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[0].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  2
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[1].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  3
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[2].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  4
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[3].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  5
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[4].DATANO
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    BODY6SLOT(
-                                      ListFlex: [2, 1, 1, 1, 1, 1],
-                                      widget01: const Center(
-                                        child: Text(
-                                          "POINT NO.",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget02: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  1
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[0].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  2
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[1].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  3
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[2].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  4
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[3].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  5
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[4].DATAPCS
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    BODY6SLOT(
-                                      ListFlex: [2, 1, 1, 1, 1, 1],
-                                      widget01: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var.commp,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget02: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  1
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[0].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  2
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[1].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  3
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[2].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  4
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[3].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFCommon2var
-                                                      .rawlistCompound.length >=
-                                                  5
-                                              ? ReportPDFCommon2var
-                                                  .rawlistCompound[4].DATA
-                                              : '',
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              TAILSLOT(
-                                PASS: ReportPDFCommon2var.PASS,
-                                PICS: _dataCOMMON.databasic.PICstd,
-                                Remark: ReportPDFCommon2var.remark,
-                                NAME01: "",
-                                NAME02: "",
-                                NAME03: "Saowapak",
-                              ),
-                            ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    if ((USERDATA.UserLV) > 1) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Dio().post(
+                              GLOserver + "Inspected-sign",
+                              data: {
+                                "ID": USERDATA.ID,
+                                "PO": ReportPDFCommon2var.PO,
+                              },
+                            ).then((v) {
+                              var databuff = v.data;
+                              context
+                                  .read<ReportPDFCommon_Cubit>()
+                                  .ReportPDFCommonCubit(ReportPDFCommon2var.PO);
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 80,
+                            color: Colors.blue,
+                            child: Center(
+                              child: Text("Inspected"),
+                            ),
                           ),
                         ),
                       ),
                     ],
-                  ),
-                ],
-              ),
+                    if ((USERDATA.UserLV) > 20) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Dio().post(
+                              GLOserver + "Check-sign",
+                              data: {
+                                "ID": USERDATA.ID,
+                                "PO": ReportPDFCommon2var.PO,
+                              },
+                            ).then((v) {
+                              var databuff = v.data;
+                              context
+                                  .read<ReportPDFCommon_Cubit>()
+                                  .ReportPDFCommonCubit(ReportPDFCommon2var.PO);
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 80,
+                            color: Colors.blue,
+                            child: Center(
+                              child: Text("Check"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    if ((USERDATA.UserLV) > 30) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Dio().post(
+                              GLOserver + "Approve-sign",
+                              data: {
+                                "ID": USERDATA.ID,
+                                "PO": ReportPDFCommon2var.PO,
+                              },
+                            ).then((v) {
+                              var databuff = v.data;
+                              context
+                                  .read<ReportPDFCommon_Cubit>()
+                                  .ReportPDFCommonCubit(ReportPDFCommon2var.PO);
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 80,
+                            color: Colors.blue,
+                            child: Center(
+                              child: Text("Approve"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ],
             ),
           ),
           Container(

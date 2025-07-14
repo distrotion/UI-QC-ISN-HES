@@ -38,7 +38,10 @@ class _App_BarState extends State<App_Bar> {
           //Text("  |  <--->  |  " + current_page.toString()),
           SizedBox(
             width: 200,
-            child: Text("${USERDATA.NAME} (${USERDATA.Section})"),
+            child: Text(
+              "${USERDATA.NAME} (${USERDATA.Section})",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           Pack_topright_bar(),
         ],

@@ -221,6 +221,7 @@ class TAILSLOT extends StatelessWidget {
     this.NAME01,
     this.NAME02,
     this.NAME03,
+    this.signs,
   }) : super(key: key);
   Widget? widget01;
   Widget? widget02;
@@ -234,6 +235,8 @@ class TAILSLOT extends StatelessWidget {
   String? NAME01;
   String? NAME02;
   String? NAME03;
+
+  bool? signs;
 
   @override
   Widget build(BuildContext context) {
@@ -314,58 +317,104 @@ class TAILSLOT extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  widget02: Column(
+                                  widget02: Stack(
                                     children: [
                                       Align(
                                         alignment: Alignment.center,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 20, top: 25),
-                                          child: Text(NAME01 ?? ''),
-                                        ),
+                                            padding: const EdgeInsets.only(
+                                                // bottom: 5,
+                                                // top: 10,
+                                                ),
+                                            // child: Text(NAME01 ?? ''),
+                                            child: (signs ?? false)
+                                                ? SizedBox(
+                                                    height: 120,
+                                                    width: 120,
+                                                    child: PicShowAct2(
+                                                        width: 120,
+                                                        height: 120,
+                                                        base64: NAME01 ?? ''),
+                                                  )
+                                                : SizedBox(
+                                                    height: 48,
+                                                    width: 100,
+                                                    child: Text(NAME01 ?? ''))),
                                       ),
                                       Align(
-                                        alignment: Alignment.bottomRight,
+                                        alignment: Alignment.bottomCenter,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 4),
                                           child: Text(formattedDate),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  widget03: Column(
+                                  widget03: Stack(
                                     children: [
                                       Align(
                                         alignment: Alignment.center,
                                         child: Padding(
                                           padding: const EdgeInsets.only(
-                                              bottom: 20, top: 25),
-                                          child: Text(NAME02 ?? ''),
+                                              // bottom: 5,
+                                              // top: 10,
+                                              ),
+                                          // child: Text(NAME02 ?? ''),
+                                          child: (signs ?? false)
+                                              ? SizedBox(
+                                                  height: 120,
+                                                  width: 120,
+                                                  child: PicShowAct2(
+                                                      width: 120,
+                                                      height: 120,
+                                                      base64: NAME02 ?? ''),
+                                                )
+                                              : SizedBox(
+                                                  height: 48,
+                                                  width: 100,
+                                                  child: Text(NAME02 ?? '')),
                                         ),
                                       ),
                                       Align(
-                                        alignment: Alignment.bottomRight,
+                                        alignment: Alignment.bottomCenter,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 4),
                                           child: Text(formattedDate),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  widget04: Column(
+                                  widget04: Stack(
                                     children: [
                                       Align(
                                         alignment: Alignment.center,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 20, top: 25),
-                                          child: Text(NAME03 ?? ''),
-                                        ),
+                                            padding: const EdgeInsets.only(
+                                                // bottom: 5,
+                                                // top: 10,
+                                                ),
+                                            // child: Text(NAME03 ?? ''),
+                                            child: (signs ?? false)
+                                                ? SizedBox(
+                                                    height: 120,
+                                                    width: 120,
+                                                    child: PicShowAct2(
+                                                        width: 120,
+                                                        height: 120,
+                                                        base64: NAME03 ?? ''),
+                                                  )
+                                                : SizedBox(
+                                                    height: 48,
+                                                    width: 100,
+                                                    child: Text(NAME03 ?? ''))),
                                       ),
                                       Align(
-                                        alignment: Alignment.bottomRight,
+                                        alignment: Alignment.bottomCenter,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 4),
                                           child: Text(formattedDate),
                                         ),
                                       ),
