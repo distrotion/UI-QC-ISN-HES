@@ -61,7 +61,7 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
   void initState() {
     super.initState();
     BackButtonInterceptor.add(myInterceptor);
-    LCRUVS001var.SINGLEINPUT = '';
+    // LCRUVS001var.SINGLEINPUT = '';
     context.read<LCRUVS001_Bloc>().add(LCRUVS001_READ());
   }
 
