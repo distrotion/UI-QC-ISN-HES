@@ -36,6 +36,7 @@ class ReportPDFCommon extends StatefulWidget {
 class _ReportPDFCommonState extends State<ReportPDFCommon> {
   @override
   void initState() {
+    ReportPDFCommonvar.remark = '';
     // ReportPDFCommonvar.SCMASKTYPE = SCMASK03;
     String d = SELECTReportvar.logo;
     if (d == '2') {

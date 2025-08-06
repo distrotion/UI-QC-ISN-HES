@@ -35,6 +35,7 @@ class ReportPDFTEST extends StatefulWidget {
 class _ReportPDFTESTState extends State<ReportPDFTEST> {
   @override
   void initState() {
+    ReportPDFTESTvar.remark = '';
     String d = SELECTReportvar.logo;
     if (d == '2') {
       setState(() {

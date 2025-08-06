@@ -44,8 +44,9 @@ dependencies:
   csv: ^6.0.0
   pdf: ^3.8.4
   fl_chart: ^0.69.0
-  dio: ^5.8.0+1
+
   lottie: ^3.2.0
+  dio: ^5.8.0+1
 
 
 dev_dependencies:

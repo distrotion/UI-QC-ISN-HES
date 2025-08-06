@@ -34,6 +34,7 @@ class ReportPDFCommon2 extends StatefulWidget {
 class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
   @override
   void initState() {
+    ReportPDFCommon2var.remark = '';
     String d = SELECTReportvar.logo;
     if (d == '2') {
       setState(() {

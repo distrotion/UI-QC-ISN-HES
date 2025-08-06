@@ -33,6 +33,8 @@ class HIRGH001var {
   static List<INSDATA> ITEMleftVALUE = [];
   static late Timer DHtimer;
 
+  static int ansdata = 0;
+
   //
   static String ItemPickSELECT = '';
   //

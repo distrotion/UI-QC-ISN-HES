@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:dio/dio.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,8 +12,11 @@ import '../../bloc/BlocEvent/ChangePageEvent.dart';
 import '../../bloc/cubit/NotificationEvent.dart';
 import '../../data/global.dart';
 import '../../mainBody.dart';
-import '../../widget/QCWIDGET/W1SINGLESHOT/SINGLESHOTwidget.dart';
+import '../../widget/QCWIDGET/W1SINGLESHOT/SINGLESHOTRUGwidget.dart';
+
 import '../../widget/common/Loading.dart';
+import '../../widget/common/Safty.dart';
+import '../../widget/common/graphpeak.dart';
 import '../../widget/onlyINqcui/popup.dart';
 import '../P1FIRSTUI/FIRSTuiVAR.dart';
 import '../page1.dart';
@@ -60,6 +65,7 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
   void initState() {
     super.initState();
     BackButtonInterceptor.add(myInterceptor);
+    HIRGH001var.ansdata = 0;
     context.read<HIRGH001_Bloc>().add(HIRGH001_READ());
   }
 
@@ -86,6 +92,7 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
   @override
   Widget build(BuildContext context) {
     PageMemory = 5;
+
     if (widget.data?.UPDATE == 'OK') {
       setState(() {
         HIRGH001var.PO = widget.data?.PO ?? '';
@@ -143,7 +150,7 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
       });
       HIRGH001var.DHtimer = timer;
     }
-    return SINGLESHOTmain(
+    return SINGLESHOTRUGmain(
       //------ Left
       LABEL: "HI-RGH-001",
       PO: HIRGH001var.PO,
@@ -184,6 +191,84 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
             .add(TRICKER_HIRGH001geteachGRAPH());
       },
       //------- Bottom
+      GETPEAK: (v) {
+        //http://172.20.30.46:1880/getpeak
+        Dio().post(
+          "http://172.20.30.46:1880/getpeak",
+          data: {},
+        ).then((v) {
+          if (v.statusCode == 200) {
+            //
+            var data = v.data;
+            // print(data.length);
+            List<FlSpot> dataout = [];
+
+            for (var i = 0; i < data.length; i++) {
+              String datax =
+                  data[i]["X"] != null ? data[i]["X"].toString() : "";
+              String dataZ =
+                  data[i]["Z"] != null ? data[i]["Z"].toString() : "";
+
+              if (datax != "um") {
+                double dataZs = double.parse(ConverstStr(dataZ));
+                if (double.parse(ConverstStr(dataZ)) > 1) {
+                  dataZs = 1;
+                } else if (double.parse(ConverstStr(dataZ)) < -1) {
+                  dataZs = -1;
+                } else {
+                  dataZs = double.parse(ConverstStr(dataZ));
+                }
+                dataout.add(FlSpot(double.parse(ConverstStr(datax)), dataZs));
+              }
+            }
+
+            HIRGH001var.ansdata = findPeaksOverThreshold(dataout, 0.25).length;
+
+            showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (BuildContext context) {
+                return Dialog(
+                  child: SizedBox(
+                      height: 500,
+                      width: 1200,
+                      child: RoughnessGraph(
+                        data: dataout,
+                        widgetdata: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                            onTap: () {
+                              if (int.parse(HIRGH001var.POINTs) >
+                                  HIRGH001var.confirmdata.length) {
+                                Dio().post(
+                                  GLOserver + "HIRGH001-confirmdata-set",
+                                  data: [
+                                    {"V1": "HSC", "V2": HIRGH001var.ansdata}
+                                  ],
+                                ).then((v) {
+                                  Navigator.pop(context);
+                                });
+                              } else {
+                                WORNINGpop(context, "Have completed POINTs");
+                              }
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 40,
+                              color: Colors.blue,
+                              child: Center(
+                                child: Text("Accept"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
+                );
+              },
+            );
+          }
+        });
+      },
       ACCEPT: (v) {
         if ((HIRGH001var.RESULTFORMAT == 'Graph' &&
                 HIRGH001var.GAPname != '') ||
