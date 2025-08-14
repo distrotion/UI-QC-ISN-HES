@@ -121,3 +121,76 @@ Future<String> captureToback(
 //   }
 //   return null;
 // }
+
+Future<String> capture2(GlobalKey<State<StatefulWidget>> globalKey1,
+    GlobalKey<State<StatefulWidget>> globalKey2, String PO) async {
+  try {
+    // FreeLoading(contextin);
+    RenderRepaintBoundary? boundary1 =
+        globalKey1.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+
+    final image1 = await boundary1!.toImage(pixelRatio: 1.5);
+
+    final ByteData? bytes1 =
+        await image1.toByteData(format: dart_ui.ImageByteFormat.png);
+    Uint8List dataImage1 =
+        bytes1!.buffer.asUint8List(bytes1.offsetInBytes, bytes1.lengthInBytes);
+
+    final imagePDF1 = pw.MemoryImage(
+      dataImage1,
+    );
+    //-----------
+    RenderRepaintBoundary? boundary2 =
+        globalKey2.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+
+    final image2 = await boundary2!.toImage(pixelRatio: 1.5);
+
+    final ByteData? bytes2 =
+        await image2.toByteData(format: dart_ui.ImageByteFormat.png);
+    Uint8List dataImage2 =
+        bytes2!.buffer.asUint8List(bytes2.offsetInBytes, bytes2.lengthInBytes);
+
+    final imagePDF2 = pw.MemoryImage(
+      dataImage2,
+    );
+    //-----------
+
+    final pdf = pw.Document();
+
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        margin: pw.EdgeInsets.all(4),
+        build: (pw.Context context) => pw.Center(
+          child: pw.Column(children: [pw.Image(imagePDF1)]),
+        ),
+      ),
+    );
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        margin: pw.EdgeInsets.all(4),
+        build: (pw.Context context) => pw.Center(
+          child: pw.Column(children: [pw.Image(imagePDF2)]),
+        ),
+      ),
+    );
+
+    final response = await Dio().post(
+      server + 'genfloder',
+      data: {
+        "PIC": "imageEncoded",
+        "PO": PO,
+      },
+    );
+
+    // print(await pdf.save());
+    final bytesPDF = await pdf.save();
+    await FileSaveHelper.saveAndLaunchFile(bytesPDF, '${PO}.pdf');
+
+    // Navigator.pop(contextin);
+    return 'ok';
+  } catch (e) {
+    rethrow;
+  }
+}

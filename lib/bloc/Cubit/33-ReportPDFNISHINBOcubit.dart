@@ -422,14 +422,17 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
                           ITEMlist[le].CONTROLlimmit = '8.0-15.5 µm.';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC1data']));
+                                      ['PSC1'][0]['PIC1data']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC2data']));
+                                      ['PSC1'][0]['PIC2data']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC3data']));
+                                      ['PSC1'][0]['PIC3data']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(1);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(1);
@@ -479,14 +482,17 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
                           ITEMlist[le].CONTROLlimmit = '≤ 5µm.';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC1data']));
+                                      ['PSC1'][0]['PIC1data']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC2data']));
+                                      ['PSC1'][0]['PIC2data']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC3data']));
+                                      ['PSC1'][0]['PIC3data']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(1);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(1);
@@ -528,14 +534,17 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
                           ITEMlist[le].CONTROLlimmit = '550-660 Hmv';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PO3']));
+                                      ['PSC1'][0]['PO3']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][1]['PO3']));
+                                      ['PSC1'][1]['PO3']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][2]['PO3']));
+                                      ['PSC1'][2]['PO3']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(0);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(0);
@@ -577,14 +586,17 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
                           ITEMlist[le].CONTROLlimmit = '30-58';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PO3']));
+                                      ['PSC1'][0]['PO3']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][1]['PO3']));
+                                      ['PSC1'][1]['PO3']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][2]['PO3']));
+                                      ['PSC1'][2]['PO3']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(0);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(0);
@@ -626,13 +638,15 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
 
                           double datain = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PO3']));
+                                      ['PSC1'][0]['PO3']
+                                  .toString()));
                           if (datain <= 0.03) {
                             ITEMlist[le].DATA01 = '< 0.03';
                           } else {
                             ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                     FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                        ['PSC1'][0]['PO3']))
+                                            ['PSC1'][0]['PO3']
+                                        .toString()))
                                 .toStringAsFixed(2);
                           }
 

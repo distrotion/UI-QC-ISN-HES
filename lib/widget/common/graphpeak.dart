@@ -153,7 +153,15 @@ List<FlSpot> findPeaksOverThreshold(List<FlSpot> data, double threshold) {
   String memeN = '';
   int coutP = 0;
   int coutN = 0;
-  for (int i = 1; i < data.length - 1; i++) {
+  if (data.isNotEmpty) {
+    if (data[0].y >= threshold) {
+      memeP = 'alresdy';
+    } else if (data[0].y <= -threshold) {
+      memeN = 'alresdy';
+    }
+  }
+
+  for (int i = 1; i < data.length; i++) {
     // if (data[i].y >= threshold &&
     //     data[i].y >= data[i - 1].y &&
     //     data[i].y >= data[i + 1].y) {
@@ -183,5 +191,10 @@ List<FlSpot> findPeaksOverThreshold(List<FlSpot> data, double threshold) {
     }
   }
   print(coutP + coutN);
+  if ((data[data.length - 1].y > threshold) ||
+      (data[data.length - 1].y < -threshold)) {
+    peaks.removeLast();
+  }
+
   return peaks;
 }

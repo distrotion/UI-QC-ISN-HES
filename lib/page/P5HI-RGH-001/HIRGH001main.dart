@@ -194,7 +194,7 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
       GETPEAK: (v) {
         //http://172.20.30.46:1880/getpeak
         Dio().post(
-          "http://172.20.30.46:1880/getpeak",
+          "http://172.20.30.46:2200/getpeak",
           data: {},
         ).then((v) {
           if (v.statusCode == 200) {
@@ -246,7 +246,19 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
                                     {"V1": "HSC", "V2": HIRGH001var.ansdata}
                                   ],
                                 ).then((v) {
-                                  Navigator.pop(context);
+                                  FreeLoading(context);
+                                  Future.delayed(Duration(seconds: 2), () {
+                                    Dio().post(
+                                      "http://172.20.30.46:2200/savedata",
+                                      data: {
+                                        "name":
+                                            "${HIRGH001var.PO}-${HIRGH001var.confirmdata.length}"
+                                      },
+                                    ).then((v) {
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    });
+                                  });
                                 });
                               } else {
                                 WORNINGpop(context, "Have completed POINTs");

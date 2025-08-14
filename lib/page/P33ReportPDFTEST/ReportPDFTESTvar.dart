@@ -1,3 +1,5 @@
+import 'package:fl_chart/fl_chart.dart';
+
 import '../../widget/common/imgset.dart';
 
 class ReportPDFTESTvar {
@@ -26,6 +28,10 @@ class ReportPDFTESTvar {
 
   static String INC01 = '';
   static String INC02 = '';
+
+  static List<FlSpot> dataout1 = [];
+  static List<FlSpot> dataout2 = [];
+  static List<FlSpot> dataout3 = [];
 
   static List<ReportPDFACTlist> datalist = [
     ReportPDFACTlist(),

@@ -413,14 +413,17 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                           ITEMlist[le].CONTROLlimmit = '8.0-15.5 µm.';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC1data']));
+                                      ['PSC1'][0]['PIC1data']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC2data']));
+                                      ['PSC1'][0]['PIC2data']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC3data']));
+                                      ['PSC1'][0]['PIC3data']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(1);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(1);
@@ -470,14 +473,17 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                           ITEMlist[le].CONTROLlimmit = '≤ 5µm.';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC1data']));
+                                      ['PSC1'][0]['PIC1data']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC2data']));
+                                      ['PSC1'][0]['PIC2data']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PIC3data']));
+                                      ['PSC1'][0]['PIC3data']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(1);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(1);
@@ -519,14 +525,17 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                           ITEMlist[le].CONTROLlimmit = '550-660 Hmv';
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PO3']));
+                                      ['PSC1'][0]['PO3']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][1]['PO3']));
+                                      ['PSC1'][1]['PO3']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][2]['PO3']));
+                                      ['PSC1'][2]['PO3']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(0);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(0);
@@ -566,16 +575,23 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
                             4) {
                           ITEMlist[le].SPECIFICATION = '26-60 HSC';
                           ITEMlist[le].CONTROLlimmit = '30-58 HSC';
+                          // print("---------->XX");
+                          // print(ConverstStr(FINALdata[MACHINElist[k]]
+                          //     [ITEMlist[le].ITEM]['PSC1'][0]['PO3']));
+                          // print("---------->XX");
                           double data01 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PO3']));
+                                      ['PSC1'][0]['PO3']
+                                  .toString()));
                           double data02 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][1]['PO3']));
+                                      ['PSC1'][1]['PO3']
+                                  .toString()));
 
                           double data03 = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][2]['PO3']));
+                                      ['PSC1'][2]['PO3']
+                                  .toString()));
 
                           ITEMlist[le].DATA01 = data01.toStringAsFixed(0);
                           ITEMlist[le].DATA02 = data02.toStringAsFixed(0);
@@ -617,13 +633,15 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
 
                           double datain = double.parse(ConverstStr(
                               FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                  ['PSC1'][0]['PO3']));
+                                      ['PSC1'][0]['PO3']
+                                  .toString()));
                           // if (datain <= 0.03) {
                           //   ITEMlist[le].DATA01 = '< 0.03';
                           // } else {
                           ITEMlist[le].DATA01 = double.parse(ConverstStr(
                                   FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
-                                      ['PSC1'][0]['PO3']))
+                                          ['PSC1'][0]['PO3']
+                                      .toString()))
                               .toStringAsFixed(2);
                           // }
 
@@ -688,41 +706,41 @@ class ReportPDFACT02cubit_Cubit extends Cubit<ACTReport02Output> {
     }
 
     //-----------
-    var now1 = DateTime.now().subtract(Duration(days: 30));
-    var now2 = DateTime.now().add(Duration(days: 5));
-    String day = DateFormat('dd').format(now1);
-    String month = DateFormat('MM').format(now1);
-    String year = DateFormat('yyyy').format(now1);
+    // var now1 = DateTime.now().subtract(Duration(days: 30));
+    // var now2 = DateTime.now().add(Duration(days: 5));
+    // String day = DateFormat('dd').format(now1);
+    // String month = DateFormat('MM').format(now1);
+    // String year = DateFormat('yyyy').format(now1);
 
-    String days = DateFormat('dd').format(now2);
-    String months = DateFormat('MM').format(now2);
-    String years = DateFormat('yyyy').format(now2);
-    final response9 = await Dio().post(
-      "${server2}10GETDATAFROMJOBBINGAQC/GETDATA",
-      data: {
-        "HEADER": {
-          "PLANT": "2300",
-          "ORD_ST_DATE_FR": "${day}.${month}.${year}",
-          "ORD_ST_DATE_TO": "${days}.${months}.${years}",
-          "ORDER_TYPE": "",
-          "PROD_SUP": ""
-        },
-        "PROC_ORD": [
-          {"PROCESS_ORDER": PO, "MATERIAL": ""}
-        ]
-      },
-    );
-    if (response9.statusCode == 200) {
-      var databuffref = response9.data;
-      // print(databuffref);
-      if (databuffref['HEADER_INFO'] != null) {
-        if (databuffref['HEADER_INFO'].length > 0) {
-          // print(databuffref['HEADER_INFO'][0]['USER_STATUS']);
-          output.databasic.USER_STATUS =
-              databuffref['HEADER_INFO'][0]['USER_STATUS'].toString();
-        }
-      }
-    }
+    // String days = DateFormat('dd').format(now2);
+    // String months = DateFormat('MM').format(now2);
+    // String years = DateFormat('yyyy').format(now2);
+    // final response9 = await Dio().post(
+    //   "${server2}10GETDATAFROMJOBBINGAQC/GETDATA",
+    //   data: {
+    //     "HEADER": {
+    //       "PLANT": "2300",
+    //       "ORD_ST_DATE_FR": "${day}.${month}.${year}",
+    //       "ORD_ST_DATE_TO": "${days}.${months}.${years}",
+    //       "ORDER_TYPE": "",
+    //       "PROD_SUP": ""
+    //     },
+    //     "PROC_ORD": [
+    //       {"PROCESS_ORDER": PO, "MATERIAL": ""}
+    //     ]
+    //   },
+    // );
+    // if (response9.statusCode == 200) {
+    //   var databuffref = response9.data;
+    //   // print(databuffref);
+    //   if (databuffref['HEADER_INFO'] != null) {
+    //     if (databuffref['HEADER_INFO'].length > 0) {
+    //       // print(databuffref['HEADER_INFO'][0]['USER_STATUS']);
+    //       output.databasic.USER_STATUS =
+    //           databuffref['HEADER_INFO'][0]['USER_STATUS'].toString();
+    //     }
+    //   }
+    // }
 
     // Navigator.pop(ReportPDFACT02context);
     emit(output);

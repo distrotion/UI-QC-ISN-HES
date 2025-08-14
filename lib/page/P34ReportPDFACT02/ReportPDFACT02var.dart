@@ -1,3 +1,5 @@
+import 'package:fl_chart/fl_chart.dart';
+
 import '../../widget/common/imgset.dart';
 
 class ReportPDFACT02var {
@@ -19,6 +21,10 @@ class ReportPDFACT02var {
   static String PICstd = '';
   static String PIC01 = '';
   static String PIC02 = '';
+
+  static List<FlSpot> dataout1 = [];
+  static List<FlSpot> dataout2 = [];
+  static List<FlSpot> dataout3 = [];
 
   static String PASS = '';
 

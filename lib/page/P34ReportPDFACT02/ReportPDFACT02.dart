@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +14,7 @@ import '../../widget/common/Advancedropdown.dart';
 import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/common/Safty.dart';
+import '../../widget/common/graphpeak.dart';
 import '../../widget/common/imgset.dart';
 import '../../widget/function/helper.dart';
 import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
@@ -21,6 +23,9 @@ import '../P31ReportPDFcommon/ReportPDFCommonMain.dart';
 import 'ReportPDFACT02var.dart';
 
 late BuildContext ReportPDFACT02context;
+
+final GlobalKey _globalKey1 = GlobalKey();
+final GlobalKey _globalKey2 = GlobalKey();
 
 class ReportPDFACT02 extends StatefulWidget {
   ReportPDFACT02({
@@ -60,20 +65,114 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
     }
     ReportPDFACT02var.PASS = '';
     RepoteData.SUMLOT = '-';
+    ReportPDFACT02var.dataout1 = [];
+    ReportPDFACT02var.dataout2 = [];
+    ReportPDFACT02var.dataout3 = [];
     if (ReportPDFACT02var.PO != '') {
       ReportPDFACT02var.canf = false;
       context
           .read<ReportPDFACT02cubit_Cubit>()
           .ReportPDF_ACT(ReportPDFACT02var.PO);
     }
+
     super.initState();
   }
 
-  final GlobalKey _globalKey = GlobalKey();
+  // final GlobalKey _globalKey1 = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     ReportPDFACT02context = context;
+
+    if (ReportPDFACT02var.PO != '' && ReportPDFACT02var.dataout1.isEmpty) {
+      Dio().post(
+        "http://172.20.30.46:2200/getdata",
+        data: {
+          "name": ReportPDFACT02var.PO + '-1',
+        },
+      ).then((v) {
+        var data = v.data;
+
+        List<FlSpot> dataout = [];
+
+        for (var i = 0; i < data.length; i++) {
+          String datax = data[i]["X"] != null ? data[i]["X"].toString() : "";
+          String dataZ = data[i]["Z"] != null ? data[i]["Z"].toString() : "";
+
+          if (datax != "um") {
+            double dataZs = double.parse(ConverstStr(dataZ));
+            if (double.parse(ConverstStr(dataZ)) > 1) {
+              dataZs = 1;
+            } else if (double.parse(ConverstStr(dataZ)) < -1) {
+              dataZs = -1;
+            } else {
+              dataZs = double.parse(ConverstStr(dataZ));
+            }
+            dataout.add(FlSpot(double.parse(ConverstStr(datax)), dataZs));
+          }
+        }
+
+        ReportPDFACT02var.dataout1 = dataout;
+      });
+      Dio().post(
+        "http://172.20.30.46:2200/getdata",
+        data: {
+          "name": ReportPDFACT02var.PO + '-2',
+        },
+      ).then((v) {
+        var data = v.data;
+
+        List<FlSpot> dataout = [];
+
+        for (var i = 0; i < data.length; i++) {
+          String datax = data[i]["X"] != null ? data[i]["X"].toString() : "";
+          String dataZ = data[i]["Z"] != null ? data[i]["Z"].toString() : "";
+
+          if (datax != "um") {
+            double dataZs = double.parse(ConverstStr(dataZ));
+            if (double.parse(ConverstStr(dataZ)) > 1) {
+              dataZs = 1;
+            } else if (double.parse(ConverstStr(dataZ)) < -1) {
+              dataZs = -1;
+            } else {
+              dataZs = double.parse(ConverstStr(dataZ));
+            }
+            dataout.add(FlSpot(double.parse(ConverstStr(datax)), dataZs));
+          }
+        }
+
+        ReportPDFACT02var.dataout2 = dataout;
+      });
+      Dio().post(
+        "http://172.20.30.46:2200/getdata",
+        data: {
+          "name": ReportPDFACT02var.PO + '-3',
+        },
+      ).then((v) {
+        var data = v.data;
+
+        List<FlSpot> dataout = [];
+
+        for (var i = 0; i < data.length; i++) {
+          String datax = data[i]["X"] != null ? data[i]["X"].toString() : "";
+          String dataZ = data[i]["Z"] != null ? data[i]["Z"].toString() : "";
+
+          if (datax != "um") {
+            double dataZs = double.parse(ConverstStr(dataZ));
+            if (double.parse(ConverstStr(dataZ)) > 1) {
+              dataZs = 1;
+            } else if (double.parse(ConverstStr(dataZ)) < -1) {
+              dataZs = -1;
+            } else {
+              dataZs = double.parse(ConverstStr(dataZ));
+            }
+            dataout.add(FlSpot(double.parse(ConverstStr(datax)), dataZs));
+          }
+        }
+
+        ReportPDFACT02var.dataout3 = dataout;
+      });
+    }
 
     ACTReport02Output _dataACT = widget.dataACT ??
         ACTReport02Output(
@@ -535,8 +634,9 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                     onTap: () {
                       PDFloader(context);
                       Future.delayed(const Duration(milliseconds: 1000), () {
-                        captureToback(
-                          _globalKey,
+                        capture2(
+                          _globalKey1,
+                          _globalKey2,
                           ReportPDFACT02var.PO,
                         ).then((value) {
                           print(value);
@@ -565,8 +665,17 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                         setState(() {});
                         PDFloader(context);
                         Future.delayed(const Duration(milliseconds: 1000), () {
-                          captureToback(
-                            _globalKey,
+                          // capture2(
+                          //   _globalKey1,
+                          //   ReportPDFACT02var.PO,
+                          // ).then((value) {
+                          //   print(value);
+
+                          //   Navigator.pop(context);
+                          // });
+                          capture2(
+                            _globalKey1,
+                            _globalKey2,
                             ReportPDFACT02var.PO,
                           ).then((value) {
                             print(value);
@@ -635,7 +744,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
             child: Column(
               children: [
                 RepaintBoundary(
-                  key: _globalKey,
+                  key: _globalKey1,
                   child: Padding(
                     padding: const EdgeInsets.only(
                         top: 24.0, right: 16.0, left: 16.0, bottom: 16.0),
@@ -649,7 +758,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                             Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Container(
-                                height: 2000,
+                                height: 1950,
                                 width: 1364,
                                 decoration: BoxDecoration(
                                   border:
@@ -2486,6 +2595,377 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                       NAME01: _dataACT.databasic.Inspected_sign,
                                       NAME02: _dataACT.databasic.Check_sign,
                                       NAME03: _dataACT.databasic.Approve_sign,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                RepaintBoundary(
+                  key: _globalKey2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 24.0, right: 16.0, left: 16.0, bottom: 16.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            // const SizedBox(
+                            //   width: 50,
+                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                height: 1950,
+                                width: 1364,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.black, width: 3),
+                                  // color: Colors.red,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(0)),
+                                ),
+                                child: Column(
+                                  children: [
+                                    HEAD3SLOT(
+                                      ListFlex: const [5, 4, 1],
+                                      widget01: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 15, right: 15),
+                                            child: Container(
+                                              height: 120,
+                                              width: 230,
+                                              decoration: const BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                    "assets/images/logoonly_tpkpng.png",
+                                                  ),
+                                                  fit: BoxFit.fitWidth,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          // PicShow(
+                                          //     width: 120, height: 230, base64: tpklogo),
+                                          SizedBox(
+                                            height: 120,
+                                            width: 400,
+                                            child: Column(
+                                              children: const [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 20,
+                                                  ),
+                                                  child: Text(
+                                                    "THAI PARKERIZING CO.,LTD.",
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 40,
+                                                  ),
+                                                  child: Text(
+                                                    "Heat & Surface Treatment Division",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      widget02: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              height: 120,
+                                              decoration: const BoxDecoration(
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3,
+                                                      style: BorderStyle.solid),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Column(
+                                                      children: const [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                            top: 20,
+                                                          ),
+                                                          child: Text(
+                                                            "Quality Testing Report (ISONITE ESIE 1)",
+                                                            style: TextStyle(
+                                                              fontSize: 24,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 30,
+                                                                  bottom: 10),
+                                                          child: Text(
+                                                            "(ใบรายงานผลการตรวจสอบผลิตภัณฑ์สำหรับกระบวนการ ISN)",
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const Expanded(
+                                            flex: 1,
+                                            child: SizedBox(
+                                              height: 60,
+                                              child: Center(
+                                                child: Text(
+                                                  "FR-HQC-03/028-00-25/10/22",
+                                                  style: TextStyle(
+                                                    fontSize: 24,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      widget03: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              children: const [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 40,
+                                                  ),
+                                                  child: Text(
+                                                    "PAGE",
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 30, bottom: 10),
+                                                  child: Text(
+                                                    "-",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    HEAD4SLOT(
+                                      ListFlex: [4, 8, 3, 5],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "Customer",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.CUSTOMER,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Process",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.PROCESS,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY4SLOT(
+                                      ListFlex: [4, 8, 3, 5],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "Part Name",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.PARTNAME,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Part No.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.PARTNO,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY2SLOT(
+                                      ListFlex: [4, 16],
+                                      widget01: Center(
+                                        child: Text(
+                                          "Customer Lot No.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.CUSLOT,
+                                            style: TextStyle(
+                                              // fontSize: 16,
+                                              fontSize: sizep,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    BODY6SLOT(
+                                      ListFlex: [4, 6, 3, 3, 1, 3],
+                                      widget01: const Center(
+                                        child: Text(
+                                          "TPK. Lot No.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget02: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Text(
+                                            ReportPDFACT02var.TPKLOT,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      widget03: const Center(
+                                        child: Text(
+                                          "Material",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget04: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.MATERIAL,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      widget05: const Center(
+                                        child: Text(
+                                          "Qty.",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      widget06: Center(
+                                        child: Text(
+                                          ReportPDFACT02var.QTY,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    RoughnessGraph(
+                                      data: ReportPDFACT02var.dataout1,
+                                    ),
+                                    RoughnessGraph(
+                                      data: ReportPDFACT02var.dataout2,
+                                    ),
+                                    RoughnessGraph(
+                                      data: ReportPDFACT02var.dataout3,
                                     ),
                                   ],
                                 ),
