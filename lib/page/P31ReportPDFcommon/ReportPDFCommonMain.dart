@@ -91,6 +91,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.PROCESS = _dataCOMMON.databasic.PROCESS;
       ReportPDFCommonvar.PARTNAME = _dataCOMMON.databasic.PARTNAME;
       ReportPDFCommonvar.PARTNO = _dataCOMMON.databasic.PARTNO;
+      ReportPDFCommonvar.PARTNO_s = _dataCOMMON.databasic.PARTNO_s;
       ReportPDFCommonvar.CUSLOT = _dataCOMMON.databasic.CUSLOT;
       ReportPDFCommonvar.TPKLOT = _dataCOMMON.databasic.TPKLOT;
       ReportPDFCommonvar.MATERIAL = _dataCOMMON.databasic.MATERIAL;
@@ -615,6 +616,7 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
       ReportPDFCommonvar.PROCESS = '';
       ReportPDFCommonvar.PARTNAME = '';
       ReportPDFCommonvar.PARTNO = '';
+      ReportPDFCommonvar.PARTNO_s = '';
       ReportPDFCommonvar.CUSLOT = '';
       ReportPDFCommonvar.TPKLOT = '';
       ReportPDFCommonvar.MATERIAL = '';
@@ -1191,7 +1193,12 @@ class _ReportPDFCommonState extends State<ReportPDFCommon> {
                                     ),
                                     widget04: Center(
                                       child: Text(
-                                        ReportPDFCommonvar.PARTNO,
+                                        ReportPDFCommonvar.PARTNO.contains("|")
+                                            ? ReportPDFCommonvar.PARTNO
+                                                .split("|")[1]
+                                            : ReportPDFCommonvar.PARTNO == ''
+                                                ? ReportPDFCommonvar.PARTNO_s
+                                                : ReportPDFCommonvar.PARTNO,
                                         style: const TextStyle(
                                           fontSize: 16,
                                         ),

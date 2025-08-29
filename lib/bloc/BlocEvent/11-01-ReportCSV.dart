@@ -53,6 +53,8 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
         if (dataIN[i]['DATA'] != null) {
           var datain = dataIN[i]['DATA'];
 
+          print(datain);
+
           for (int j = 0; j < datain.length; j++) {
             //Water wet ability
 
@@ -118,7 +120,10 @@ class ReportCSV_Bloc extends Bloc<ReportCSV_Event, dataoutCSV> {
                 }
               }
 
-              // print(dataSRHSC.length);
+              print(dataSRHSC.length);
+              print(dataSRHSC[0]);
+              print(dataSRHSC[1]);
+              print(dataSRHSC[2]);
               // print(dataSH.length);
               print(dataIN[i]);
               if (dataCP.length > 0 && dataPT.length > 0) {

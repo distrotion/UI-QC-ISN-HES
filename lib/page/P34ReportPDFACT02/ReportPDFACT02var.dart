@@ -13,6 +13,7 @@ class ReportPDFACT02var {
   static String PROCESS = '';
   static String PARTNAME = '';
   static String PARTNO = '';
+  static String PARTNO_s = '';
   static String CUSLOT = '';
   static String TPKLOT = '';
   static String MATERIAL = '';

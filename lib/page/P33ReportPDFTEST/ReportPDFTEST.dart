@@ -185,6 +185,7 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
       ReportPDFTESTvar.PROCESS = _dataACT.databasic.PROCESS;
       ReportPDFTESTvar.PARTNAME = _dataACT.databasic.PARTNAME;
       ReportPDFTESTvar.PARTNO = _dataACT.databasic.PARTNO;
+      ReportPDFTESTvar.PARTNO_s = _dataACT.databasic.PARTNO_s;
       ReportPDFTESTvar.CUSLOT = _dataACT.databasic.CUSLOT;
       ReportPDFTESTvar.TPKLOT = _dataACT.databasic.TPKLOT;
       ReportPDFTESTvar.MATERIAL = _dataACT.databasic.MATERIAL;
@@ -350,6 +351,7 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
       ReportPDFTESTvar.PROCESS = '';
       ReportPDFTESTvar.PARTNAME = '';
       ReportPDFTESTvar.PARTNO = '';
+      ReportPDFTESTvar.PARTNO_s = '';
       ReportPDFTESTvar.CUSLOT = '';
       ReportPDFTESTvar.TPKLOT = '';
       ReportPDFTESTvar.MATERIAL = '';
@@ -591,7 +593,7 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
               padding: const EdgeInsets.all(3.0),
               child: InkWell(
                 onTap: () {
-                  //ReportPDFCommonvar.PO
+                  //ReportPDFTESTvar.PO
                   QCFN(context);
                 },
                 child: Container(
@@ -869,7 +871,12 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
                                       ),
                                       widget04: Center(
                                         child: Text(
-                                          ReportPDFTESTvar.PARTNO,
+                                          ReportPDFTESTvar.PARTNO.contains("|")
+                                              ? ReportPDFTESTvar.PARTNO
+                                                  .split("|")[1]
+                                              : ReportPDFTESTvar.PARTNO == ''
+                                                  ? ReportPDFTESTvar.PARTNO_s
+                                                  : ReportPDFTESTvar.PARTNO,
                                           style: const TextStyle(
                                             fontSize: 16,
                                           ),

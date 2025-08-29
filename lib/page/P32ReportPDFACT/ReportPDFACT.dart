@@ -18,7 +18,7 @@ import '../../widget/function/helper.dart';
 import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
 import '../P30SELECTReport/P30SELECTReportvar.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonMain.dart';
-import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
+
 import 'ReportPDFACTvar.dart';
 
 late BuildContext ReportPDFACTcontext;
@@ -86,6 +86,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
       ReportPDFACTvar.PROCESS = _dataACT.databasic.PROCESS;
       ReportPDFACTvar.PARTNAME = _dataACT.databasic.PARTNAME;
       ReportPDFACTvar.PARTNO = _dataACT.databasic.PARTNO;
+      ReportPDFACTvar.PARTNO_s = _dataACT.databasic.PARTNO_s;
       ReportPDFACTvar.CUSLOT = _dataACT.databasic.CUSLOT;
       ReportPDFACTvar.TPKLOT = _dataACT.databasic.TPKLOT;
       ReportPDFACTvar.MATERIAL = _dataACT.databasic.MATERIAL;
@@ -241,6 +242,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
       ReportPDFACTvar.PROCESS = '';
       ReportPDFACTvar.PARTNAME = '';
       ReportPDFACTvar.PARTNO = '';
+      ReportPDFACTvar.PARTNO_s = '';
       ReportPDFACTvar.CUSLOT = '';
       ReportPDFACTvar.TPKLOT = '';
       ReportPDFACTvar.MATERIAL = '';
@@ -444,7 +446,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
               child: InkWell(
                 onTap: () {
                   P303QMMASTERQCVAR.SETDAY = 'OK';
-                  P303QMMASTERQCVAR.SEARCH = ReportPDFCommonvar.PO;
+                  P303QMMASTERQCVAR.SEARCH = ReportPDFACTvar.PO;
                   var now = DateTime.now().subtract(Duration(days: 25));
                   P303QMMASTERQCVAR.day = DateFormat('dd').format(now);
                   P303QMMASTERQCVAR.month = DateFormat('MM').format(now);
@@ -465,7 +467,7 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
               padding: const EdgeInsets.all(3.0),
               child: InkWell(
                 onTap: () {
-                  //ReportPDFCommonvar.PO
+                  //ReportPDFACTvar.PO
                   QCFN(context);
                 },
                 child: Container(
@@ -743,7 +745,12 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                                       ),
                                       widget04: Center(
                                         child: Text(
-                                          ReportPDFACTvar.PARTNO,
+                                          ReportPDFACTvar.PARTNO.contains("|")
+                                              ? ReportPDFACTvar.PARTNO
+                                                  .split("|")[1]
+                                              : ReportPDFACTvar.PARTNO == ''
+                                                  ? ReportPDFACTvar.PARTNO_s
+                                                  : ReportPDFACTvar.PARTNO,
                                           style: const TextStyle(
                                             fontSize: 16,
                                           ),
@@ -2164,13 +2171,13 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                               GLOserver + "Inspected-sign",
                               data: {
                                 "ID": USERDATA.ID,
-                                "PO": ReportPDFCommonvar.PO,
+                                "PO": ReportPDFACTvar.PO,
                               },
                             ).then((v) {
                               var databuff = v.data;
                               context
                                   .read<ReportPDFCommon_Cubit>()
-                                  .ReportPDFCommonCubit(ReportPDFCommonvar.PO);
+                                  .ReportPDFCommonCubit(ReportPDFACTvar.PO);
                             });
                           },
                           child: Container(
@@ -2193,13 +2200,13 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                               GLOserver + "Check-sign",
                               data: {
                                 "ID": USERDATA.ID,
-                                "PO": ReportPDFCommonvar.PO,
+                                "PO": ReportPDFACTvar.PO,
                               },
                             ).then((v) {
                               var databuff = v.data;
                               context
                                   .read<ReportPDFCommon_Cubit>()
-                                  .ReportPDFCommonCubit(ReportPDFCommonvar.PO);
+                                  .ReportPDFCommonCubit(ReportPDFACTvar.PO);
                             });
                           },
                           child: Container(
@@ -2222,13 +2229,13 @@ class _ReportPDFACTState extends State<ReportPDFACT> {
                               GLOserver + "Approve-sign",
                               data: {
                                 "ID": USERDATA.ID,
-                                "PO": ReportPDFCommonvar.PO,
+                                "PO": ReportPDFACTvar.PO,
                               },
                             ).then((v) {
                               var databuff = v.data;
                               context
                                   .read<ReportPDFCommon_Cubit>()
-                                  .ReportPDFCommonCubit(ReportPDFCommonvar.PO);
+                                  .ReportPDFCommonCubit(ReportPDFACTvar.PO);
                             });
                           },
                           child: Container(

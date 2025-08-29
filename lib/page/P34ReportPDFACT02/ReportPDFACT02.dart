@@ -186,6 +186,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
       ReportPDFACT02var.PROCESS = _dataACT.databasic.PROCESS;
       ReportPDFACT02var.PARTNAME = _dataACT.databasic.PARTNAME;
       ReportPDFACT02var.PARTNO = _dataACT.databasic.PARTNO;
+      ReportPDFACT02var.PARTNO_s = _dataACT.databasic.PARTNO_s;
       ReportPDFACT02var.CUSLOT = _dataACT.databasic.CUSLOT;
       ReportPDFACT02var.TPKLOT = _dataACT.databasic.TPKLOT;
       ReportPDFACT02var.MATERIAL = _dataACT.databasic.MATERIAL;
@@ -492,6 +493,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
       ReportPDFACT02var.PROCESS = '';
       ReportPDFACT02var.PARTNAME = '';
       ReportPDFACT02var.PARTNO = '';
+      ReportPDFACT02var.PARTNO_s = '';
       ReportPDFACT02var.CUSLOT = '';
       ReportPDFACT02var.TPKLOT = '';
       ReportPDFACT02var.MATERIAL = '';
@@ -1003,7 +1005,12 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                       ),
                                       widget04: Center(
                                         child: Text(
-                                          ReportPDFACT02var.PARTNO,
+                                          ReportPDFACT02var.PARTNO.contains("|")
+                                              ? ReportPDFACT02var.PARTNO
+                                                  .split("|")[1]
+                                              : ReportPDFACT02var.PARTNO == ''
+                                                  ? ReportPDFACT02var.PARTNO_s
+                                                  : ReportPDFACT02var.PARTNO,
                                           style: const TextStyle(
                                             fontSize: 16,
                                           ),

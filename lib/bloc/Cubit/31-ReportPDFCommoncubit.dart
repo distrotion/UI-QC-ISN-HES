@@ -135,7 +135,10 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           PARTNAME: BasicDATAr['PARTNAME'] != null
               ? BasicDATAr['PARTNAME'].toString()
               : '',
-          PARTNO:
+          PARTNO: BasicDATAr['PART_s'] != null
+              ? BasicDATAr['PART_s'].toString()
+              : '',
+          PARTNO_s:
               BasicDATAr['PART'] != null ? BasicDATAr['PART'].toString() : '',
           CUSLOT: BasicDATAr['CUSLOT'] != null
               ? BasicDATAr['CUSLOT'].toString()
@@ -1336,6 +1339,7 @@ class BasicCommonDATA {
     this.PROCESS = '',
     this.PARTNAME = '',
     this.PARTNO = '',
+    this.PARTNO_s = '',
     this.CUSLOT = '',
     this.TPKLOT = '',
     this.MATERIAL = '',
@@ -1365,6 +1369,7 @@ class BasicCommonDATA {
   String PROCESS;
   String PARTNAME;
   String PARTNO;
+  String PARTNO_s;
   String CUSLOT;
   String TPKLOT;
   String MATERIAL;

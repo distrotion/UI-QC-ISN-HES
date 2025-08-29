@@ -6,8 +6,8 @@ import '../../common/ComInputText.dart';
 import '../../common/Easydropdown.dart';
 import '../consolelayout.dart';
 
-class SINGLESHOTKEYmain extends StatelessWidget {
-  SINGLESHOTKEYmain({
+class SINGLESHOTKEY2main extends StatelessWidget {
+  SINGLESHOTKEY2main({
     Key? key,
     //------ Left
     this.LABEL,
@@ -50,8 +50,13 @@ class SINGLESHOTKEYmain extends StatelessWidget {
     this.ITEMleftUNIT,
     this.ITEMleftVALUE,
     this.iscon01,
-    this.input,
-    this.inputFN,
+    this.input1,
+    this.input2,
+    this.input3,
+    this.inputFN1,
+    this.inputFN2,
+    this.inputFN3,
+
     //-------
   }) : super(key: key);
 
@@ -85,8 +90,12 @@ class SINGLESHOTKEYmain extends StatelessWidget {
   String? GAPname;
   Function(String) GAPnamePick;
   bool? iscon01;
-  String? input;
-  Function(String)? inputFN;
+  String? input1;
+  String? input2;
+  String? input3;
+  Function(String)? inputFN1;
+  Function(String)? inputFN2;
+  Function(String)? inputFN3;
 
   //Bottom --------------------------------------------
 
@@ -130,6 +139,27 @@ class SINGLESHOTKEYmain extends StatelessWidget {
               children: [
                 Row(
                   children: [
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: InkWell(
+                          onTap: () {
+                            READ(PO) ?? () {};
+                          },
+                          child: Container(
+                            height: 40,
+                            color: Colors.blue,
+                            child: const Center(
+                              child: Text("READ",
+                                  style: TxtStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     Expanded(
                       flex: 1,
                       child: Padding(
@@ -200,7 +230,7 @@ class SINGLESHOTKEYmain extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: 40,
-                      width: 150,
+                      width: 100,
                       // child: _tabtableB3(
                       //   height: 40,
                       //   value: preview ?? [INSDATA()],
@@ -214,37 +244,89 @@ class SINGLESHOTKEYmain extends StatelessWidget {
                         fnContr: (input) {
                           iscon01 = input;
                         },
-                        sValue: input ?? '',
+                        sValue: input1 ?? '',
                         returnfunc: (String s) {
                           // input = s;
-                          inputFN!(s);
+                          inputFN1!(s);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 100,
+                      // child: _tabtableB3(
+                      //   height: 40,
+                      //   value: preview ?? [INSDATA()],
+                      // ),
+                      child: ComInputText(
+                        height: 40,
+                        width: 100,
+                        isNumberOnly: true,
+                        isEnabled: false,
+                        isContr: iscon01,
+                        fnContr: (input) {
+                          iscon01 = input;
+                        },
+                        sValue: input2 ?? '',
+                        returnfunc: (String s) {
+                          // input = s;
+                          inputFN2!(s);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: Center(
+                        child: Text("ANS"),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 100,
+                      // child: _tabtableB3(
+                      //   height: 40,
+                      //   value: preview ?? [INSDATA()],
+                      // ),
+                      child: ComInputText(
+                        height: 40,
+                        width: 100,
+                        isNumberOnly: true,
+                        isEnabled: false,
+                        isContr: iscon01,
+                        fnContr: (input) {
+                          iscon01 = input;
+                        },
+                        sValue: input3 ?? '',
+                        returnfunc: (String s) {
+                          // input = s;
+                          inputFN3!(s);
                         },
                       ),
                     ),
                     // const SizedBox(
                     //   width: 15,
                     // ),
-                    SizedBox(
-                      width: 200,
-                      child: Padding(
-                        padding: const EdgeInsets.all(1.0),
-                        child: InkWell(
-                          onTap: () {
-                            READ(PO) ?? () {};
-                          },
-                          child: Container(
-                            height: 40,
-                            color: Colors.pink,
-                            child: Center(
-                              child: Text(READtext ?? '',
-                                  style: TxtStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // SizedBox(
+                    //   width: 100,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(1.0),
+                    //     child: InkWell(
+                    //       onTap: () {
+                    //         READ(PO) ?? () {};
+                    //       },
+                    //       child: Container(
+                    //         height: 40,
+                    //         color: Colors.pink,
+                    //         child: Center(
+                    //           child: Text(READtext ?? '',
+                    //               style: TxtStyle(
+                    //                   color: Colors.white,
+                    //                   fontWeight: FontWeight.bold)),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(

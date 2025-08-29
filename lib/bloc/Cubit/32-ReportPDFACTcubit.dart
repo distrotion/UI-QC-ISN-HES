@@ -68,6 +68,7 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             break;
           }
         }
+        List<String> passlist = [];
 
         bool pass01 = false;
         bool pass02 = false;
@@ -82,6 +83,8 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
         bool pass11 = false;
         bool pass12 = false;
         bool pass13 = false;
+        bool pass14 = false;
+        bool pass15 = false;
 
         if (cango) {
           //-----------------------
@@ -122,7 +125,10 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             PARTNAME: BasicDATAr['PARTNAME'] != null
                 ? BasicDATAr['PARTNAME'].toString()
                 : '',
-            PARTNO:
+            PARTNO: BasicDATAr['PART_s'] != null
+                ? BasicDATAr['PART_s'].toString()
+                : '',
+            PARTNO_s:
                 BasicDATAr['PART'] != null ? BasicDATAr['PART'].toString() : '',
             CUSLOT: BasicDATAr['CUSLOT'] != null
                 ? BasicDATAr['CUSLOT'].toString()
@@ -441,18 +447,24 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
                           if (data01 < 6 || data01 > 17) {
                             pass01 = false;
+                            passlist.add("false");
                           } else {
                             pass01 = true;
+                            passlist.add("true");
                           }
                           if (data02 < 6 || data02 > 17) {
                             pass02 = false;
+                            passlist.add("false");
                           } else {
                             pass02 = true;
+                            passlist.add("true");
                           }
                           if (data03 < 6 || data03 > 17) {
                             pass03 = false;
+                            passlist.add("false");
                           } else {
                             pass03 = true;
+                            passlist.add("true");
                           }
                         }
                       } else if (ITEMlist[le].ITEM ==
@@ -486,18 +498,24 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
                           if (data01 > 7) {
                             pass04 = false;
+                            passlist.add("false");
                           } else {
                             pass04 = true;
+                            passlist.add("true");
                           }
                           if (data01 > 7) {
                             pass05 = false;
+                            passlist.add("false");
                           } else {
                             pass05 = true;
+                            passlist.add("true");
                           }
                           if (data01 > 7) {
                             pass06 = false;
+                            passlist.add("false");
                           } else {
                             pass06 = true;
+                            passlist.add("true");
                           }
 
                           // print(ITEMlist[le].DATA01);
@@ -535,18 +553,24 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
                           if (data01 < 500 || data01 > 680) {
                             pass07 = false;
+                            passlist.add("false");
                           } else {
                             pass07 = true;
+                            passlist.add("true");
                           }
                           if (data02 < 500 || data02 > 680) {
                             pass08 = false;
+                            passlist.add("false");
                           } else {
                             pass08 = true;
+                            passlist.add("true");
                           }
                           if (data03 < 500 || data03 > 680) {
                             pass09 = false;
+                            passlist.add("false");
                           } else {
                             pass09 = true;
+                            passlist.add("true");
                           }
 
                           // print(ITEMlist[le].DATA01);
@@ -584,18 +608,24 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
                           if (data01 < 26 || data01 > 60) {
                             pass10 = false;
+                            passlist.add("false");
                           } else {
                             pass10 = true;
+                            passlist.add("true");
                           }
                           if (data02 < 26 || data02 > 60) {
                             pass11 = false;
+                            passlist.add("false");
                           } else {
                             pass11 = true;
+                            passlist.add("true");
                           }
                           if (data03 < 26 || data03 > 60) {
                             pass12 = false;
+                            passlist.add("false");
                           } else {
                             pass12 = true;
+                            passlist.add("true");
                           }
 
                           // print(ITEMlist[le].DATA01);
@@ -630,13 +660,52 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
 
                           if (datain > 0.07) {
                             pass13 = false;
+                            passlist.add("false");
                           } else {
                             pass13 = true;
+                            passlist.add("true");
                           }
 
                           // print(ITEMlist[le].DATA01);
                         }
-                      }
+                      } else if (ITEMlist[le].ITEM ==
+                          'ITEMs-1755226359426Ruj6dkoeKJ9LbOA') {
+                        // print(FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]);
+                        //Remain of CN on part
+                        if (FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]['PSC1']
+                                .length >
+                            1) {
+                          ITEMlist[le].SPECIFICATION = '≤ 0.07 ppm';
+
+                          double datain = double.parse(ConverstStr(
+                              FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
+                                  ['PSC1'][0]['PO3']));
+                          if (datain <= 0.03) {
+                            // ITEMlist[le].DATA01 = '< 0.03';
+                            ITEMlist[le].DATA01 = double.parse(ConverstStr(
+                                    FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
+                                        ['PSC1'][0]['PO3']))
+                                .toStringAsFixed(2);
+                          } else {
+                            ITEMlist[le].DATA01 = double.parse(ConverstStr(
+                                    FINALdata[MACHINElist[k]][ITEMlist[le].ITEM]
+                                        ['PSC1'][0]['PO3']))
+                                .toStringAsFixed(2);
+                          }
+
+                          if (datain > 60) {
+                            pass14 = false;
+                            pass15 = false;
+                            passlist.add("false");
+                          } else {
+                            pass14 = true;
+                            pass15 = true;
+                            passlist.add("true");
+                          }
+
+                          // print(ITEMlist[le].DATA01);
+                        }
+                      } else {}
 
                       break;
                     }
@@ -652,23 +721,51 @@ class ReportPDFACTcubit_Cubit extends Cubit<ACTReportOutput> {
             }
           }
 
-          if (pass01 &&
-              pass02 &&
-              pass03 &&
-              pass04 &&
-              pass05 &&
-              pass06 &&
-              pass07 &&
-              pass08 &&
-              pass09 &&
-              pass10 &&
-              pass11 &&
-              pass12 &&
-              pass13) {
-            BasicDATAs.PASS = 'PASSED';
-          } else {
-            // BasicDATAs.PASS = 'NO PASSED';
+          print(pass01);
+          print(pass02);
+          print(pass03);
+          print(pass04);
+          print(pass05);
+          print(pass06);
+          print(pass07);
+          print(pass08);
+          print(pass09);
+          print(pass10);
+          print(pass11);
+          print(pass12);
+          print(pass13);
+          print(pass14);
+          print(pass15);
+
+          // pass14 = true;
+          // pass15 = true;
+
+          // if (pass01 &&
+          //     pass02 &&
+          //     pass03 &&
+          //     pass04 &&
+          //     pass05 &&
+          //     pass06 &&
+          //     pass07 &&
+          //     pass08 &&
+          //     pass09 &&
+          //     pass10 &&
+          //     pass11 &&
+          //     pass12 &&
+          //     pass13 &&
+          //     pass14 &&
+          //     pass15) {
+          //   BasicDATAs.PASS = 'PASSED';
+          // } else {
+          //   // BasicDATAs.PASS = 'NO PASSED';
+          //   BasicDATAs.PASS = 'N/A';
+          // }
+
+          if (passlist.contains("false")) {
+            // BasicCommonDATAs.PASS = 'NO PASSED';
             BasicDATAs.PASS = 'N/A';
+          } else {
+            BasicDATAs.PASS = 'PASSED';
           }
 
           output.databasic = BasicDATAs;
@@ -780,6 +877,7 @@ class BasicACTDATA {
     this.PROCESS = '',
     this.PARTNAME = '',
     this.PARTNO = '',
+    this.PARTNO_s = '',
     this.CUSLOT = '',
     this.TPKLOT = '',
     this.MATERIAL = '',
@@ -806,6 +904,7 @@ class BasicACTDATA {
   String PROCESS;
   String PARTNAME;
   String PARTNO;
+  String PARTNO_s;
   String CUSLOT;
   String TPKLOT;
   String MATERIAL;

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,9 @@ import '../../data/global.dart';
 import '../../mainBody.dart';
 import '../../widget/QCWIDGET/W1SINGLESHOT/SINGLESHOTwidget.dart';
 import '../../widget/QCWIDGET/W1SINGLESHOTKEY/SINGLESHOTKEYwidget.dart';
+import '../../widget/common/ComInputText.dart';
 import '../../widget/common/Loading.dart';
+import '../../widget/common/Safty.dart';
 import '../../widget/onlyINqcui/popup.dart';
 import '../P1FIRSTUI/FIRSTuiVAR.dart';
 import '../page1.dart';
@@ -61,7 +64,35 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
   void initState() {
     super.initState();
     BackButtonInterceptor.add(myInterceptor);
+    LCRUVS001var.LASTREQ = '';
     // LCRUVS001var.SINGLEINPUT = '';
+    Dio().post(
+      GLOserver + 'getfromsar',
+      data: {
+        "ReqNO": LCRUVS001var.reqno,
+      },
+    ).then((v) {
+      if (v.statusCode == 200) {
+        // print(v);
+        if (v.data.length > 0) {
+          LCRUVS001var.iscontrol = true;
+
+          LCRUVS001var.SINGLEINPUT = v.data[0]['setdata'][0]['Result_1'] != null
+              ? (double.parse(ConverstStr(v.data[0]['setdata'][0]['Result_1']
+                          .toString()
+                          .replaceAll("<", ""))) /
+                      (double.parse(
+                          ConverstStrOne(v.data[0]['Number'].toString()))))
+                  .toString()
+              : "";
+
+          LCRUVS001var.LASTREQ = v.data[0]['ReqNO'] != null
+              ? v.data[0]['ReqNO'].toString() +
+                  '(${ConverstStrOne(v.data[0]['Number'].toString())})'
+              : "";
+        }
+      }
+    });
     context.read<LCRUVS001_Bloc>().add(LCRUVS001_READ());
   }
 
@@ -166,6 +197,35 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
         context
             .read<TRICKER_LCRUVS001_Bloc>()
             .add(TRICKER_LCRUVS001geteachITEM());
+        // Dio().post(
+        //   GLOserver + 'getfromsar',
+        //   data: {
+        //     "ReqNO": LCRUVS001var.reqno,
+        //   },
+        // ).then((v) {
+        //   if (v.statusCode == 200) {
+        //     // print(v);
+        //     if (v.data.length > 0) {
+        //       LCRUVS001var.iscontrol = true;
+
+        //       LCRUVS001var.SINGLEINPUT = v.data[0]['setdata'][0]['Result_1'] !=
+        //               null
+        //           ? (double.parse(ConverstStr(v.data[0]['setdata'][0]
+        //                           ['Result_1']
+        //                       .toString()
+        //                       .replaceAll("<", ""))) /
+        //                   (double.parse(
+        //                       ConverstStrOne(v.data[0]['Number'].toString()))))
+        //               .toString()
+        //           : "";
+
+        //       LCRUVS001var.LASTREQ = v.data[0]['ReqNO'] != null
+        //           ? v.data[0]['ReqNO'].toString() +
+        //               '(${ConverstStrOne(v.data[0]['Number'].toString())})'
+        //           : "";
+        //     }
+        //   }
+        // });
       },
       ItemPick: LCRUVS001var.ItemPick,
       PCS: LCRUVS001var.PCS,
@@ -230,16 +290,139 @@ class _ROCKWELL_LCRUVS001bodyState extends State<ROCKWELL_LCRUVS001body> {
           WORNINGpop(context, "Please select item");
         }
       },
+      READtext: LCRUVS001var.LASTREQ,
       READ: (v) {
         print(v);
-        if (LCRUVS001var.SINGLEINPUT != '') {
-          context
-              .read<TRICKER_LCRUVS001_Bloc>()
-              .add(TRICKER_LCRUVS001preview());
-        }
+        showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext context) {
+            return Dialog(
+              child: SizedBox(
+                  height: 200,
+                  width: 300,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text("Req NO From TTC"),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        ComInputText(
+                          height: 40,
+                          width: 200,
+                          // isNumberOnly: true,
+                          // isEnabled: false,
+                          isContr: false,
+                          fnContr: (input) {
+                            // setState(() {
+                            LCRUVS001var.iscontrol = input;
+                            // });
+                          },
+                          sValue: LCRUVS001var.reqno,
+                          returnfunc: (String s) {
+                            LCRUVS001var.reqno = s;
+                            // inputFN!(s);
+                          },
+                        ),
+                        Text("Number of sample"),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        ComInputText(
+                          height: 40,
+                          width: 200,
+                          // isNumberOnly: true,
+                          // isEnabled: false,
+                          isContr: false,
+                          fnContr: (input) {
+                            // setState(() {
+                            LCRUVS001var.iscontrol = input;
+                            // });
+                          },
+                          sValue: LCRUVS001var.Number,
+                          returnfunc: (String s) {
+                            LCRUVS001var.Number = s;
+                            // inputFN!(s);
+                          },
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 15),
+                          child: InkWell(
+                            onTap: () async {
+                              Dio().post(
+                                GLOserver + 'setfromsar',
+                                data: {
+                                  "ReqNO": LCRUVS001var.reqno,
+                                  "Number": LCRUVS001var.Number,
+                                },
+                              ).then((v) {
+                                if (v.statusCode == 200) {
+                                  print(v);
+                                  Dio().post(
+                                    GLOserver + 'getfromsar',
+                                    data: {
+                                      "ReqNO": LCRUVS001var.reqno,
+                                    },
+                                  ).then((v) {
+                                    if (v.statusCode == 200) {
+                                      // print(v);
+                                      if (v.data.length > 0) {
+                                        LCRUVS001var.iscontrol = true;
+
+                                        LCRUVS001var.SINGLEINPUT = v.data[0]['setdata']
+                                                    [0]['Result_1'] !=
+                                                null
+                                            ? (double.parse(ConverstStr(v
+                                                        .data[0]['setdata'][0]
+                                                            ['Result_1']
+                                                        .toString()
+                                                        .replaceAll("<", ""))) /
+                                                    (double.parse(ConverstStrOne(
+                                                        v.data[0]['Number'].toString()))))
+                                                .toString()
+                                            : "";
+
+                                        LCRUVS001var.LASTREQ = v.data[0]
+                                                    ['ReqNO'] !=
+                                                null
+                                            ? v.data[0]['ReqNO'].toString() +
+                                                '(${ConverstStrOne(v.data[0]['Number'].toString())})'
+                                            : "";
+
+                                        Navigator.pop(context);
+                                      }
+                                    }
+                                  });
+                                }
+                              });
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 40,
+                              color: Colors.blue,
+                              child: Center(child: Text("GET")),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+            );
+          },
+        );
       },
       preview: LCRUVS001var.preview,
-      iscon01: false,
+      iscon01: LCRUVS001var.iscontrol,
       input: LCRUVS001var.SINGLEINPUT,
       inputFN: (v) {
         LCRUVS001var.SINGLEINPUT = v;

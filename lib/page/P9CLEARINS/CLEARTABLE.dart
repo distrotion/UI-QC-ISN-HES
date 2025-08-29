@@ -608,6 +608,71 @@ class _ClearRoomBODYState extends State<ClearRoomBODY> {
                   ],
                 ),
               ),
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: const BorderRadius.all(Radius.circular(0)),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(0)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "MCS-INSHES2 : ${widget.data?.PO9 ?? ""}",
+                            style: TxtStyle(
+                              fontWeight: FontWeight.bold,
+                              color: widget.data!.PO9 == ''
+                                  ? Colors.black
+                                  : Colors.red,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(0)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.all(5),
+                          child: InkWell(
+                            onTap: () {
+                              //
+                              CLEARroomdata.room = 'PO9';
+                              context
+                                  .read<CLEARroom_Bloc>()
+                                  .add(CLEARroom_CLEAR());
+                            },
+                            child: Container(
+                              color: Colors.blue,
+                              child: const Center(
+                                child: Text(
+                                  "CLEAR",
+                                  style: TxtStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

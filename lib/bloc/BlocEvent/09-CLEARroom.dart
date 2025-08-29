@@ -55,6 +55,10 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       server + "HIMICM001db",
       data: {},
     );
+    final resPO9 = await Dio().post(
+      server + "TPGMCSCPRdb",
+      data: {},
+    );
 
     CLEARroomENV output = CLEARroomENV();
 
@@ -64,7 +68,9 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
         resPO4.statusCode == 200 &&
         resPO5.statusCode == 200 &&
         resPO6.statusCode == 200 &&
-        resPO7.statusCode == 200) {
+        resPO7.statusCode == 200 &&
+        resPO8.statusCode == 200 &&
+        resPO9.statusCode == 200) {
       output.PO1 = resPO1.data['PO'] ?? '';
       output.PO2 = resPO2.data['PO'] ?? '';
       output.PO3 = resPO3.data['PO'] ?? '';
@@ -73,6 +79,7 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       output.PO6 = resPO6.data['PO'] ?? '';
       output.PO7 = resPO7.data['PO'] ?? '';
       output.PO8 = resPO8.data['PO'] ?? '';
+      output.PO9 = resPO9.data['PO'] ?? '';
     }
 
     emit(output);
@@ -121,6 +128,11 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
         server + 'HIMICM001-SETZERO',
         data: {},
       );
+    } else if (CLEARroomdata.room == 'PO9') {
+      final response = await Dio().post(
+        server + 'TPGMCSCPR-SETZERO',
+        data: {},
+      );
     }
     //HIMICM001-preview
 
@@ -158,6 +170,10 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       server + "HIMICM001db",
       data: {},
     );
+    final resPO9 = await Dio().post(
+      server + "TPGMCSCPRdb",
+      data: {},
+    );
 
     //HIMICM001
 
@@ -169,7 +185,9 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
         resPO4.statusCode == 200 &&
         resPO5.statusCode == 200 &&
         resPO6.statusCode == 200 &&
-        resPO7.statusCode == 200) {
+        resPO7.statusCode == 200 &&
+        resPO8.statusCode == 200 &&
+        resPO9.statusCode == 200) {
       output.PO1 = resPO1.data['PO'] ?? '';
       output.PO2 = resPO2.data['PO'] ?? '';
       output.PO3 = resPO3.data['PO'] ?? '';
@@ -178,6 +196,7 @@ class CLEARroom_Bloc extends Bloc<CLEARroom_Event, CLEARroomENV> {
       output.PO6 = resPO6.data['PO'] ?? '';
       output.PO7 = resPO7.data['PO'] ?? '';
       output.PO8 = resPO8.data['PO'] ?? '';
+      output.PO9 = resPO9.data['PO'] ?? '';
     }
 
     emit(output);
@@ -198,6 +217,7 @@ class CLEARroomENV {
     this.PO6 = '',
     this.PO7 = '',
     this.PO8 = '',
+    this.PO9 = '',
   });
 
   String PO1;
@@ -208,4 +228,5 @@ class CLEARroomENV {
   String PO6;
   String PO7;
   String PO8;
+  String PO9;
 }

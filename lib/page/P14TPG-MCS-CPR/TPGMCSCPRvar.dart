@@ -3,7 +3,7 @@ import 'dart:async';
 import '../../model/model.dart';
 import '../../widget/QCWIDGET/consolelayout.dart';
 
-class LCRUVS001var {
+class TPGMCSCPRvar {
   static bool iscontrol = false;
   static String PO = '';
   static String CP = '';
@@ -28,7 +28,9 @@ class LCRUVS001var {
   static String GAPname = '';
   static String GAPnamePick = '';
   // static String SINGLEINPUT = '0.01';
-  static String SINGLEINPUT = '';
+  static String SINGLEINPUT1 = '';
+  static String SINGLEINPUT2 = '';
+  static String SINGLEINPUT3 = '';
   static List<String> GAPnameList = [''];
   static List<INSDATA> preview = [];
   static List<INSDATA> confirmdata = [];
@@ -43,10 +45,18 @@ class LCRUVS001var {
 
   static String Number = '';
   static String LASTREQ = '';
+
+  static String PR01 = '';
+  static String PR02 = '';
+  static String PR03 = '';
+
+  static String CP01 = '';
+  static String CP02 = '';
+  static String CP03 = '';
 }
 
-class LCRUVS001SCHEMA {
-  LCRUVS001SCHEMA({
+class TPGMCSCPRSCHEMA {
+  TPGMCSCPRSCHEMA({
     this.UPDATE = '',
     this.PO = '',
     this.CP = '',
