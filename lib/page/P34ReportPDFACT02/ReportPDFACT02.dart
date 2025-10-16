@@ -711,6 +711,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                   P303QMMASTERQCVAR.day = DateFormat('dd').format(now);
                   P303QMMASTERQCVAR.month = DateFormat('MM').format(now);
                   P303QMMASTERQCVAR.year = DateFormat('yyyy').format(now);
+                  P303QMMASTERQCVAR.BATCH = _dataACT.databasic.TPKLOT;
                   STDreport2(context);
                 },
                 child: Container(
@@ -1663,69 +1664,72 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                         ),
                                       ),
                                     ),
-
-                                    BODY6SLOT(
-                                      ListFlex: [5, 1, 3, 2, 4, 4],
-                                      widget01: Center(
-                                        child: Text(
-                                          ReportPDFACT02var
-                                              .datalist[9].ITEMname,
-                                          style: const TextStyle(
-                                            fontSize: 16,
+                                    if (ReportPDFACT02var
+                                            .datalist[9].ITEMname !=
+                                        '') ...[
+                                      BODY6SLOT(
+                                        ListFlex: [5, 1, 3, 2, 4, 4],
+                                        widget01: Center(
+                                          child: Text(
+                                            ReportPDFACT02var
+                                                .datalist[9].ITEMname,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      widget02: Center(
-                                        child: ReportPDFACT02var
-                                                    .datalist[9].SCMARK ==
-                                                'YES'
-                                            ? PicShow(
-                                                width: 42,
-                                                height: 42,
-                                                base64: SCMASK01)
-                                            : const Text(
-                                                "",
-                                                style: TextStyle(
-                                                  fontSize: 16,
+                                        widget02: Center(
+                                          child: ReportPDFACT02var
+                                                      .datalist[9].SCMARK ==
+                                                  'YES'
+                                              ? PicShow(
+                                                  width: 42,
+                                                  height: 42,
+                                                  base64: SCMASK01)
+                                              : const Text(
+                                                  "",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                  ),
                                                 ),
-                                              ),
-                                      ),
-                                      widget03: Center(
-                                        child: Text(
-                                          ReportPDFACT02var
-                                              .datalist[9].METHODname,
-                                          style: const TextStyle(
-                                            fontSize: 16,
+                                        ),
+                                        widget03: Center(
+                                          child: Text(
+                                            ReportPDFACT02var
+                                                .datalist[9].METHODname,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        widget04: Center(
+                                          child: Text(
+                                            ReportPDFACT02var.datalist[9].FREQ,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        widget05: Center(
+                                          child: Text(
+                                            ReportPDFACT02var
+                                                .datalist[9].SPECIFICATIONname,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        widget06: Center(
+                                          child: Text(
+                                            ReportPDFACT02var
+                                                .datalist[9].RESULT,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                      widget04: Center(
-                                        child: Text(
-                                          ReportPDFACT02var.datalist[9].FREQ,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                      widget05: Center(
-                                        child: Text(
-                                          ReportPDFACT02var
-                                              .datalist[9].SPECIFICATIONname,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                      widget06: Center(
-                                        child: Text(
-                                          ReportPDFACT02var.datalist[9].RESULT,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-
+                                    ],
                                     BODY6SLOT(
                                       ListFlex: [5, 1, 3, 2, 4, 4],
                                       widget01: Center(
@@ -2064,6 +2068,7 @@ class _ReportPDFACT02State extends State<ReportPDFACT02> {
                                         ),
                                       ),
                                     ),
+
                                     BODY10SLOT(
                                       ListFlex: [
                                         16,

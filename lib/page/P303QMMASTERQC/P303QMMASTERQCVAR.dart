@@ -20,6 +20,8 @@ class P303QMMASTERQCVAR {
   static String SELECTEDSETset = '';
   static String PROCESS_ORDERset = '';
 
+  static String BATCH = '';
+
   static List<PINSP_SPECHSclass> INSP_SPECdata = [];
   static PINSP_SPECHSclass iINSP_SPECdata = PINSP_SPECHSclass();
   static List<SELECTED_SETHSclass> SELECTED_SETdata = [];

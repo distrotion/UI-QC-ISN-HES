@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import 'dart:js' as js;
 
@@ -20,6 +21,7 @@ import '../../widget/common/Freescroll.dart';
 import '../../widget/common/Loading.dart';
 import '../../widget/onlyINqcui/popup.dart';
 import '../P10REPORT/REPORTtable.dart';
+import '../P303QMMASTERQC/P303QMMASTERQCVAR.dart';
 import '../P30SELECTReport/P30SELECTReportvar.dart';
 import '../P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../P32ReportPDFACT/ReportPDFACTvar.dart';
@@ -28,6 +30,7 @@ import '../P34ReportPDFACT02/ReportPDFACT02var.dart';
 import '../P35ReportPDFcommon2/ReportPDFCommon2var.dart';
 import '../Page32.dart';
 import '../page30.dart';
+import '../page303.dart';
 import '../page31.dart';
 import '../page33.dart';
 import '../page34.dart';
@@ -255,6 +258,11 @@ class _REPORTuiBODYState extends State<REPORTuiBODY> {
                                     ascending)),
                         DataColumn(
                             label: const Text('STATUS'),
+                            onSort: (int columnIndex, bool ascending) =>
+                                _sort<String>((dataset d) => d.f05, columnIndex,
+                                    ascending)),
+                        DataColumn(
+                            label: const Text('UD'),
                             onSort: (int columnIndex, bool ascending) =>
                                 _sort<String>((dataset d) => d.f05, columnIndex,
                                     ascending)),
@@ -500,6 +508,31 @@ class _MyData extends DataTableSource {
               ),
             ),
           ),
+          DataCell(
+            InkWell(
+              onTap: () {
+                if (STATUS != '-') {
+                  //
+                  // print(data.f01);
+                  // print(data.f24);
+                  P303QMMASTERQCVAR.BATCH = data.f24;
+                  P303QMMASTERQCVAR.SEARCH = data.f01;
+                  P303QMMASTERQCVAR.SETDAY = 'OK';
+                  var now = DateTime.now().subtract(Duration(days: 10));
+                  P303QMMASTERQCVAR.day = DateFormat('dd').format(now);
+                  P303QMMASTERQCVAR.month = DateFormat('MM').format(now);
+                  P303QMMASTERQCVAR.year = DateFormat('yyyy').format(now);
+                  STDreport2(context);
+                }
+              },
+              child: Container(
+                height: 45,
+                width: 90,
+                color: Colors.blueGrey,
+                child: Center(child: Text("TAP TO UD")),
+              ),
+            ),
+          ),
           DataCell(Padding(
             padding: const EdgeInsets.all(2.0),
             child: Row(
@@ -565,6 +598,25 @@ void STDreport(
             child: SingleChildScrollView(
               child: Page30(),
             ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void STDreport2(BuildContext contextin) {
+  showDialog(
+    context: contextin,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: SizedBox(
+          height: 1000,
+          width: 1500,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(child: Page303()),
           ),
         ),
       );

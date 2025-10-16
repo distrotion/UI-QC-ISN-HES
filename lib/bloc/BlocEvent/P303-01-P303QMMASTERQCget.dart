@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/global.dart';
 
+import '../../page/P303QMMASTERQC/P303QMMASTERQCMAIN.dart';
 import '../../page/P303QMMASTERQC/P303QMMASTERQCVAR.dart';
 import '../../page/P31ReportPDFcommon/ReportPDFCommonvar.dart';
 import '../../widget/common/Loading.dart';
@@ -41,6 +42,7 @@ class P303QMMASTERQCget_Bloc
     // FreeLoadingTan(CONTEXTFORUSEPAGE19TO25.LOADINGcontext);
     List<P303QMMASTERQCgetclass> output = [];
     //-------------------------------------------------------------------------------------
+    FreeLoading(P303QMMASTERQCMAINcontext);
     final response = await Dio().post(
       "${server2}QMINCOMING/GETDATA",
       data: {
@@ -49,12 +51,12 @@ class P303QMMASTERQCget_Bloc
               "${P303QMMASTERQCVAR.day}.${P303QMMASTERQCVAR.month}.${P303QMMASTERQCVAR.year}",
           "TO_DATE":
               "${P303QMMASTERQCVAR.day_next}.${P303QMMASTERQCVAR.month_next}.${P303QMMASTERQCVAR.year_next}",
-          "PLANT": P303QMMASTERQCVAR.PLANT,
+          "PLANT": "2300",
           // "LOT_ORI": P303QMMASTERQCVAR.LOT_ORI,
           "LOT_ORI": "03",
           "MATERIAL": "",
-          "BATCH": "",
-          "LOT_NO": ""
+          "BATCH": P303QMMASTERQCVAR.BATCH,
+          "LOT_NO": "",
         }
       },
     );
@@ -220,6 +222,7 @@ class P303QMMASTERQCget_Bloc
     } else {
       print("where is my server");
     }
+    Navigator.pop(P303QMMASTERQCMAINcontext);
 
     emit(output);
   }

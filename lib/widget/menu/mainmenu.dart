@@ -127,13 +127,13 @@ class Data_Menu_mainmenu extends StatelessWidget {
         //   page: Page11(),
         //   Lv: 1,
         // ),
+        // menu_normal(
+        //   name: "REPORT",
+        //   page: Page10(),
+        //   Lv: 1,
+        // ),
         menu_normal(
           name: "REPORT",
-          page: Page10(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "REPORT-TEST",
           page: Page15(),
           Lv: 1,
         ),

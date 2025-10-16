@@ -59,7 +59,8 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     FreeLoading(REPORTuiMAINcontext);
     print("------------->");
     final response = await Dio().post(
-      "http://172.23.10.70:2160/" + 'gas12reportGEN',
+      // "http://172.23.10.70:2160/" + 'gas12reportGEN',
+      "http://172.23.10.40:1880/" + 'gas12reportGEN',
       data: {
         //REPORTNEWvar
         "PO": REPORTvar.PO == '' ? REPORTNEWvar.PO : REPORTvar.PO,

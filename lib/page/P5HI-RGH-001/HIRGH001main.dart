@@ -191,95 +191,106 @@ class _ROCKWELL_HIRGH001bodyState extends State<ROCKWELL_HIRGH001body> {
             .add(TRICKER_HIRGH001geteachGRAPH());
       },
       //------- Bottom
+
       GETPEAK: (v) {
-        //http://172.20.30.46:1880/getpeak
-        Dio().post(
-          "http://172.20.30.46:2200/getpeak",
-          data: {},
-        ).then((v) {
-          if (v.statusCode == 200) {
-            //
-            var data = v.data;
-            // print(data.length);
-            List<FlSpot> dataout = [];
+        if (HIRGH001var.ItemPickSELECT != '' &&
+            HIRGH001var.ItemPickSELECT != '-') {
+          //http://172.20.30.46:1880/getpeak
 
-            for (var i = 0; i < data.length; i++) {
-              String datax =
-                  data[i]["X"] != null ? data[i]["X"].toString() : "";
-              String dataZ =
-                  data[i]["Z"] != null ? data[i]["Z"].toString() : "";
+          Dio().post(
+            "http://172.20.30.46:2200/getpeak",
+            data: {},
+          ).then((v) {
+            if (v.statusCode == 200) {
+              //
+              var data = v.data;
+              // print(data.length);
+              List<FlSpot> dataout = [];
 
-              if (datax != "um") {
-                double dataZs = double.parse(ConverstStr(dataZ));
-                if (double.parse(ConverstStr(dataZ)) > 1) {
-                  dataZs = 1;
-                } else if (double.parse(ConverstStr(dataZ)) < -1) {
-                  dataZs = -1;
-                } else {
-                  dataZs = double.parse(ConverstStr(dataZ));
+              for (var i = 0; i < data.length; i++) {
+                String datax =
+                    data[i]["X"] != null ? data[i]["X"].toString() : "";
+                String dataZ =
+                    data[i]["Z"] != null ? data[i]["Z"].toString() : "";
+
+                if (datax != "um") {
+                  double dataZs = double.parse(ConverstStr(dataZ));
+                  if (double.parse(ConverstStr(dataZ)) > 1) {
+                    dataZs = 1;
+                  } else if (double.parse(ConverstStr(dataZ)) < -1) {
+                    dataZs = -1;
+                  } else {
+                    dataZs = double.parse(ConverstStr(dataZ));
+                  }
+                  dataout.add(FlSpot(double.parse(ConverstStr(datax)), dataZs));
                 }
-                dataout.add(FlSpot(double.parse(ConverstStr(datax)), dataZs));
               }
-            }
 
-            HIRGH001var.ansdata = findPeaksOverThreshold(dataout, 0.25).length;
+              HIRGH001var.ansdata =
+                  findPeaksOverThreshold(dataout, 0.25).length;
 
-            showDialog(
-              context: context,
-              barrierDismissible: true,
-              builder: (BuildContext context) {
-                return Dialog(
-                  child: SizedBox(
-                      height: 500,
-                      width: 1200,
-                      child: RoughnessGraph(
-                        data: dataout,
-                        widgetdata: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              if (int.parse(HIRGH001var.POINTs) >
-                                  HIRGH001var.confirmdata.length) {
-                                Dio().post(
-                                  GLOserver + "HIRGH001-confirmdata-set",
-                                  data: [
-                                    {"V1": "HSC", "V2": HIRGH001var.ansdata}
-                                  ],
-                                ).then((v) {
-                                  FreeLoading(context);
-                                  Future.delayed(Duration(seconds: 2), () {
-                                    Dio().post(
-                                      "http://172.20.30.46:2200/savedata",
-                                      data: {
-                                        "name":
-                                            "${HIRGH001var.PO}-${HIRGH001var.confirmdata.length}"
-                                      },
-                                    ).then((v) {
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: SizedBox(
+                        height: 500,
+                        width: 1200,
+                        child: RoughnessGraph(
+                          data: dataout,
+                          widgetdata: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                if (int.parse(HIRGH001var.POINTs) >
+                                    HIRGH001var.confirmdata.length) {
+                                  Dio().post(
+                                    GLOserver + "HIRGH001-confirmdata-set",
+                                    data: [
+                                      {"V1": "HSC", "V2": HIRGH001var.ansdata}
+                                    ],
+                                  ).then((v) {
+                                    FreeLoading(context);
+                                    Future.delayed(Duration(seconds: 5), () {
+                                      Dio().post(
+                                        "http://172.20.30.46:2200/savedata",
+                                        data: {
+                                          "name":
+                                              "${HIRGH001var.PO}-${HIRGH001var.confirmdata.length}"
+                                        },
+                                      ).then((v) {
+                                        Future.delayed(Duration(seconds: 1),
+                                            () {
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        });
+                                      });
                                     });
                                   });
-                                });
-                              } else {
-                                WORNINGpop(context, "Have completed POINTs");
-                              }
-                            },
-                            child: Container(
-                              width: 150,
-                              height: 40,
-                              color: Colors.blue,
-                              child: Center(
-                                child: Text("Accept"),
+                                } else {
+                                  WORNINGpop(context, "Have completed POINTs");
+                                }
+                              },
+                              child: Container(
+                                width: 150,
+                                height: 40,
+                                color: Colors.blue,
+                                child: Center(
+                                  child: Text("Accept"),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )),
-                );
-              },
-            );
-          }
-        });
+                        )),
+                  );
+                },
+              );
+            }
+          });
+        } else {
+          WORNINGpop(context, "Please select item");
+        }
       },
       ACCEPT: (v) {
         if ((HIRGH001var.RESULTFORMAT == 'Graph' &&

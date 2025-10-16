@@ -54,6 +54,9 @@ class PicShowActState extends State<PicShowAct> {
           angle: 1.57,
           child: Image.memory(
             bytes,
+            height: widget.height ?? 50,
+            width: widget.width ?? 50,
+            fit: BoxFit.fill,
           )),
       // child: Padding(
       //   padding: const EdgeInsets.all(8.0),

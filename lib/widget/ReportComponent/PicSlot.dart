@@ -29,10 +29,18 @@ class PICSLOT extends StatelessWidget {
               child: Row(
                 children: [
                   if (PIC01 != '') ...[
-                    PicShowAct(width: 400, height: 300, base64: PIC01 ?? ''),
+                    PicShowAct(
+                      width: 280,
+                      height: 190,
+                      base64: PIC01 ?? '',
+                    ),
                   ],
                   if (PIC02 != NOPIC) ...[
-                    PicShowAct(width: 400, height: 300, base64: PIC02 ?? ''),
+                    PicShowAct(
+                      width: 280,
+                      height: 190,
+                      base64: PIC02 ?? '',
+                    ),
                   ],
                 ],
               ),
@@ -120,8 +128,18 @@ class PICSLO2SIDE extends StatelessWidget {
                                 border:
                                     Border.all(color: Colors.black, width: 3),
                               ),
-                              child: PicShowAct(
-                                  width: 400, height: 300, base64: PIC01 ?? ''),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    PicShowAct(
+                                      width: 280,
+                                      height: 190,
+                                      base64: PIC01 ?? '',
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -135,8 +153,15 @@ class PICSLO2SIDE extends StatelessWidget {
                                 border:
                                     Border.all(color: Colors.black, width: 3),
                               ),
-                              child: PicShowAct(
-                                  width: 400, height: 300, base64: PIC02 ?? ''),
+                              child: Row(
+                                children: [
+                                  PicShowAct(
+                                    width: 280,
+                                    height: 190,
+                                    base64: PIC02 ?? '',
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

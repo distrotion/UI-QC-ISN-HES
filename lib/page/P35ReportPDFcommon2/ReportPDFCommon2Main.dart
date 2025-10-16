@@ -1065,6 +1065,7 @@ class _ReportPDFCommon2State extends State<ReportPDFCommon2> {
                   P303QMMASTERQCVAR.day = DateFormat('dd').format(now);
                   P303QMMASTERQCVAR.month = DateFormat('MM').format(now);
                   P303QMMASTERQCVAR.year = DateFormat('yyyy').format(now);
+                  P303QMMASTERQCVAR.BATCH = _dataCOMMON.databasic.TPKLOT;
                   STDreport2(context);
                 },
                 child: Container(

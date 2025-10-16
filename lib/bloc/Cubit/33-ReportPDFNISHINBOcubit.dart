@@ -154,8 +154,8 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
             TPKLOT: BasicDATAr['FG_CHARG'] != null
                 ? BasicDATAr['FG_CHARG'].toString()
                 : '',
-            MATERIAL: BasicDATAr['MATERIAL'] != null
-                ? BasicDATAr['MATERIAL'].toString()
+            MATERIAL: BasicDATAr['MATERIAL_s'] != null
+                ? BasicDATAr['MATERIAL_s'].toString()
                 : '',
             QTY: BasicDATAr['QTY'] != null ? BasicDATAr['QTY'].toString() : '',
             // PICstd: BasicDATAr['PIC'] != null

@@ -146,8 +146,8 @@ class ReportPDFCommon_Cubit extends Cubit<CommonReportOutput> {
           TPKLOT: BasicDATAr['FG_CHARG'] != null
               ? BasicDATAr['FG_CHARG'].toString()
               : '',
-          MATERIAL: BasicDATAr['MATERIAL'] != null
-              ? BasicDATAr['MATERIAL'].toString()
+          MATERIAL: BasicDATAr['MATERIAL_s'] != null
+              ? BasicDATAr['MATERIAL_s'].toString()
               : '',
           QTY: BasicDATAr['QTY'] != null ? BasicDATAr['QTY'].toString() : '',
           UNITSAP: BasicDATAr['UNITSAP'] != null
