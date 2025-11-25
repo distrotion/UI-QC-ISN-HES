@@ -48,6 +48,7 @@ class ReportPDFNISHINBOcubit_Cubit extends Cubit<NISHINBOReportOutput> {
         List<String> masterACT = [
           "ITEMs-5f19aa43fe12be0020dbd3bf",
           "ITEMs-60403f1693e8d91950acb5c0",
+          "ITEMs-60405bcf93e8d91950acb5c3",
           "ITEMs-5f19a97cfe12be0020dbd3bc",
           "ITEMs-6040810993e8d91950acb5d4",
           "ITEMs-5f19a922fe12be0020dbd3ba",

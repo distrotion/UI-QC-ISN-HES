@@ -9,7 +9,6 @@ import '../../widget/common/Loading.dart';
 import '../cubit/NotificationEvent.dart';
 
 import '../../data/global.dart';
-import '../../page/P10REPORT/REPORTvar.dart';
 
 //-------------------------------------------------
 
@@ -63,7 +62,7 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
       "http://172.23.10.40:1880/" + 'gas12reportGEN',
       data: {
         //REPORTNEWvar
-        "PO": REPORTvar.PO == '' ? REPORTNEWvar.PO : REPORTvar.PO,
+        "PO": REPORTNEWvar.PO == '' ? REPORTNEWvar.PO : REPORTNEWvar.PO,
       },
     );
     String output = '';
@@ -94,8 +93,8 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     final response = await Dio().post(
       server + 'CopyReport',
       data: {
-        "original": REPORTvar.original,
-        "new": REPORTvar.newreport,
+        "original": REPORTNEWvar.original,
+        "new": REPORTNEWvar.newreport,
       },
     );
 
@@ -120,7 +119,7 @@ class REPORT_CALL_Bloc extends Bloc<REPORT_CALL_Event, String> {
     String output = 'C_NOK';
     final response = await Dio().post(
       "http://172.23.10.40:1880/" + 'ISN_DATA_RECAL',
-      data: {"PO": REPORTvar.recall},
+      data: {"PO": REPORTNEWvar.recall},
     );
     if (response.statusCode == 200) {
       var databuff = response.data;

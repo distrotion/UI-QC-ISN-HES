@@ -342,6 +342,22 @@ class _ReportPDFTESTState extends State<ReportPDFTEST> {
             ReportPDFTESTvar.datalist[8].DATA03 = _dataACT.datain[j].DATA03;
             ReportPDFTESTvar.datalist[8].DATAAVG = _dataACT.datain[j].DATAAVG;
           }
+
+          if (_dataACT.datain[j].ITEM == 'ITEMs-60405bcf93e8d91950acb5c3') {
+            String Loadin = '';
+            if (_dataACT.datain[2].LOAD != '' &&
+                _dataACT.datain[2].LOAD != '-') {
+              Loadin = "( Load ${_dataACT.datain[2].LOAD} )";
+            }
+            ReportPDFTESTvar.datalist[2].ITEMname =
+                _dataACT.datain[j].ITEMname + ' ' + Loadin;
+            ReportPDFTESTvar.datalist[2].SCMARK = _dataACT.datain[j].SCMARK;
+            ReportPDFTESTvar.datalist[2].METHODname = "Visual";
+            ReportPDFTESTvar.datalist[2].FREQ = _dataACT.datain[j].FREQ;
+            ReportPDFTESTvar.datalist[2].SPECIFICATIONname =
+                _dataACT.datain[j].SPECIFICATIONname;
+            ReportPDFTESTvar.datalist[2].RESULT = _dataACT.datain[j].RESULT;
+          }
         }
       }
     } else {
